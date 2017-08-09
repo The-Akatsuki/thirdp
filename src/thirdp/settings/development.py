@@ -3,8 +3,8 @@ import sys
 import logging.config
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATES[0]['OPTIONS'].update({'debug': True})
+DEBUG = False
+TEMPLATES[0]['OPTIONS'].update({'debug': False})
 
 # Turn off debug while imported by Celery with a workaround
 # See http://stackoverflow.com/a/4806384
@@ -12,12 +12,12 @@ if "celery" in sys.argv[0]:
     DEBUG = False
 
 # Django Debug Toolbar
-INSTALLED_APPS += (
-    'debug_toolbar',)
+#INSTALLED_APPS += (
+#    'debug_toolbar',)
 
 # Additional middleware introduced by debug toolbar
-MIDDLEWARE_CLASSES += (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',)
+#MIDDLEWARE_CLASSES += (
+#    'debug_toolbar.middleware.DebugToolbarMiddleware',)
 
 # Show emails to console in DEBUG mode
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -30,6 +30,8 @@ INTERNAL_IPS = [
     '127.0.0.1',
     '0.0.0.1',
 ]
+
+ALLOWED_HOSTS = ['*']
 
 # Log everything to the logs directory at the top
 LOGFILE_ROOT = join(dirname(BASE_DIR), 'logs')
