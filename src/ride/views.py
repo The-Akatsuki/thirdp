@@ -11,5 +11,5 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 	template_name = "ride/book_ride.html"
 	http_method_names = ['get', 'post']
 	
-	def get(self, request, *args, **kwargs):
-		return super(BookRide, self).get(request, *args, **kwargs)
+	# def get(self, request, *args, **kwargs):
+	# 	return super(BookRide, self).get(request, *args, **kwargs)
