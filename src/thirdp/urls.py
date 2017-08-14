@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^users/', include(profiles.urls, namespace='profiles')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
+    url(r'^dashboard/', views.dashboard.as_view(), name='dashboard'),
     url(r'^rides/', include(ride.urls, namespace='ride')),
 ]
 

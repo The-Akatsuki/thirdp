@@ -17,6 +17,8 @@
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/datepicker.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'assets/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
 
     <!-- Custom styles for this site -->
     {% block styles %}
@@ -117,7 +119,7 @@
       <!-- Some social button for contact will do -->
       <a name="contact"></a>
       <div class="container">
-            <div class="footer">
+           <!--  <div class="footer">
         <div class="row">
           <div class="col-lg-6">
               <p>&copy; Company {% now 'Y' %}</p>
@@ -128,7 +130,7 @@
             <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
           </div>
         </div>
-            </div>
+            </div> -->
       </div>
     {% endblock %}
 
@@ -145,6 +147,8 @@
     <!-- For estimater map-->
      <script>
 
+
+  
 
 $('#destination-input').on('change',function(){
     console.log('onchange function')
@@ -316,11 +320,11 @@ $('#destination-input').on('change',function(){
     
    $('#datepicker').datetimepicker({
         format: 'DD  MMMM  YYYY',
-    minDate:new Date()
+      minDate:new Date()
     });
     
     $('#timepicker').datetimepicker({
-        format: 'hh:mm A'
+        format: 'hh:mm A'        
     });
      
       </script>

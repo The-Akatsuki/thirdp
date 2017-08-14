@@ -10,6 +10,10 @@ from . import models
 class BookRide(LoginRequiredMixin, generic.TemplateView):
 	template_name = "ride/book_ride.html"
 	http_method_names = ['get', 'post']
-	
+
+	def post(self, request):
+		print request
+		return "Test"
+			
 	# def get(self, request, *args, **kwargs):
 	# 	return super(BookRide, self).get(request, *args, **kwargs)
