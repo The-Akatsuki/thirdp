@@ -216,7 +216,7 @@
 
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
-              <input type="text" name="email" value="" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email"><span class="fa fa-person"></span>
+              <input type="text" name="email" value="" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()"><span class="fa fa-person"></span>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -240,7 +240,8 @@
           </div>
 
           <div class="clearfix"></div>
-           <h2 class="text-center rideBookTitle userFoundText" style="font-size: 16px;margin-top:10px"> <i class="fa fa-checked"></i> User XYZ exist in the system. Click <span style="font-size: 18px;cursor: pointer;" onclick="form_first_content_btn_submit()">here</span> to book a ride for the user XYZ</h2>          
+           <h2 class="text-center rideBookTitle userFoundText" style="font-size: 16px;margin-top:10px"> <i class="fa fa-check"></i> User XYZ exist in the system. Click <span style="font-size: 18px;cursor: pointer;" onclick="form_first_content_btn_submit()">here</span> to book a ride for the user XYZ</h2> 
+           <h2 class="text-center rideBookTitle usernotFoundText" style="font-size: 16px;margin-top:10px"> <i class="fa fa-times"></i> User is not registered with Lymousine. Please ask your Staff to register with Lymousine.</h2>          
           <div class="clearfix"></div>
            
             
@@ -257,6 +258,18 @@
           <input type="hidden" name="type-value" id="type_value" class="type-value ajaxField" value="1">
         </div>
         <div class="row form-with-labels">
+          <input type="hidden" name="from_country" value="">
+          <input type="hidden" name="from_state" value="">
+          <input type="hidden" name="from_city" value="">
+          <input type="hidden" name="from_lat" value="">
+          <input type="hidden" name="from_lon" value="">
+
+          <input type="hidden" name="to_country" value="">
+          <input type="hidden" name="to_state" value="">
+          <input type="hidden" name="to_city" value="">
+          <input type="hidden" name="to_lat" value="">
+          <input type="hidden" name="to_lon" value="">
+
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" id="origin-input" name="from" value="" placeholder="From Address..." class="ajaxField required" aria-required="true"><span class="fa fa-map-marker"></span>
@@ -272,23 +285,23 @@
         <div class="row form-with-labels">            
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" name="text" value="" placeholder="Date" class="ajaxField" id="datepicker"><span class="fa fa-calendar"></span>
+              <input type="text" name="Ridedate" value="" placeholder="Date" class="ajaxField" id="datepicker"><span class="fa fa-calendar"></span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" name="text" value="" placeholder="Time" class="ajaxField" id="timepicker"><span class="fa fa-calendar"></span>
+              <input type="text" name="Ridetime" value="" placeholder="Time" class="ajaxField" id="timepicker"><span class="fa fa-calendar"></span>
             </div>
           </div>
 
-          <p class="text-center">for: Sudhir Raj Gowda</p>
+          <p class="text-center">for: <span class="finalFormUserCheck">XYZ</span></p>
           <div class="clearfix"></div>
           <div class="clearfix">&nbsp;</div>
 
 
         </div>
 
-         <input type="submit" value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both; display: block ">
+         <button type="button" onclick="bookRide()" value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both; display: block ">Book Ride</button>
         <input type="hidden" id="type" name="type" value="2" class="ajaxField">
         <div class="clearfix"></div>
         <div class="clearfix">&nbsp;</div>
@@ -301,7 +314,7 @@
 {% endblock container %}
 
  {% block scripts %}
-
+<scipt src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></scipt>
  <script type="text/javascript">
    
    function form_first_content_btn_submit(){
@@ -318,6 +331,12 @@
       $(".userFoundText").hide();
    }
 
+   function emailInit(){
+      $(".userFoundText").hide();
+      $(".usernotFoundText").hide();
+      $(".form_first_content_btn").show();
+   }
+
    function check_user_lymousine(){
       $(".form_first_content_btn").hide();
       $(".checking_user_details_waiting").show();
@@ -331,15 +350,71 @@
       };
       console.log(formData);
       $.ajax({
-                url: "http://192.168.1.106:8000/lymousine/api/v1/forcorporateapplication",
+                url: "http://localhost:5003/lymousine/api/v1/forcorporateapplication",
                 type: "post",
-                data: formData,
+                data: JSON.stringify(formData),
+                contentType: "application/json",
                 success: function(d) {
-                    alert(d);
-                     $(".checking_user_details_waiting").hide();
-                     $(".userFoundText").show();
+                    if(d.success == true){
+                      userHtmlContent = '<i class="fa fa-check"></i> User <strong>'+d.data.email+'</strong> exist in the system.<div class="clearfix"></div> <div style="font-size:140%;margin-top:10px"> Click <strong><span style="cursor: pointer;text-decoration:underline" onclick="form_first_content_btn_submit(';
+                      userHtmlContent += "'"+d.data.email+"')";
+                      userHtmlContent += '">here</span></strong> to book a ride for the user '+d.data.email+'</div>';
+                      $(".userFoundText").html(userHtmlContent);
+                      $(".finalFormUserCheck").html(d.data.email);
+                      $(".checking_user_details_waiting").hide();
+                      $(".userFoundText").show();
+                    }else{                      
+                      alert("This user is not Registered with lymousine. Please ask this User to register with Lymousine");
+                      $(".checking_user_details_waiting").hide();
+                      $(".form_first_content_btn").show();
+                      $("#bookaRideform").trigger('reset');
+                      $(".userFoundText").hide();
+                      $(".usernotFoundText").show();
+                    }
+                     
                 }
+                    
             });
+   }
+
+
+
+   function bookRide(){
+
+    datetimeFormatted = $("input[name='Ridedate']").val()
+    datenew = moment(datetimeFormatted, 'DD MMMM YYYY').format('YYYY-MM-DD')
+    console.log(datenew)
+
+     var formData = {
+            "pickup_lat": $("input[name='from_lat']").val(),
+            "pickup_long": $("input[name='from_lon']").val(),
+            "drop_lat": $("input[name='to_lat']").val(),
+            "drop_long": $("input[name='to_lon']").val(), 
+            "pickup_address": $("#origin-input").val(),
+            "drop_address": $("#destination-input").val(),
+            "ride_datetime": datenew+"T"+$("input[name='RideTime']").val()+"Z", 
+            "noof_passengers": 1, 
+            "vehicle_type": 1,
+            "ride_booked_by": 1
+          } 
+
+
+          $.ajax({
+                url: "http://localhost:5003/lymousine/api/v1/forcorporateapplicationridebooking",
+                type: "post",
+                data: JSON.stringify(formData),
+                contentType: "application/json",
+                success: function(d) {
+                    if(d.success == true){
+                     
+                    }else{                      
+                     
+                    }
+                     
+                }
+                    
+            });
+
    }
 
 
