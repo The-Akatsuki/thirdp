@@ -35,7 +35,7 @@
 <div class="col-md-8 col-sm-12 col-xs-12">
 
                         <div class="page-sub-title text-center" style="position: relative;">
-                            <h2>All rides</h2>
+                            <h2>Booked rides</h2>
                             <div class="line"></div>
                         </div><!-- end .page-sub-title -->
 
@@ -56,6 +56,9 @@
 
                                     <ul class="ride-meta">
 
+                                      <li>
+                                        New Ride Booked
+                                      </li>
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
                                                 <i class="fa fa-calendar"></i>
@@ -64,11 +67,24 @@
                                         </li><!-- end .ride-date -->
 
                                        
-
+                                        
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-file"></i>
-                                                Read more
+                                                Cancel Ride
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-file-pdf-o"></i>
+                                                Invoice
+                                            </a>
+                                        </li>
+                    
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-file"></i>
+                                                Support
                                             </a>
                                         </li>
 
@@ -84,6 +100,9 @@
 
                                     <ul class="ride-meta">
 
+                                    <li>
+                                        Booking Confirmed
+                                      </li>
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
                                                 <i class="fa fa-calendar"></i>
@@ -93,10 +112,23 @@
 
                                        
 
+                                         <li>
+                                            <a href="#">
+                                                <i class="fa fa-file"></i>
+                                                Cancel Ride
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-file-pdf-o"></i>
+                                                Invoice
+                                            </a>
+                                        </li>
+                    
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-file"></i>
-                                                Read more
+                                                Support
                                             </a>
                                         </li>
 
@@ -112,6 +144,10 @@
 
                                     <ul class="ride-meta">
 
+                                    <li>
+                                        Ride Completed
+                                      </li>
+
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
                                                 <i class="fa fa-calendar"></i>
@@ -121,10 +157,23 @@
 
                                        
 
+                                         <li>
+                                            <a href="#">
+                                                <i class="fa fa-file"></i>
+                                                Cancel Ride
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-file-pdf-o"></i>
+                                                Invoice
+                                            </a>
+                                        </li>
+                    
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-file"></i>
-                                                Read more
+                                                Support
                                             </a>
                                         </li>
 
@@ -140,6 +189,9 @@
 
                                     <ul class="ride-meta">
 
+                                    <li>
+                                        Ride Cancelled
+                                      </li>
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
                                                 <i class="fa fa-calendar"></i>
@@ -150,7 +202,20 @@
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-file"></i>
-                                                Read more
+                                                Cancel Ride
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-file-pdf-o"></i>
+                                                Invoice
+                                            </a>
+                                        </li>
+                    
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-file"></i>
+                                                Support
                                             </a>
                                         </li>
                                     </ul><!-- end .ride-meta -->
@@ -165,6 +230,10 @@
 
                                     <ul class="ride-meta">
 
+                                    <li>
+                                        Ride Completed
+                                      </li>
+
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
                                                 <i class="fa fa-calendar"></i>
@@ -173,10 +242,23 @@
                                         </li><!-- end .ride-date -->
 
                                       
+                                         <li>
+                                            <a href="#">
+                                                <i class="fa fa-file"></i>
+                                                Cancel Ride
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-file-pdf-o"></i>
+                                                Invoice
+                                            </a>
+                                        </li>
+                    
                                         <li>
                                             <a href="#">
                                                 <i class="fa fa-file"></i>
-                                                Read more
+                                                Support
                                             </a>
                                         </li>
 
@@ -316,6 +398,8 @@
  {% block scripts %}
 <scipt src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></scipt>
  <script type="text/javascript">
+
+  var lymoServerURL = "http://192.168.1.100:5003/"
    
    function form_first_content_btn_submit(){
     $(".form_first_content").hide();
@@ -350,7 +434,7 @@
       };
       console.log(formData);
       $.ajax({
-                url: "http://localhost:5003/lymousine/api/v1/forcorporateapplication",
+                url: lymoServerURL+"lymousine/api/v1/forcorporateapplication",
                 type: "post",
                 data: JSON.stringify(formData),
                 contentType: "application/json",
@@ -400,7 +484,7 @@
 
 
           $.ajax({
-                url: "http://localhost:5003/lymousine/api/v1/forcorporateapplicationridebooking",
+                url: lymoServerURL+"lymousine/api/v1/forcorporateapplicationridebooking",
                 type: "post",
                 data: JSON.stringify(formData),
                 contentType: "application/json",

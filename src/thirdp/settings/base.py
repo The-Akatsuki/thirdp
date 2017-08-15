@@ -78,7 +78,8 @@ INSTALLED_APPS = (
 
     'profiles',
     'accounts',
-    'ride'
+    'ride',
+    'payments',
 
 )
 

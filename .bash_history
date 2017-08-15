@@ -40,3 +40,12 @@ cd vagrant/
 clear
 ls
 exit
+clear
+ls
+cd src/
+clear
+ls
+cd ~/
+clear
+ls
+exit
