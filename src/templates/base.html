@@ -15,11 +15,18 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/datepicker.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
 
     <!-- Custom styles for this site -->
     {% block styles %}
     <link href="{% static 'site/css/main.css' %}" rel="stylesheet">
     {% endblock styles %}
+
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
     <!-- Custom tags for the head tag -->
     {% block extrahead %}{% endblock extrahead %}
@@ -69,7 +76,8 @@
 		    
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="{% url 'profiles:show_self' %}">Profile</a></li>
-                    <li><a href="{% url 'ride:book' %}">Book a Ride</a></li>
+                   <!--  <li><a href="{% url 'ride:book' %}">Book a Ride</a></li> -->
+                   <li><a href="{% url 'payments:paymentmethods' %}">My Payment Methods</a></li>
                     <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
                   </ul>
                 </li>
@@ -112,7 +120,7 @@
       <!-- Some social button for contact will do -->
       <a name="contact"></a>
       <div class="container">
-            <div class="footer">
+           <!--  <div class="footer">
         <div class="row">
           <div class="col-lg-6">
               <p>&copy; Company {% now 'Y' %}</p>
@@ -123,15 +131,294 @@
             <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
           </div>
         </div>
-            </div>
+            </div> -->
       </div>
     {% endblock %}
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    
+    <script src="{% static 'assets/js/jquery.validate.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+     <script src="{% static 'assets/allJs.js' %}"></script>
+
+
+    <!-- For estimater map-->
+     <script>
+
+
+  
+
+$('#destination-input').on('change',function(){
+    console.log('onchange function')
+    $("input[name='to_country']").val();
+    $("input[name='to_state']").val();
+    $("input[name='to_city']").val();
+    $("input[name='to_lat']").val();
+    $("input[name='to_lon']").val();
+    var origin = document.getElementById("origin-input").value;
+    var destination = document.getElementById("destination-input").value;
+    if (origin == destination){
+        $('#modalEstimAlert').modal('show');
+    }
+
+
+    var geocoder2 = new google.maps.Geocoder();
+    var address = document.getElementById("destination-input").value;
+    console.log('address',address)
+    geocoder2.geocode( { 'address': address}, function(results, status)
+    {
+        if (status == google.maps.GeocoderStatus.OK)
+        {
+            var lat = results[0].geometry.location.lat();
+            var lng = results[0].geometry.location.lng();
+            var latlng   = new google.maps.LatLng(lat, lng)
+        }
+
+        geocoder2.geocode({'latLng': latlng}, function(results, status)
+        {
+            if (status == google.maps.GeocoderStatus.OK) {
+                console.log('status ok')
+                if (results[0]) {
+                    console.log('results', results[0])
+                    console.log('length', results[0].address_components.length)
+                    var country = ''
+                    var state = ''
+                    var city = ''
+                    for (var j = 0; j < results[0].address_components.length-1; j++) {
+                        if (results[0].address_components[j].types[0] == 'country') {
+                            var country = results[0].address_components[j].long_name;
+                        }
+                        else if (results[0].address_components[j].types[0] == 'administrative_area_level_1') {
+                            var state = results[0].address_components[j].long_name;
+                        }
+                        else if (results[0].address_components[j].types[0] == 'locality') {
+                            var city = results[0].address_components[j].long_name;
+                        }
+                    }
+                    $("input[name='to_country']").val(country);
+                    $("input[name='to_state']").val(state);
+                    $("input[name='to_city']").val(city);
+                     $("input[name='to_lat']").val(lat);
+                      $("input[name='to_lon']").val(lng);
+
+
+                }
+                else {
+                    console.log("No reverse geocode results.");
+                }
+            }
+            else
+            {
+                console.log("Geocoder failed: " + status);
+            }
+        });
+    });
+});
+
+
+$('#origin-input').on('change',function(){
+    var origin = document.getElementById("origin-input").value;
+    var destination = document.getElementById("destination-input").value;
+    if (origin == destination){
+        $('#modalEstimAlert').modal('show');
+    }
+
+
+    var geocoder = new google.maps.Geocoder();
+    var address = document.getElementById("origin-input").value;
+    console.log('address',address)
+    geocoder.geocode( { 'address': address}, function(results, status)
+    {
+        if (status == google.maps.GeocoderStatus.OK)
+        {
+            var lat = results[0].geometry.location.lat();
+            var lng = results[0].geometry.location.lng();
+            var latlng   = new google.maps.LatLng(lat, lng)
+        }
+
+        geocoder.geocode({'latLng': latlng}, function(results, status)
+        {
+            if (status == google.maps.GeocoderStatus.OK) {
+                console.log('status ok')
+                if (results[0]) {
+                    console.log('results', results[0])
+                    console.log('length', results[0].address_components.length)
+                    var country = ''
+                    var state = ''
+                    var city = ''
+                    for (var j = 0; j < results[0].address_components.length-1; j++) {
+                        if (results[0].address_components[j].types[0] == 'country') {
+                            var country = results[0].address_components[j].long_name;
+                        }
+                        else if (results[0].address_components[j].types[0] == 'administrative_area_level_1') {
+                            var state = results[0].address_components[j].long_name;
+                        }
+                        else if (results[0].address_components[j].types[0] == 'locality') {
+                            var city = results[0].address_components[j].long_name;
+                        }
+                    }
+                    $("input[name='from_country']").val(country);
+                    $("input[name='from_state']").val(state);
+                    $("input[name='from_city']").val(city);
+                     $("input[name='from_lat']").val(lat);
+                      $("input[name='from_lon']").val(lng);
+
+
+                }
+                else {
+                    console.log("No reverse geocode results.");
+                }
+            }
+            else
+            {
+                console.log("Geocoder failed: " + status);
+            }
+        });
+    });
+});
+
+
+
+  
+        
+        
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          mapTypeControl: false,
+          center: {lat: 33.905241, lng: -84.4733164},
+          zoom: 13
+        });
+
+        new AutocompleteDirectionsHandler(map);
+      }
+
+       /**
+        * @constructor
+       */
+      function AutocompleteDirectionsHandler(map) {
+        this.map = map;
+        this.originPlaceId = null;
+        this.destinationPlaceId = null;
+        this.travelMode = 'WALKING';
+        var originInput = document.getElementById('origin-input');
+        var destinationInput = document.getElementById('destination-input');
+        var modeSelector = document.getElementById('mode-selector');
+        this.directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.directionsDisplay.setMap(map);
+
+        var originAutocomplete = new google.maps.places.Autocomplete(
+            originInput, {placeIdOnly: true});
+        var destinationAutocomplete = new google.maps.places.Autocomplete(
+            destinationInput, {placeIdOnly: true});
+
+        this.setupClickListener('changemode-walking', 'WALKING');
+        this.setupClickListener('changemode-transit', 'TRANSIT');
+        this.setupClickListener('changemode-driving', 'DRIVING');
+
+        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+
+        google.maps.event.addListener(originAutocomplete, 'origin_place_changed', function() {
+            origin_input_change();
+        });
+      }
+
+      // Sets a listener on a radio button to change the filter type on Places
+      // Autocomplete.
+      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+        var radioButton = document.getElementById(id);
+        var me = this;
+        radioButton.addEventListener('click', function() {
+          me.travelMode = mode;
+          me.route();
+        });
+      };
+
+      AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+        var me = this;
+        autocomplete.bindTo('bounds', this.map);
+        autocomplete.addListener('place_changed', function() {
+          var place = autocomplete.getPlace();
+          if (!place.place_id) {
+            window.alert("Please select an option from the dropdown list.");
+            return;
+          }
+          if (mode === 'ORIG') {
+            me.originPlaceId = place.place_id;
+          } else {
+            me.destinationPlaceId = place.place_id;
+          }
+          me.route();
+        });
+
+      };
+
+      AutocompleteDirectionsHandler.prototype.route = function() {
+        if (!this.originPlaceId || !this.destinationPlaceId) {
+          return;
+        }
+        var me = this;
+
+        this.directionsService.route({
+          origin: {'placeId': this.originPlaceId},
+          destination: {'placeId': this.destinationPlaceId},
+          travelMode: this.travelMode
+        }, function(response, status) {
+          if (status === 'OK') {
+            me.directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      };
+
+
+
+    </script>
+    <!--nidhi-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3O7-WWvMYxP99Qv7z3wvr3pn58-8ha8k&libraries=places&callback=initMap" async defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+  <script type="text/javascript">    
+    
+   $('#datepicker').datetimepicker({
+        format: 'DD  MMMM  YYYY',
+      minDate:new Date()
+    });
+    
+    $('#timepicker').datetimepicker({
+        format: 'hh:mm A'        
+    });
+     
+      </script>
+      
+      <script>
+    function openVehiclList() {
+    $('.VehicleDropDown').toggleClass("carList");
+  }
+  
+ function VehiclList() {
+    $('.VehicleDropDown').addClass("carList");
+  }
+  function closeVehiclList() {
+    $('.VehicleDropDown').removeClass("carList");
+  } 
+   </script>
+  
+
+
+
+
     {% block scripts %}
     {% endblock scripts %}
   </body>

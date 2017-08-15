@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 import profiles.urls
 import accounts.urls
 import ride.urls
+import payments.urls
 from . import views
 
 urlpatterns = [
@@ -13,7 +14,9 @@ urlpatterns = [
     url(r'^users/', include(profiles.urls, namespace='profiles')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
+    url(r'^dashboard/', views.dashboard.as_view(), name='dashboard'),
     url(r'^rides/', include(ride.urls, namespace='ride')),
+    url(r'^payments/', include(payments.urls, namespace="payments")),
 ]
 
 # User-uploaded files like profile pics need to be served in development

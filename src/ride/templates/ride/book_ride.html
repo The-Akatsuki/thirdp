@@ -4,6 +4,7 @@
 {% load crispy_forms_tags %}
 {% load thumbnail %}
 
+
 {% block title %}{{ block.super }}Profile{% endblock %}
 
 <!-- Benefits of the Django application -->
@@ -16,20 +17,181 @@
     <!-- left column -->
          
     <!-- edit form column -->
-    <div class="col-md-9">
+   <!--  <div class="col-md-9">
       <h3>Book a Ride</h3>
- 
-      </form>
-    </div>
+    </div> -->
   </div>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <a class="btn btn-default pull-right" href="{% url 'accounts:password-change' %}">Change Password</a>
+  
+<div id="content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-left padding50" id="HowItWors">
+                    <div class="max768">
+
+                        <h1 class="futura headings">Book Ride</h1>
+                        <p class="paragraph"> Book at least 30 minutes ahead of your desired pick-up time.</p>
+                        <!-- <br>
+                         <h1 class="futura headings"> What we do </h1>
+                        <p class="paragraph"> We pick you up when you want to go and take you where you want to go. </p>
+ -->
+                    </div>
+              </div>
+            </div>
+          </div> 
+
+            <div class="farestimater padding50">
+              <div class="container">
+                <div class="row">
+            <!--<form class="estimater white" id="estimater">-->
+<form id="estimater" name="estimater_form" class="estimater white" action="" method="POST">
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="futura labelsMap"><span class="redDot"></span></span> Pick-up Address</label>
+            </div>
+            <div class="col-xs-6">
+                <label class="futura labelsMap"><span class="greenDot"></span>Drop-Off Address</label>
+            </div>
+        </div>
+        <div id="map"></div>
     </div>
-  </div>
+    <div class="col-lg-6" style="top:40px;">
+        <div class="row">
+            <input id="origin-input" name="pickup" class="controls" type="text" placeholder="Enter an origin location">
+            <input id="destination-input" name="dropoff" class="controls" type="text" placeholder="Enter a destination location">
+            <div id="mode-selector" class="controls">
+                <input type="radio" name="type" id="changemode-walking">
+                <label for="changemode-walking">Walking</label>
+                <input type="radio" name="type" id="changemode-transit">
+                <label for="changemode-transit">Transit</label>
+                <input type="radio" name="type" id="changemode-driving" checked="checked">
+                <label for="changemode-driving">Driving</label>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="form-group col-sm-1"></div>
+
+            <div class="form-group col-sm-10">
+                <label for="date" class="futura"> Pick-up Date </label>
+                <div class='input-group date' id='datepicker'>
+                    <input type='text' id="date" name="date" type="text" placeholder="Select pick-up date" class="form-control pointerEventNone" />
+                    <span class="input-group-addon"><img src="{% static 'assets/images/callender.png' %}"></span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-sm-1"></div>
+
+            <div class="form-group col-sm-10">
+                <label for="time" class="futura"> Pick-up Time </label>
+                <div class='input-group date' id='timepicker'>
+                    <input type='text' id="time" name="time" placeholder="Select pick-up time" class="form-control pointerEventNone" />
+                    <span class="input-group-addon"><img src="{% static 'assets/images/clock.png' %}"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-1"></div>
+            <div class="clearfix"></div>
+
+            <div class="form-group col-sm-12 relativePosition">
+
+                <ul class="VehicleDropDown text-center">
+                    <li><input type="radio" style="height: 69px;" name="vehicle_type_name" id="vehicle_type1" class="hidden_radio" value="1"> <img src="{% static 'assets/images/1.png' %}" class="img-responsive">  <span class="vehicle_name_text redColor futura"> STANDARD </span> </li>
+                    <li><input type="radio" style="height: 69px;" name="vehicle_type_name" id="vehicle_type1" class="hidden_radio" value="2"> <img src="{% static 'assets/images/2.png' %}" class="img-responsive">  <span class="vehicle_name_text redColor futura"> LUXURY </span> </li>
+                    <li><input type="radio" style="height: 69px;" name="vehicle_type_name" id="vehicle_type1" class="hidden_radio" value="3"> <img src="{% static 'assets/images/3.png' %}" class="img-responsive">  <span class="vehicle_name_text redColor futura">  SUV </span> </li>
+                    <li><input type="radio" style="height: 69px;" name="vehicle_type_name" id="vehicle_type1" class="hidden_radio" value="4" > <img src="{% static 'assets/images/4.png' %}" class="img-responsive">  <span class="vehicle_name_text redColor futura">  VAN </span> </li>
+                    <li><input type="radio" style="height: 69px;" name="vehicle_type_name" id="vehicle_type1" class="hidden_radio" value="5"> <img src="{% static 'assets/images/5.png' %}" class="img-responsive">  <span class="vehicle_name_text redColor futura"> LIMOUSINE </span> </li>
+                </ul>
+
+
+
+                <div class="text-center listOpenImage" onMouseOver="VehiclList()" onClick="openVehiclList()">
+                    <img src="{% static 'assets/images/vhiclType.png' %}" style="width: 100px;">
+                </div>
+            </div>
+            <input type="hidden" name="country" id="country" value="">
+            <input type="hidden" name="state" id="state" value="">
+            <input type="hidden" name="city" id="city" value="">
+            <div class="clearfix"></div>
+            <br><br>
+
+</div>
+
+
+</div>
+        <div class="row text-center">
+            <div class="form-group col-sm-12"><br>
+                <button class="btn redBtn estimate_btn" type="submit"> Estimate </button>
+                <span class="estimatedCost"></span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+                    </form>
+</div>
+         
+
 </div>
 {% endblock %}
 
+
+
+<div class="modal fade" id="modalEstimAlert" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title text-center"> Alert! </h4>
+        </div>
+        <div class="modal-body">
+Pick-up and Drop-off address can not be same.
+
+
+
+
+        </div>
+
+          <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal"> OK </button>
+          </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+    <div class="modal fade" id="modalVehicleType" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <h4 class="modal-title text-center"> Alert! </h4>
+        </div>
+        <div class="modal-body">
+Please select vehicle type.
+
+
+
+
+        </div>
+
+          <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal"> OK </button>
+          </div>
+      </div>
+
+
+    </div>
+  </div>
 
