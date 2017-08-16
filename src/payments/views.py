@@ -17,8 +17,11 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
 		return super(addPayment, self).get(request, *args, **kwargs)
 
 	def post(self, request, *args, **kwargs):
+		user = self.request.user
 		paymentForm = forms.paymentForm(request.POST)
-		paymentForm.save()
+		payment = paymentForm.save(commit=false)
+		payment.user = user
+		payment.save()
 		messages.success(request, "Payments has been saved!")
 		return redirect("payments:paymentmethods")
 
