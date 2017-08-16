@@ -39,3 +39,26 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = models.Profile
         fields = ['picture', 'bio']
+
+
+class companyProfileForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(companyProfileForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.layout = Layout(
+            Field('companyName'),
+            Field('phone'),
+            Field('addressLine1'),
+            Field('addressLine2'),
+            Field('city'),
+            Field('state'),
+            Field('country'),
+            Field('zipCode'),
+            Submit('update', 'Update', css_class="btn-success"),
+            )
+
+    class Meta:
+        model = models.companyDetails
+        fields = ['companyName', 'phone', 'addressLine1', 'addressLine2', 'city', 'state', 'zipCode', 'country']

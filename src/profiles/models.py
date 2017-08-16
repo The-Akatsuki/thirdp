@@ -26,3 +26,17 @@ class BaseProfile(models.Model):
 class Profile(BaseProfile):
     def __str__(self):
         return "{}'s profile". format(self.user)
+
+class companyDetails(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                primary_key=True)
+    companyName = models.CharField(max_length=250, null=True)
+    phone = models.CharField(max_length=20,null=True)
+    addressLine1 = models.TextField(null=True)
+    addressLine2 = models.TextField(null=True)
+    city = models.CharField(max_length=250, blank=True)
+    state = models.CharField(max_length=250, blank=True)
+    zipCode = models.CharField(max_length=250, blank=True)
+    country = models.CharField(max_length=250, blank=True)
+
+

@@ -31,6 +31,8 @@ INTERNAL_IPS = [
     '0.0.0.1',
 ]
 
+ALLOWED_HOSTS = ['*']
+
 # Log everything to the logs directory at the top
 LOGFILE_ROOT = join(dirname(BASE_DIR), 'logs')
 
