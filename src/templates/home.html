@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% load staticfiles %}
@@ -19,6 +20,11 @@
 {% endblock %}
 
 {% block splash %}
+{% if user.is_authenticated %}
+  <script>
+    window.location.href="/dashboard"
+  </script>
+{% endif %}
   <div class="jumbotron jumbotron-carousel corporate-jumbo">
     <div class="container">
       <div class="row">

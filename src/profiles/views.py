@@ -58,3 +58,27 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
         profile.save()
         messages.success(request, "Profile details saved!")
         return redirect("profiles:show_self")
+
+class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
+    template_name = "profiles/edit_company_profile.html"
+    http_method_names = ['get', 'post']
+
+    def get(self, request, *args, **kwargs):
+        b = models.companyDetails.objects.filter(user=self.request.user).first()
+        print b
+        if "companyProfileForm" not in kwargs:
+            kwargs["companyProfileForm"] = forms.companyProfileForm(instance=b)
+        return super(EditCompanyProfile, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwards):
+        print self.request.user
+        b = models.companyDetails.objects.filter(user=self.request.user).first()
+        print b
+        companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
+        #b = models.companyDetails.objects.filter(user=self.request.user)
+        #print b;
+        companyProfileForm.save()
+
+        messages.success(request, "Company  details saved!")
+        return redirect("profiles:companyprofile")
+        #return redirect("profiles:show_self")

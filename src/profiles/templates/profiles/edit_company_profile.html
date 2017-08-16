@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Profile{% endblock %}
+
+{% block container %}
+<style type="text/css">
+  textarea{
+    height:30px !important;
+    border-bottom: 1px !important;
+  }
+</style>
+<div class="col-md-6 col-md-offset-3" style="margin-top:100px">
+<form class="jotform-form" action="companyprofile" method="post" name="form_72261040284447" id="72261040284447" accept-charset="utf-8">
+ {% crispy companyProfileForm %} 
+</form>
+</div>
+            
+            
+        </div>   
+
+
+
+
+{% endblock %}
