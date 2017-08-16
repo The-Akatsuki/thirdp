@@ -73,8 +73,11 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
     def post(self, request, *args, **kwards):
         print self.request.user
         b = models.companyDetails.objects.filter(user=self.request.user).first()
-        print b
-        companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
+        if b is not None:
+            companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
+        else:
+            companyProfileForm = forms.companyProfileForm(request.POST)
+
         #b = models.companyDetails.objects.filter(user=self.request.user)
         #print b;
         companyProfileForm.save()
