@@ -78,7 +78,6 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         #b = models.companyDetails.objects.filter(user=self.request.user)
         #print b;
         companyProfileForm.save()
-
-        messages.success(request, "Company  details saved!")
-        return redirect("profiles:companyprofile")
+        messages.success(request, "Company details has been saved!")
+        return redirect("payments:addpayment")
         #return redirect("profiles:show_self")
