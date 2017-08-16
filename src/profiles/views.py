@@ -72,11 +72,12 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwards):
         print self.request.user
-        try:
-            b = models.companyDetails.objects.filter(user=self.request.user).first()
-            companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
-        except:
+        """try:
+            #b = models.companyDetails.objects.filter(user=self.request.user).first()
             companyProfileForm = forms.companyProfileForm(request.POST)
+        except:
+            """
+        companyProfileForm = forms.companyProfileForm(request.POST)
 
         #b = models.companyDetails.objects.filter(user=self.request.user)
         #print b;
