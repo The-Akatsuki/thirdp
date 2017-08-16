@@ -74,9 +74,10 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         user = self.request.user
         b = models.companyDetails.objects.filter(user=user).first()
         print b
-        companyProfile = forms.companyProfileForm(request.POST, instance=b)
+        companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
         #b = models.companyDetails.objects.filter(user=self.request.user)
         #print b;
+        companyProfile = companyProfileForm.save(commit=False)
         companyProfile.user = user
         companyProfile.save()
         messages.success(request, "Company details has been saved!")
