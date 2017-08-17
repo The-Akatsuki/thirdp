@@ -48,10 +48,11 @@
 
                             <div class="rides-list">
 
-                                <article class="ride-box clearfix">
+                            {% for bookedRide in bookedRidesData.all %}
+                               <article class="ride-box clearfix">
 
                                     <div class="ride-content">
-                                        <h3><a href="#">From Plovdiv to Sofia</a></h3>ride by <a href="#">Stefan Valkov</a>
+                                        <h3><a href="#">From {{ bookedRide.pickup_address }} to {{ bookedRide.drop_address }}</a></h3>ride by <a href="#">Stefan Valkov</a>
                                     </div>
 
                                     <ul class="ride-meta">
@@ -62,11 +63,9 @@
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
                                                 <i class="fa fa-calendar"></i>
-                                                July 20, 2014 at 19:00 PM
+                                                {{ bookedRide.ride_datetime }}
                                             </a>
                                         </li><!-- end .ride-date -->
-
-                                       
                                         
                                         <li>
                                             <a href="#">
@@ -91,180 +90,8 @@
                                     </ul><!-- end .ride-meta -->
 
                                 </article><!-- end .ride-box -->
-
-                                <article class="ride-box clearfix">
-
-                                    <div class="ride-content">
-                                        <h3><a href="#">From Milano to Rome</a></h3>ride by <a href="#">Carlo Corti</a>
-                                    </div>
-
-                                    <ul class="ride-meta">
-
-                                    <li>
-                                        Booking Confirmed
-                                      </li>
-                                        <li class="ride-date">
-                                            <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
-                                                <i class="fa fa-calendar"></i>
-                                                July 18, 2014 at 06:00 AM
-                                            </a>
-                                        </li><!-- end .ride-date -->
-
-                                       
-
-                                         <li>
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                Cancel Ride
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file-pdf-o"></i>
-                                                Invoice
-                                            </a>
-                                        </li>
-                    
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                Support
-                                            </a>
-                                        </li>
-
-                                    </ul><!-- end .ride-meta -->
-
-                                </article><!-- end .ride-box -->
-
-                                <article class="ride-box clearfix">
-
-                                    <div class="ride-content">
-                                        <h3><a href="#">From Lyon to Paris</a></h3>ride by <a href="#">Antoine Bonnet</a>
-                                    </div>
-
-                                    <ul class="ride-meta">
-
-                                    <li>
-                                        Ride Completed
-                                      </li>
-
-                                        <li class="ride-date">
-                                            <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
-                                                <i class="fa fa-calendar"></i>
-                                                July 15, 2014 at 20:00 PM
-                                            </a>
-                                        </li><!-- end .ride-date -->
-
-                                       
-
-                                         <li>
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                Cancel Ride
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file-pdf-o"></i>
-                                                Invoice
-                                            </a>
-                                        </li>
-                    
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                Support
-                                            </a>
-                                        </li>
-
-                                    </ul><!-- end .ride-meta -->
-
-                                </article><!-- end .ride-box -->
-
-                                <article class="ride-box clearfix">
-
-                                    <div class="ride-content">
-                                        <h3><a href="#">From Barcelona to Madrid</a></h3>ride by <a href="#">Adriana Bello</a>
-                                    </div>
-
-                                    <ul class="ride-meta">
-
-                                    <li>
-                                        Ride Cancelled
-                                      </li>
-                                        <li class="ride-date">
-                                            <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
-                                                <i class="fa fa-calendar"></i>
-                                                July 10, 2014 at 09:00 AM
-                                            </a>
-                                        </li><!-- end .ride-date -->
-                                       
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                Cancel Ride
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file-pdf-o"></i>
-                                                Invoice
-                                            </a>
-                                        </li>
-                    
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                Support
-                                            </a>
-                                        </li>
-                                    </ul><!-- end .ride-meta -->
-
-                                </article><!-- end .ride-box -->
-
-                                <article class="ride-box clearfix">
-
-                                    <div class="ride-content">
-                                        <h3><a href="#">From Munich to Berlin</a></h3>ride by <a href="#">Albert Becker</a>
-                                    </div>
-
-                                    <ul class="ride-meta">
-
-                                    <li>
-                                        Ride Completed
-                                      </li>
-
-                                        <li class="ride-date">
-                                            <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
-                                                <i class="fa fa-calendar"></i>
-                                                July 08, 2014 at 22:00 PM
-                                            </a>
-                                        </li><!-- end .ride-date -->
-
-                                      
-                                         <li>
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                Cancel Ride
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file-pdf-o"></i>
-                                                Invoice
-                                            </a>
-                                        </li>
-                    
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                Support
-                                            </a>
-                                        </li>
-
-                                    </ul><!-- end .ride-meta -->
-
-                                </article><!-- end .ride-box -->
+                            
+                            {% endfor %}
 
                                 <div class="clearfix"></div>
 
@@ -287,8 +114,8 @@
 
 
 
-<form class="form-validate col-md-4 pull-right" id="bookaRideform" novalidate="novalidate">
-
+<form action="{% url 'ride:bookaride' %}" method="POST" class="form-validate col-md-4 pull-right" id="bookaRideform" novalidate="novalidate">
+{% csrf_token %}
          <div class="row form-with-labels text-center form_first_content">
          <h2 class="text-center rideBookTitle">Book Ride</h2>
          <div class="clearfix"></div> 
@@ -384,7 +211,7 @@
 
         </div>
 
-         <button type="button" onclick="bookRide()" value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both; display: block " id="bookrideBtn">Book Ride</button>
+         <button type="submit"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both; display: block " id="bookrideBtn">Book Ride</button>
         <input type="hidden" id="type" name="type" value="2" class="ajaxField">
         <div class="clearfix"></div>
         <div class="clearfix">&nbsp;</div>
