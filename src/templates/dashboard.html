@@ -370,11 +370,11 @@
               <input type="text" name="Ridedate" value="" placeholder="Date" class="ajaxField" id="datepicker"><span class="fa fa-calendar"></span>
             </div>
           </div>
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="form-group">
               <input type="text" name="Ridetime" value="" placeholder="Time" class="ajaxField" id="timepicker"><span class="fa fa-calendar"></span>
             </div>
-          </div>
+          </div> -->
 
           <p class="text-center">for: <span class="finalFormUserCheck">XYZ</span></p>
           <div class="clearfix"></div>
@@ -383,12 +383,23 @@
 
         </div>
 
-         <button type="button" onclick="bookRide()" value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both; display: block ">Book Ride</button>
+         <button type="button" onclick="bookRide()" value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both; display: block " id="bookrideBtn">Book Ride</button>
         <input type="hidden" id="type" name="type" value="2" class="ajaxField">
         <div class="clearfix"></div>
         <div class="clearfix">&nbsp;</div>
         <p class="text-center" onclick="form_reset()">Cancel Ride</p>
 
+        
+
+        <div id="rideBookedfail">          
+          <h3 h2 class="text-center rideBookTitle" style="font-size: 20px">There is some problem while booking the ride, Please try again later.</h3>
+        </div>
+
+        </div>
+
+        <div id="rideBookedSuccess">
+          <h2 class="text-center rideBookTitle" style="font-size: 25px;margin-bottom: 35px"><i class="fa fa-check"></i> Ride Booked Successfully</h2>
+          <h3 h2 class="text-center rideBookTitle" style="font-size: 20px"> click <span onclick="form_reset()">here</span> to book another Ride</h3>
         </div>
       </form>
 
@@ -399,8 +410,8 @@
 <scipt src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></scipt>
  <script type="text/javascript">
 
-  //var lymoServerURL = "http://192.168.1.100:5003/"
-  var lymoServerURL = "http://lymosrv.ddns.net/"
+  var lymoServerURL = "http://127.0.0.1:5003/"
+  //var lymoServerURL = "http://lymosrv.ddns.net:7890/"
    
    function form_first_content_btn_submit(){
     $(".form_first_content").hide();
@@ -414,6 +425,9 @@
     $(".form_first_content_btn").show();
       $(".checking_user_details_waiting").hide();
       $(".userFoundText").hide();
+      $("#rideBookedSuccess").hide();
+      $("#rideBookedfail").hide();
+       $("bookrideBtn").html("Book Ride");
    }
 
    function emailInit(){
@@ -466,8 +480,9 @@
 
    function bookRide(){
 
+    $("bookrideBtn").html("Booking Ride ...");
     datetimeFormatted = $("input[name='Ridedate']").val()
-    datenew = moment(datetimeFormatted, 'DD MMMM YYYY').format('YYYY-MM-DD')
+    datenew = moment(datetimeFormatted, 'DD MMMM YYYY hh:mm A').format('YYYY-MM-DD hh:mm:ss')
     console.log(datenew)
 
      var formData = {
@@ -477,7 +492,7 @@
             "drop_long": $("input[name='to_lon']").val(), 
             "pickup_address": $("#origin-input").val(),
             "drop_address": $("#destination-input").val(),
-            "ride_datetime": datenew+"T"+$("input[name='RideTime']").val()+"Z", 
+            "ride_datetime": datenew, 
             "noof_passengers": 1, 
             "vehicle_type": 1,
             "ride_booked_by": 1
@@ -491,9 +506,16 @@
                 contentType: "application/json",
                 success: function(d) {
                     if(d.success == true){
-                     
+                     alert("Ride Successfully Booked")
+                      $("#rideBookedSuccess").show();
+                      $("#rideBookedfail").hide();
+                      $(".form_first_content").hide();
+                      $(".form_second_content").hide();
+                      $("bookrideBtn").html("Book Ride ")
                     }else{                      
-                     
+                      $("#rideBookedfail").show();
+                       $("#rideBookedSuccess").hide()
+                        $("bookrideBtn").html("Book Ride ")
                     }
                      
                 }
