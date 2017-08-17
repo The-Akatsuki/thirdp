@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
     url(r'^dashboard/', views.dashboard.as_view(), name='dashboard'),
+    url(r'^booked-rides/', views.bookedRides.as_view(), name='bookedRides'),
     url(r'^rides/', include(ride.urls, namespace='ride')),
     url(r'^payments/', include(payments.urls, namespace="payments")),
 ]

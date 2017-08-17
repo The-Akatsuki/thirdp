@@ -307,7 +307,7 @@
           
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
-              <input type="text" name="mobile" value="" placeholder="Mobile" class="ajaxField required" aria-required="true"><span class="fa fa-phone"></span>
+              <input type="text" name="mobile" value="" placeholder="Mobile"  id="mobile" class="ajaxField required" aria-required="true"><span class="fa fa-phone"></span>
             </div>
           </div>
 
@@ -330,7 +330,8 @@
 
         </div>
 
-        <div class="form_second_content">        
+        <div class="form_second_content">  
+        <input type="hidden" value="" name="passengerid">      
         <div class="menu-types">
           <a href="#" data-value="1" class="type-1 active">StandarD</a>
           <a href="#" data-value="3" class="type-3 red">Vip</a>
@@ -444,9 +445,16 @@
       //    $(".userFoundText").show();
       // }, 2000);      
       event.preventDefault();
-      var formData = {
+      if($('#user_email').val() != ''){
+        var formData = {
           'email': $('#user_email').val() //for get email 
-      };
+        };
+      }else{
+        var formData = {
+          'mobile': $('#mobile').val() //for get email 
+        };
+      }
+      
       console.log(formData);
       $.ajax({
                 url: lymoServerURL+"lymousine/api/v1/forcorporateapplication",
@@ -462,6 +470,7 @@
                       $(".finalFormUserCheck").html(d.data.email);
                       $(".checking_user_details_waiting").hide();
                       $(".userFoundText").show();
+                      $("#passengerid").val(d.data.id);
                     }else{                      
                       alert("This user is not Registered with lymousine. Please ask this User to register with Lymousine");
                       $(".checking_user_details_waiting").hide();
@@ -469,8 +478,7 @@
                       $("#bookaRideform").trigger('reset');
                       $(".userFoundText").hide();
                       $(".usernotFoundText").show();
-                    }
-                     
+                    }                     
                 }
                     
             });
@@ -495,7 +503,8 @@
             "ride_datetime": datenew, 
             "noof_passengers": 1, 
             "vehicle_type": 1,
-            "ride_booked_by": 1
+            "ride_booked_by": 1,
+            "passenger" : $("#passengerid").val()
           } 
 
 
@@ -512,12 +521,25 @@
                       $(".form_first_content").hide();
                       $(".form_second_content").hide();
                       $("bookrideBtn").html("Book Ride ")
+                      load_bookedRide()
                     }else{                      
                       $("#rideBookedfail").show();
                        $("#rideBookedSuccess").hide()
                         $("bookrideBtn").html("Book Ride ")
                     }
                      
+                }
+                    
+            });
+
+   }
+
+   function load_bookedRide(){
+
+        $.ajax({
+                url: "/booked-rides",
+                type: "post",
+                success: function(d) {
                 }
                     
             });

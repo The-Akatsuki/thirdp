@@ -20,3 +20,8 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
 		if b ==0:
 			 return redirect("profiles:companyprofile")
 		return super(dashboard, self).get(request, *args, **kwargs)
+		
+
+class bookedRides(LoginRequiredMixin, generic.TemplateView):	
+	template_name = "ajax_pages/booked_rides.html"
+
