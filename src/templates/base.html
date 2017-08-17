@@ -391,16 +391,15 @@ $('#origin-input').on('change',function(){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
   <script type="text/javascript">    
-    
-   $('#datepicker').datetimepicker({
-        format: 'DD  MMMM  YYYY',
+    datepicker = $('#datepicker')
+    timepicker = $('#timepicker')
+   datepicker.datetimepicker({
+        format: 'DD  MMMM  YYYY hh:mm A',
       minDate:new Date()
     });
     
-    $('#timepicker').datetimepicker({
-        format: 'hh:mm A'        
-    });
-     
+
+
       </script>
       
       <script>
