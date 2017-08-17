@@ -23,7 +23,8 @@ Install all dependencies:
 
     pip install -r requirements.txt
 
-copy src/thirdp/setting/local.env.example to ssrc/thirdp/setting/local.env
+copy `/local.env.example` to `/local.env` in src/thirdp/setting
+
 configure your database setting in local.env
 
 Run migrations:
