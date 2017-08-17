@@ -71,14 +71,15 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         return super(EditCompanyProfile, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwards):
-        print self.request.user
-        b = models.companyDetails.objects.filter(user=self.request.user).first()
+        user = self.request.user
+        b = models.companyDetails.objects.filter(user=user).first()
         print b
         companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
         #b = models.companyDetails.objects.filter(user=self.request.user)
         #print b;
-        companyProfileForm.save()
-
-        messages.success(request, "Company  details saved!")
-        return redirect("profiles:companyprofile")
+        companyProfile = companyProfileForm.save(commit=False)
+        companyProfile.user = user
+        companyProfile.save()
+        messages.success(request, "Company details has been saved!")
+        return redirect("payments:addpayment")
         #return redirect("profiles:show_self")
