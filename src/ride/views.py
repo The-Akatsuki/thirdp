@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
 from . import models
 import datetime
+import requests
 
 # Create your views here.
 class BookRide(LoginRequiredMixin, generic.TemplateView):
@@ -19,6 +20,22 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 		postData =  request.POST
 		d = datetime.datetime.strptime(postData['Ridedate'], '%d %B %Y %I:%M %p')
 		newDateTime = d.strftime('%Y-%m-%d %H:%M:%S')		
+
+		url = "http://lymosrv.ddns.net:7890/lymousine/api/v1/forcorporateapplicationridebooking"
+		payload = {
+					"pickup_lat":postData['from_lat'], 
+					"pickup_long":postData['from_lon'],	
+					"drop_lat":postData['to_lat'], 
+					"drop_long":postData['to_lon'],
+					"pickup_address":postData['from'], 
+					"drop_address":postData['to'], 
+					"ride_datetime":newDateTime, 
+					"noof_passengers":1, 
+					"vehicle_type":postData['type'],
+					"ride_booked_by":1, 
+					"passenger":postData['passengerid']
+				 }
+		response = requests.post(url, json = payload)
 		p = models.ridebooking( pickup_lat=postData['from_lat'], 
 								pickup_long=postData['from_lon'],	
 								drop_lat=postData['to_lat'], 
