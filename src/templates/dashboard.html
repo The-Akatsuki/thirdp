@@ -161,17 +161,17 @@
           <input type="hidden" name="type-value" id="type_value" class="type-value ajaxField" value="1">
         </div>
         <div class="row form-with-labels">
-          <input type="hidden" name="from_country" value="">
-          <input type="hidden" name="from_state" value="">
-          <input type="hidden" name="from_city" value="">
-          <input type="hidden" name="from_lat" value="">
-          <input type="hidden" name="from_lon" value="">
+          <input type="hidden" name="from_country" id="from_country" value="">
+          <input type="hidden" name="from_state" id="from_state" value="">
+          <input type="hidden" name="from_city" id="from_city" value="">
+          <input type="hidden" name="from_lat" id="from_lat" value="">
+          <input type="hidden" name="from_lon" id="from_lon" value="">
 
-          <input type="hidden" name="to_country" value="">
-          <input type="hidden" name="to_state" value="">
-          <input type="hidden" name="to_city" value="">
-          <input type="hidden" name="to_lat" value="">
-          <input type="hidden" name="to_lon" value="">
+          <input type="hidden" name="to_country" id="to_country" value="">
+          <input type="hidden" name="to_state" id="to_state" value="">
+          <input type="hidden" name="to_city" id="to_city" value="">
+          <input type="hidden" name="to_lat" id="to_lat" value="">
+          <input type="hidden" name="to_lon" id="to_lon" value="">
 
           <div class="col-md-6">
             <div class="form-group">
@@ -204,13 +204,14 @@
 
         </div>
 
-         <button type="submit"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both; display: block " id="bookrideBtn">Book Ride</button>
+        <div style="clear: both; display: block; text-align: center">
+         <button type="button" onclick="estimateRide()"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto; " id="estimateRidebtn">Estimate Ride</button>
+         </div>
         <input type="hidden" id="type" name="type" value="2" class="ajaxField">
-        <div class="clearfix"></div>
-        <div class="clearfix">&nbsp;</div>
-        <p class="text-center" onclick="form_reset()">Cancel Ride</p>
-
         
+        <div id="rideEstimatedCost">          
+          <h3 h2 class="text-center rideEstimatedCostTitle" style="font-size: 20px"></h3>
+        </div>
 
         <div id="rideBookedfail">          
           <h3 h2 class="text-center rideBookTitle" style="font-size: 20px">There is some problem while booking the ride, Please try again later.</h3>
@@ -222,6 +223,15 @@
           <h2 class="text-center rideBookTitle" style="font-size: 25px;margin-bottom: 35px"><i class="fa fa-check"></i> Ride Booked Successfully</h2>
           <h3 h2 class="text-center rideBookTitle" style="font-size: 20px"> click <span onclick="form_reset()">here</span> to book another Ride</h3>
         </div>
+
+<div class="clearfix"></div>
+        <div class="clearfix">&nbsp;</div>
+        <div style="clear: both; display: block; text-align: center">
+<button type="submit"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both; " id="bookrideBtn">Book Ride</button>
+</div>
+        <div class="clearfix"></div>
+        <div class="clearfix">&nbsp;</div>
+        <p class="text-center" onclick="form_reset()" id="cancelRide">Cancel Ride</p>
       </form>
 
 
@@ -233,6 +243,7 @@
 
   //var lymoServerURL = "http://127.0.0.1:5003/"
   var lymoServerURL = "http://lymosrv.ddns.net:7890/"
+  var lymoServerURL_estimate = "http://lymosrv.ddns.net:7899/"
    
    function form_first_content_btn_submit(){
     $(".form_first_content").hide();
@@ -248,7 +259,10 @@
       $(".userFoundText").hide();
       $("#rideBookedSuccess").hide();
       $("#rideBookedfail").hide();
-       $("bookrideBtn").html("Book Ride");
+       $("#bookrideBtn").html("Book Ride");
+       $("#cancelRide").show();
+        $("#bookrideBtn").show();
+       $("#estimateRidebtn").show();
    }
 
    function emailInit(){
@@ -292,7 +306,7 @@
                       $(".userFoundText").show();
                       $("#passengerid").val(d.data.id);
                     }else{                      
-                      alert("This user is not Registered with lymousine. Please ask this User to register with Lymousine");
+                      //alert("This user is not Registered with lymousine. Please ask this User to register with Lymousine");
                       $(".checking_user_details_waiting").hide();
                       $(".form_first_content_btn").show();
                       $("#bookaRideform").trigger('reset');
@@ -306,46 +320,52 @@
 
 
 
-   function bookRide(){
+   function estimateRide(){
 
-    $("bookrideBtn").html("Booking Ride ...");
+    $("#estimateRidebtn").html("Estimating Ride ...");
     datetimeFormatted = $("input[name='Ridedate']").val()
-    datenew = moment(datetimeFormatted, 'DD MMMM YYYY hh:mm A').format('YYYY-MM-DD hh:mm:ss')
+    datenew = moment(datetimeFormatted, 'DD MMMM YYYY hh:mm A').format('YYYY-MM-DD')
+    timenew = moment(datetimeFormatted, 'DD MMMM YYYY hh:mm A').format('hh:mm:ss')
     console.log(datenew)
 
      var formData = {
-            "pickup_lat": $("input[name='from_lat']").val(),
-            "pickup_long": $("input[name='from_lon']").val(),
-            "drop_lat": $("input[name='to_lat']").val(),
-            "drop_long": $("input[name='to_lon']").val(), 
-            "pickup_address": $("#origin-input").val(),
-            "drop_address": $("#destination-input").val(),
-            "ride_datetime": datenew, 
-            "noof_passengers": 1, 
-            "vehicle_type": 1,
-            "ride_booked_by": 1,
-            "passenger" : $("#passengerid").val()
+            "country": $("input[name='from_country']").val(),
+            "state": $("input[name='from_state']").val(),
+            "city": $("input[name='from_city']").val(),
+            "database_datetime": moment().format("YYYY-MM-DD hh:mm:ss"),
+            "pickup": '"('+$("input[name='from_lat']").val()+','+ $("input[name='from_lon']").val() +')"',
+            "dropoff": '"('+$("input[name='to_lat']").val()+','+  $("input[name='to_lon']").val() +')"',
+            "vehicle_type": $("#type").val(),
+            "date": datenew, 
+            "time": timenew,
           } 
 
 
           $.ajax({
-                url: lymoServerURL+"lymousine/api/v1/forcorporateapplicationridebooking",
+                url: lymoServerURL_estimate+"estimation_ride_amout",
                 type: "post",
-                data: JSON.stringify(formData),
-                contentType: "application/json",
+                data: (formData),
+                //contentType: "application/json",
                 success: function(d) {
-                    if(d.success == true){
-                     alert("Ride Successfully Booked")
-                      $("#rideBookedSuccess").show();
-                      $("#rideBookedfail").hide();
-                      $(".form_first_content").hide();
-                      $(".form_second_content").hide();
-                      $("bookrideBtn").html("Book Ride ")
-                      load_bookedRide()
+                    if(d.sucess == true){
+                       estimatedCost = d.totalamount;
+                      // $("#rideBookedSuccess").show();
+                      // $("#rideBookedfail").hide();
+                       $(".form_first_content").hide();
+                       //$(".form_second_content").hide();
+                       $("#bookrideBtn").show();
+                       $("#estimateRidebtn").html("Estimate Ride");
+                       $("#cancelRide").show();
+        
+                      // load_bookedRide()
+                       $(".rideEstimatedCostTitle").html("Estimated Cost for the Journey is : $"+ estimatedCost);
+                       $("#rideEstimatedCost").show();  
+                       $("#estimateRidebtn").hide();                    
                     }else{                      
-                      $("#rideBookedfail").show();
-                       $("#rideBookedSuccess").hide()
-                        $("bookrideBtn").html("Book Ride ")
+                      // $("#rideBookedfail").show();
+                      //  $("#rideBookedSuccess").hide()
+                      //   $("bookrideBtn").html("Book Ride ")
+                      console.log(d)
                     }
                      
                 }

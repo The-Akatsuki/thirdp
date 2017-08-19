@@ -1698,6 +1698,6 @@ ul.ride-meta li {
     margin-bottom: 10px;
     font-family: 'Fira Sans Condensed', sans-serif;
 }
-.checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess{
+.checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess, #bookrideBtn, #rideEstimatedCost, #cancelRide{
   display: none;
 }
