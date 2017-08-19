@@ -49,28 +49,28 @@
 
 
 
-<div class="col-xs-12 col-md-4 col-md-offset-4">
-        
-        <div class="clearfix">&nbsp;</div>
-                       <div class="clearfix">&nbsp;</div>
-                        <div class="clearfix">&nbsp;</div>
-                         <div class="clearfix">&nbsp;</div>
-                          <div class="clearfix">&nbsp;</div>
-                           <div class="clearfix">&nbsp;</div>
-                            <div class="clearfix">&nbsp;</div>
+<div class="fullBg">
+
+<div class="fullWrapper">
+<div class="formWrapper">
+<h1 class="topHeading">Payment Details</h1>
+
+       
+                      
             <!-- CREDIT CARD FORM STARTS HERE -->
             <div class="panel panel-default credit-card-box">
                 <div class="panel-heading display-table" >
                     <div class="row display-tr" >
-                        <h3 class="panel-title display-td" >Payment Details</h3>
+                         
                         <div class="display-td" >                            
                             <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
                         </div>
                     </div>                    
                 </div>
-                <div class="panel-body">
+                <div class="panel-bodyFull">
                     <form role="form" action="addpayment" id="payment-form" method="POST" action="javascript:void(0);">                    
                      {% crispy paymentForm %} 
+                     <div style="clear: both"></div>
                     </form>
                 </div>
             </div>            
@@ -81,5 +81,5 @@
 
 
 
-
+    </div>     </div> 
 {% endblock %}

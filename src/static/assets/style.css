@@ -1701,3 +1701,78 @@ ul.ride-meta li {
 .checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess, #bookrideBtn, #rideEstimatedCost, #cancelRide{
   display: none;
 }
+
+.formWrapper {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.fullBg {
+    background: #f8f8f8;
+    min-height: 100%;
+}
+.fullWrapper
+{
+    margin-top:50px;
+    padding-top: 50px;
+}
+.formWrapper .form-group {
+    position: relative;
+    width: 50%;
+    float: left;
+    padding: 5px;
+}
+.formWrapper .form-group .control-label {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 1px 2px;
+    color: #158cba;
+}
+.formWrapper .form-group input[type="text"], .formWrapper .form-group textarea {
+    border: 0;
+    box-shadow: 0px 1px 0 0 #b4b4b4;
+    border-radius: 0;
+    background: transparent !important;
+    max-height: 38px;
+}
+.formWrapper #submit-id-update {
+    float: right;
+}
+.topHeading {
+    text-align: center;
+    font-size: 25px;
+    background: #44d8de;
+    color: #fff;
+    padding: 5px 0px 6px 0;
+    box-shadow: 0px 0 2px 1px #ccc;
+    border-bottom: 4px solid #00c2c9;
+}
+.formWrapper form {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 30px 20px 20px 20px;
+    border-bottom: 3px solid #cfcfcf;
+}
+.fullBg {
+    background: #f8f8f8;
+    background-image: none;
+    background-repeat: repeat;
+    background-size: auto auto;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)), url("/static/site/img/banner.jpg");
+    background-repeat: no-repeat;
+    background-position: 80% center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #f5f5f5;
+    margin-bottom: 0;
+    min-height: 100%;
+}
+.form-control {
+    box-shadow: 0 1px 0px 0 #b4b4b4;
+}
+.form-control:focus {
+    box-shadow: 0px 2px 0px 0px #3c342f;
+}
+.listcontent {
+    background: rgba(255,255,255,0.8);
+}
