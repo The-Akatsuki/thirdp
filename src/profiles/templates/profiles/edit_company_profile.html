@@ -6,6 +6,10 @@
 
 {% block title %}{{ block.super }}Profile{% endblock %}
 
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
 {% block container %}
 <style type="text/css">
   textarea{
@@ -18,7 +22,10 @@
 <div class="formWrapper">
 <h1 class="topHeading">Signup</h1>
 <form class="jotform-form" action="companyprofile" method="post" name="form_72261040284447" id="72261040284447" accept-charset="utf-8">
+ 
  {% crispy companyProfileForm %} 
+
+  <div id="map"></div>
 
  <div style="clear: both"></div>
 </form>

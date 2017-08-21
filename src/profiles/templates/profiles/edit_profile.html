@@ -6,6 +6,10 @@
 
 {% block title %}{{ block.super }}Profile{% endblock %}
 
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
 <!-- Benefits of the Django application -->
 {% block container %}
 

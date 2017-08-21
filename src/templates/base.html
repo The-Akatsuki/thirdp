@@ -303,11 +303,17 @@ function origin_address_calculation(){
         this.map = map;
         var originInput = document.getElementById('origin-input');
         var destinationInput = document.getElementById('destination-input');
+
+        var id_companyName = document.getElementById('id_companyName');
         
         var originAutocomplete = new google.maps.places.Autocomplete(
             originInput);
         var destinationAutocomplete = new google.maps.places.Autocomplete(
             destinationInput);
+
+        var CompanyAutoCompete = new google.maps.places.Autocomplete(
+            id_companyName);
+
 
         google.maps.event.addListener(originAutocomplete, 'place_changed', function() {
           console.log('Pickup Place');
@@ -362,6 +368,43 @@ function origin_address_calculation(){
           document.getElementById('to_lat').value = place.geometry.location.lat();
           document.getElementById('to_lon').value = place.geometry.location.lng();
        });
+
+
+          google.maps.event.addListener(CompanyAutoCompete, 'place_changed', function() {
+          console.log('Pickup Place');
+          var place = CompanyAutoCompete.getPlace();
+          console.log(place);
+          var country = ''
+          var state = ''
+          var city = ''
+          for (var j = 0; j < place.address_components.length; j++) {
+            console.log(place.address_components[j].types[0]);
+              if (place.address_components[j].types[0] == 'country') {
+                   country = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'administrative_area_level_1') {
+                   state = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'locality') {
+                   city = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'postal_code') {
+                   postal_code = place.address_components[j].long_name;
+              }
+              
+          }
+          var formatted_address = place.formatted_address
+          var formatted_phone_number = place.formatted_phone_number
+
+          document.getElementById('id_country').value = country;
+          document.getElementById('id_state').value = state;
+          document.getElementById('id_city').value = city;
+          document.getElementById('id_zipCode').value = postal_code;
+          document.getElementById('id_address').value = formatted_address;
+          document.getElementById('id_phone').value = formatted_phone_number;
+          //document.getElementById('from_lon').value = place.geometry.location.lng();
+       });
+
 
       }
 

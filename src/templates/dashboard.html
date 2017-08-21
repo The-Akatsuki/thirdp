@@ -231,7 +231,7 @@
 </div>
         <div class="clearfix"></div>
         <div class="clearfix">&nbsp;</div>
-        <p class="text-center" onclick="form_reset()" id="cancelRide">Cancel Ride</p>
+        <p class="text-center" onclick="form_reset()" id="clearform">clearform</p>
       </form>
 
 
@@ -260,7 +260,7 @@
       $("#rideBookedSuccess").hide();
       $("#rideBookedfail").hide();
        $("#bookrideBtn").html("Book Ride");
-       $("#cancelRide").show();
+       $("#clearform").show();
         $("#bookrideBtn").hide();
        $("#estimateRidebtn").show();
    }
@@ -355,7 +355,7 @@
                        //$(".form_second_content").hide();
                        $("#bookrideBtn").show();
                        $("#estimateRidebtn").html("Estimate Ride");
-                       $("#cancelRide").show();
+                       $("#clearform").show();
         
                       // load_bookedRide()
                        $(".rideEstimatedCostTitle").html("Estimated Cost for the Journey is : $"+ estimatedCost);
