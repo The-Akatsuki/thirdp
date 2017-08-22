@@ -172,6 +172,15 @@
           <input type="hidden" name="to_city" id="to_city" value="">
           <input type="hidden" name="to_lat" id="to_lat" value="">
           <input type="hidden" name="to_lon" id="to_lon" value="">
+          <input type="hidden" name="country_id" id="country_id" value="">
+          <input type="hidden" name="state_id" id="state_id" value="">
+          <input type="hidden" name="city_id" id="city_id" value="">
+          <input type="hidden" name="distance" id="distance" value="">
+          <input type="hidden" name="cost" id="cost" value="">
+          <input type="hidden" name="duration" id="duration" value="">
+
+
+
 
           <div class="col-md-6">
             <div class="form-group">
@@ -231,7 +240,7 @@
 </div>
         <div class="clearfix"></div>
         <div class="clearfix">&nbsp;</div>
-        <p class="text-center" onclick="form_reset()" id="clearform">clearform</p>
+        <p class="text-center" onclick="form_reset()" id="cancelRide">Cancel Ride</p>
       </form>
 
 
@@ -260,7 +269,7 @@
       $("#rideBookedSuccess").hide();
       $("#rideBookedfail").hide();
        $("#bookrideBtn").html("Book Ride");
-       $("#clearform").show();
+       $("#cancelRide").show();
         $("#bookrideBtn").hide();
        $("#estimateRidebtn").show();
    }
@@ -285,7 +294,7 @@
         };
       }else{
         var formData = {
-          'mobile': $('#mobile').val() //for get email 
+          'mobile_number': $('#mobile').val() //for get email 
         };
       }
       
@@ -349,18 +358,33 @@
                 success: function(d) {
                     if(d.sucess == true){
                        estimatedCost = d.totalamount;
+                       country_id=d.country_id
+                       state_id=d.state_id
+                       city_id= d.city_id
+                       distance=d.distance
+                       duration=d.duration
+                       total_amount=d.totalamount
+
                       // $("#rideBookedSuccess").show();
                       // $("#rideBookedfail").hide();
                        $(".form_first_content").hide();
                        //$(".form_second_content").hide();
                        $("#bookrideBtn").show();
                        $("#estimateRidebtn").html("Estimate Ride");
-                       $("#clearform").show();
+                       $("#cancelRide").show();
         
                       // load_bookedRide()
                        $(".rideEstimatedCostTitle").html("Estimated Cost for the Journey is : $"+ estimatedCost);
                        $("#rideEstimatedCost").show();  
-                       $("#estimateRidebtn").hide();                    
+                       $("#estimateRidebtn").hide();  
+                       $("#country_id").val(country_id);  
+                       $("#state_id").val(state_id);
+                       $("#city_id").val(city_id);
+                       $("#distance").val(distance);
+                       $("#cost").val(estimatedCost);
+                       $("#duration").val(duration);
+                     
+     
                     }else{                      
                       // $("#rideBookedfail").show();
                       //  $("#rideBookedSuccess").hide()

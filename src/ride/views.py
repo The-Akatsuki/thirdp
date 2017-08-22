@@ -20,8 +20,18 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 		postData =  request.POST
 		d = datetime.datetime.strptime(postData['Ridedate'], '%d %B %Y %I:%M %p')
 		newDateTime = d.strftime('%Y-%m-%d %H:%M:%S')		
-
+		booking_datetime = datetime.datetime.now()
+		booking_datetime= booking_datetime.strftime('%Y-%m-%d %H:%M:%S')
 		url = "http://lymosrv.ddns.net:7890/lymousine/api/v1/forcorporateapplicationridebooking"
+		# print postData['from_country']
+		# print postData['from_state']
+		# print postData['from_city']
+		# print postData["country_id"]
+		# print postData["state_id"]
+		# print postData["city_id"]
+		# print postData["distance"]
+		# print postData["cost"]
+		# print postData["duration"]
 		payload = {
 					"pickup_lat":postData['from_lat'], 
 					"pickup_long":postData['from_lon'],	
@@ -33,10 +43,24 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 					"noof_passengers":1, 
 					"vehicle_type":postData['type'],
 					"ride_booked_by":1, 
-					"booking_DateTime": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-					"passenger":postData['passengerid']
+					"passenger":postData['passengerid'],
+					"booking_DateTime":booking_datetime,
+					"est_time": postData["duration"],
+					"est_cost": postData["cost"],
+					"est_dist_bw_location": postData["distance"],
+					"ride_booked_by":1,
+					"ride_type":1,
+					"country":postData['country_id'],
+					"state":postData['state_id'],
+					"city":postData['city_id']
 				 }
+
+
+		# print payload
+
 		response = requests.post(url, json = payload)
+		# print "response text"
+		# print response.text
 		p = models.ridebooking( pickup_lat=postData['from_lat'], 
 								pickup_long=postData['from_lon'],	
 								drop_lat=postData['to_lat'], 
