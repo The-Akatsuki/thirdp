@@ -33,6 +33,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 					"noof_passengers":1, 
 					"vehicle_type":postData['type'],
 					"ride_booked_by":1, 
+					"booking_DateTime": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
 					"passenger":postData['passengerid']
 				 }
 		response = requests.post(url, json = payload)
