@@ -152,7 +152,7 @@
 
   
 
-$('#destination-input').on('change',function(){
+function destination_address_calculation(){
     console.log('onchange function')
     $("input[name='to_country']").val();
     $("input[name='to_state']").val();
@@ -217,10 +217,10 @@ $('#destination-input').on('change',function(){
             }
         });
     });
-});
+};
 
 
-$('#origin-input').on('change',function(){
+function origin_address_calculation(){
     var origin = document.getElementById("origin-input").value;
     var destination = document.getElementById("destination-input").value;
     if (origin == destination){
@@ -279,7 +279,7 @@ $('#origin-input').on('change',function(){
             }
         });
     });
-});
+}
 
 
 
@@ -301,87 +301,114 @@ $('#origin-input').on('change',function(){
        */
       function AutocompleteDirectionsHandler(map) {
         this.map = map;
-        this.originPlaceId = null;
-        this.destinationPlaceId = null;
-        this.travelMode = 'WALKING';
         var originInput = document.getElementById('origin-input');
         var destinationInput = document.getElementById('destination-input');
-        var modeSelector = document.getElementById('mode-selector');
-        this.directionsService = new google.maps.DirectionsService;
-        this.directionsDisplay = new google.maps.DirectionsRenderer;
-        this.directionsDisplay.setMap(map);
 
+        var id_companyName = document.getElementById('id_companyName');
+        
         var originAutocomplete = new google.maps.places.Autocomplete(
-            originInput, {placeIdOnly: true});
+            originInput);
         var destinationAutocomplete = new google.maps.places.Autocomplete(
-            destinationInput, {placeIdOnly: true});
+            destinationInput);
 
-        this.setupClickListener('changemode-walking', 'WALKING');
-        this.setupClickListener('changemode-transit', 'TRANSIT');
-        this.setupClickListener('changemode-driving', 'DRIVING');
+        var CompanyAutoCompete = new google.maps.places.Autocomplete(
+            id_companyName);
 
-        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
 
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+        google.maps.event.addListener(originAutocomplete, 'place_changed', function() {
+          console.log('Pickup Place');
+          var place = originAutocomplete.getPlace();
+          console.log(place);
+          var country = ''
+          var state = ''
+          var city = ''
+          for (var j = 0; j < place.address_components.length; j++) {
+            console.log(place.address_components[j].types[0]);
+              if (place.address_components[j].types[0] == 'country') {
+                   country = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'administrative_area_level_1') {
+                   state = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'locality') {
+                   city = place.address_components[j].long_name;
+              }
+          }
 
-        google.maps.event.addListener(originAutocomplete, 'origin_place_changed', function() {
-            origin_input_change();
-        });
+          document.getElementById('from_country').value = country;
+          document.getElementById('from_state').value = state;
+          document.getElementById('from_city').value = city;
+          document.getElementById('from_lat').value = place.geometry.location.lat();
+          document.getElementById('from_lon').value = place.geometry.location.lng();
+       });
+
+
+         google.maps.event.addListener(destinationAutocomplete, 'place_changed', function() {
+          console.log('Drop Place');
+          var place = destinationAutocomplete.getPlace();
+          console.log(place);
+          var country = ''
+          var state = ''
+          var city = ''
+          for (var j = 0; j < place.address_components.length-1; j++) {
+              if (place.address_components[j].types[0] == 'country') {
+                  var country = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'administrative_area_level_1') {
+                  var state = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'locality') {
+                  var city = place.address_components[j].long_name;
+              }
+          }
+
+          document.getElementById('to_country').value = country;
+          document.getElementById('to_state').value = state;
+          document.getElementById('to_city').value = city;
+          document.getElementById('to_lat').value = place.geometry.location.lat();
+          document.getElementById('to_lon').value = place.geometry.location.lng();
+       });
+
+
+          google.maps.event.addListener(CompanyAutoCompete, 'place_changed', function() {
+          console.log('Pickup Place');
+          var place = CompanyAutoCompete.getPlace();
+          console.log(place);
+          var country = ''
+          var state = ''
+          var city = ''
+          for (var j = 0; j < place.address_components.length; j++) {
+            console.log(place.address_components[j].types[0]);
+              if (place.address_components[j].types[0] == 'country') {
+                   country = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'administrative_area_level_1') {
+                   state = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'locality') {
+                   city = place.address_components[j].long_name;
+              }
+              else if (place.address_components[j].types[0] == 'postal_code') {
+                   postal_code = place.address_components[j].long_name;
+              }
+              
+          }
+          var formatted_address = place.formatted_address
+          var formatted_phone_number = place.formatted_phone_number
+
+          document.getElementById('id_country').value = country;
+          document.getElementById('id_state').value = state;
+          document.getElementById('id_city').value = city;
+          document.getElementById('id_zipCode').value = postal_code;
+          document.getElementById('id_address').value = formatted_address;
+          document.getElementById('id_phone').value = formatted_phone_number;
+          //document.getElementById('from_lon').value = place.geometry.location.lng();
+       });
+
+
       }
 
-      // Sets a listener on a radio button to change the filter type on Places
-      // Autocomplete.
-      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
-        var radioButton = document.getElementById(id);
-        var me = this;
-        radioButton.addEventListener('click', function() {
-          me.travelMode = mode;
-          me.route();
-        });
-      };
-
-      AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
-        var me = this;
-        autocomplete.bindTo('bounds', this.map);
-        autocomplete.addListener('place_changed', function() {
-          var place = autocomplete.getPlace();
-          if (!place.place_id) {
-            window.alert("Please select an option from the dropdown list.");
-            return;
-          }
-          if (mode === 'ORIG') {
-            me.originPlaceId = place.place_id;
-          } else {
-            me.destinationPlaceId = place.place_id;
-          }
-          me.route();
-        });
-
-      };
-
-      AutocompleteDirectionsHandler.prototype.route = function() {
-        if (!this.originPlaceId || !this.destinationPlaceId) {
-          return;
-        }
-        var me = this;
-
-        this.directionsService.route({
-          origin: {'placeId': this.originPlaceId},
-          destination: {'placeId': this.destinationPlaceId},
-          travelMode: this.travelMode
-        }, function(response, status) {
-          if (status === 'OK') {
-            me.directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      };
-
-
+     
 
     </script>
     <!--nidhi-->

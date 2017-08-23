@@ -496,7 +496,7 @@ div#videoFrame video {
 }*/
 
 .whiteBG {
-    background: #fff;
+   /* background: #fff;*/
     padding-top: 25px;
     padding-bottom: 25px;
 }
@@ -1527,24 +1527,24 @@ input.hidden_radio {
   color: #9F340A;
 }
 .menu-types a.type-1 {
-  background-image: url("/static/assets/images/_icon-car-1.png");
-  background-size: 52px 18px;
+  background-image: url("/static/assets/images/car1.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-2 {
-  background-image: url("/static/assets/images/_icon-car-2.png");
-  background-size: 52px 18px;
+  background-image: url("/static/assets/images/car2.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-3 {
-  background-image: url("/static/assets/images/_icon-car-3.png");
-  background-size: 52px 18px;
+  background-image: url("/static/assets/images/car3.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-4 {
-  background-image: url("/static/assets/images/_icon-car-4.png");
-  background-size: 52px 18px;
+  background-image: url("/static/assets/images/car4.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-5 {
-  background-image: url("/static/assets/images/_icon-car-5.png");
-  background-size: 60px 26px;
+  background-image: url("/static/assets/images/car5.png");
+  background-size: 60px 25px;
 }
 
 
@@ -1576,16 +1576,17 @@ input.hidden_radio {
   margin: 40px 0 15px;
 }
 .form-taxi-short form {
-  background: #FFC61A;
+    background: #50c2b7;
   -webkit-border-radius: 8px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 8px;
   -moz-background-clip: padding;
   border-radius: 8px;
   background-clip: padding-box;
-  max-width: 570px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 45px 30px 30px;  
+  width: 100%;
 }
 
 @media (min-width: 960px){
@@ -1698,6 +1699,325 @@ ul.ride-meta li {
     margin-bottom: 10px;
     font-family: 'Fira Sans Condensed', sans-serif;
 }
-.checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess{
+.checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess, #bookrideBtn, #rideEstimatedCost, #cancelRide{
   display: none;
 }
+
+.formWrapper {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.fullBg {
+    background: #f8f8f8;
+    min-height: 100%;
+}
+.customFrom
+{
+    margin-top:0px;
+    padding-top: 0px;
+}
+.customFrom .form-group {
+    position: relative;
+    width: 50%;
+    float: left;
+    padding: 5px;
+}
+.customFrom .form-group .control-label {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 1px 2px;
+    color: #3c342f;
+    margin: 0 auto 6px;
+}
+.customFrom .form-group input[type="text"] {
+    border: 0;
+    box-shadow: 0 0px 0px 1px #b4b4b4;
+    border-radius: 0;
+    background: #fff !important;
+    max-height: 38px;
+}
+ .customFrom .form-group textarea {
+    border: 0;
+    box-shadow: 0px 1px 0 0 #b4b4b4;
+    border-radius: 0;
+    background: #fff !important;
+    height: 50px !important;
+}
+.customFrom #submit-id-update {
+    float: right;
+}
+.topHeading {
+    text-align: center;
+    font-size: 25px;
+    background: #52c3b7;
+    color: #fff;
+    padding: 10px 0px 6px 0;
+    box-shadow: 0px 0 2px 1px #ccc;
+    border-bottom: 4px solid #409e94;
+    text-transform: capitalize;
+
+}
+.customFrom form {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px 20px 20px 20px;
+    border-bottom: 3px solid #cfcfcf;
+}
+.fullBg {
+    background: #f8f8f8;
+    background-image: none;
+    background-repeat: repeat;
+    background-size: auto auto;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)), url("/static/site/img/banner2.jpg");
+    background-repeat: no-repeat;
+    background-position: cover;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #f5f5f5;
+    margin-bottom: 0;
+    min-height: 100%;
+}
+.form-control {
+    box-shadow: 0 0px 0px 1px #b4b4b4;
+}
+.form-control:focus {
+    box-shadow: 0px 2px 0px 0px #3c342f;
+}
+.listcontent {
+    background: rgba(255,255,255,0.8);
+}
+.customFrom form {
+    width: 100%;
+    max-width: 100%;
+}
+.form-box.customFrombox {
+    max-width: 450px;
+    margin: 0 auto 0px;
+    padding: 50px 0px;
+}
+.customFrom .form-group {
+    width: 100%;
+    float: none;
+    margin: 0 auto 5px;
+}
+.customFrom {
+    color: #3d9289;
+}
+.customFrom form {
+    max-width: unset !important;
+}
+.dontHaveAcc {
+    background:rgba(255, 255, 255, 0.8);
+    padding: 15px 20px 11px 20px;
+    border-bottom: 3px solid #cfcfcf;
+}
+.help-block {
+    color: #ff6a0b;
+}
+label.error {
+    position: absolute;
+    bottom: -17px;
+    color: #ec385b;
+    text-align: right;
+    right: 4px;
+}
+#hint_id_password2 {
+    display: none;
+}
+#submit-id-sign_up ,input#submit-id-update {
+    margin-top: 22px;
+}
+input#submit-id-sign_in {
+    margin-top: -15px;
+}
+.btn-primary {
+    color: #ffffff;
+    background-color: #ec385b;
+    border-color: #a91e39;
+    max-width: 180px;
+    font-size: 18px;
+}
+
+input#submit-id-update
+{
+    max-width: 170px;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-group.open .dropdown-toggle.btn-primary {
+    background-color: #d62b4c !important;
+    border-color: #a91e39 !important;
+}
+a {
+    color: #ec385b;
+}
+a:hover, a:active, a:focus {
+    color: #a91e39;
+}
+.customFrom .form-group input[type="text"].error, .customFrom .form-group textarea.error {
+    box-shadow: 0px 2px 0 0 #ec385b;
+    }
+
+    .customFrom .form-group input[type="text"]:focus,  .customFrom .form-group textarea:focus  {
+    box-shadow: 0px 2px 0px 0px #3c342f;
+}
+.jumbotron.jumbotron-carousel.corporate-jumbo {
+    background: transparent;
+    border: 0;
+}
+a.btn.btn-default {
+    background: #52c3b7;
+    border-color: #327d75;
+}
+a.btn.btn-primary {
+    border-color: #a91e39;
+}
+
+.form-box.customFrombox.formInnerPage {
+    padding: 100px 0px 50px 0px;
+    max-width: 750px;
+}
+.form-box.customFrombox.formInnerPage .form-group {
+    width: 50%;
+    float: left;
+    margin: 0 auto 5px;
+}
+.topHeading .glyphicon.glyphicon-link {
+    font-size: 20px;
+}
+.profileName {
+    font-size: 35px;
+    text-transform: capitalize;
+    margin: 10px auto 10px;
+}
+.profile-head {
+   padding: 90px 0px 30px 30px !important;
+}
+.profile-body {
+    color: #333;
+}
+.glyphicon.glyphicon-warning-sign {
+    color: #fb8e02;
+}
+.form-box.customFrombox.formProfileEditPage .customFrom #submit-id-update {
+    float: right;
+    display: inline-block;
+}
+.form-box.customFrombox.formProfileEditPage {
+    max-width: unset;
+}
+.editProfilePic {
+    padding: 50px 0px;
+}
+
+.editProfilePic img {
+    margin: 0 auto;
+}
+.btn.btn-green.btn-lg.btn-block {
+    color: #ffffff;
+    background-color: #52c3b7;
+    border-color: #409e94;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.btn-green:hover, .btn-green:focus {
+    background-color: #3daea2 !important;
+    border-bottom: 3px solid #35837a;
+    margin-top: 0;
+}
+
+ .btn-primary:hover, .btn-primary:focus, .btn-group.open .dropdown-toggle.btn-primary {
+    background-color: #d62b4c !important;
+    border-color: #a91e39 !important;
+
+}
+.chngePaswrdBtn
+{
+
+    max-width: 225px;
+    margin-top: 22px !important;
+    display: inline-block;
+}
+.signup, .login {
+    padding: 9px 20px 13px 20px;
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    background: #50c2b7;
+    color: #fff;
+    box-shadow: inset 0px -4px 0px 0px #44a49a , 0px 3px 3px 0px #6c6c6c;
+    border-radius: 8px;
+    margin: 6px 7px 0px 0px;
+}
+
+
+.signup:hover, .login:hover {
+   color: #fff;
+   box-shadow: inset 0px -4px 0px 0px #a91e39;
+   background-color: #ec385b;
+}
+ .signup {
+    margin-right: 22px;
+}
+.addPaymentMethod {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 10px;
+}
+.addPaymentMethod a {
+    background: #d62b4c;
+    color: #fff;
+    display: inline-block;
+    padding: 12px 12px;
+    padding: 15px 16px 13px;
+    line-height: 15px;
+    border-bottom: 3px solid #a91e39;
+    border-radius: 8px;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    color: #50c2b7;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 3px solid #50c2b7;
+    box-shadow: 0px 1px 3px 1px #ccc;
+}
+img.profileImgsmall {
+    border-radius: 15px;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 2px 15px 0px 5px;
+    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 3px 2px #585858;
+}
+span.dropdwnName {
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #e63053;
+}
+.navbar-nav > li > .dropdown-menu li {
+    box-shadow: inset 0 -1px 0px 0px #bcbcbc , inset 0 -2px 0px 0px #fff;
+    background: #e3e3e3;
+    padding: 3px 0px;
+}
+.dropdown-menu {
+    padding: 0;
+}
+span.fa.fa-map-marker.mapMark {
+    right: 0;
+    top: 0;
+    padding: 12px 7px;
+    background: white;
+}
+span.fa.fa-calendar.calndr {
+    right: 0;
+    background: white;
+    padding: 14px 6px 14px 5px;
+    top: 0;
+}
+
+form#bookaRideform .form-group input[type="text"] {
+    font-size: 14px;
+    padding: 16px 25px 16px 6px;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #000000;
+}
+

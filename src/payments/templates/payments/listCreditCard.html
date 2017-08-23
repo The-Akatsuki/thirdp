@@ -5,23 +5,20 @@
 
 {% block title %}{{ block.super }}Profile{% endblock %}
 
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
 {% block container %}
 
 
-<div class="col-md-8 col-sm-12 col-xs-12">
-                      <div class="clearfix">&nbsp;</div>
-                       <div class="clearfix">&nbsp;</div>
-                        <div class="clearfix">&nbsp;</div>
-                         <div class="clearfix">&nbsp;</div>
-                          <div class="clearfix">&nbsp;</div>
-                           <div class="clearfix">&nbsp;</div>
-                            <div class="clearfix">&nbsp;</div>
-                            <a href="{% url 'payments:addpayment' %}">Add Payment Method</a>
-                            <br/>
-                             <br/>
-                              <br/>
+<div class="fullBg">
 
-                        <div class="page-content">
+<div class="fullWrapper">
+<div class="formWrapper">
+<h1 class="topHeading">Credit Card Details</h1>
+ <a href="{% url 'payments:addpayment' %}">Add Payment Method</a>
+                        <div class="listcontent">
 
                         
 
@@ -60,6 +57,7 @@
                             </div><!-- end .events-list -->
 
                         </div><!-- end .page-content -->
+                        </div></div></div>
 
 
                          {% endblock %}
