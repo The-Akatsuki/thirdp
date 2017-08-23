@@ -6,11 +6,11 @@
 {% endblock %}
 
 {% block container %}
-<div class="container form-box">
+<div class="form-box customFrombox">
   <div class="text-center">
-    <h2>{% block form_heading %}{% endblock %}</h2>
+    <h1 class="topHeading">{% block form_heading %}{% endblock %}</h1>
   </div>
-  {% block form %}
+  <div class="customFrom">{% block form %}</div>
   {% endblock %}
 </div>
 

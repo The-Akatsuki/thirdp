@@ -1,3 +1,4 @@
+ 
 {% extends "accounts/auth_base.html" %}
 
 {% load crispy_forms_tags %}
@@ -9,10 +10,10 @@
 {% block form %}
   {% crispy form %}
 
-  <div class="form-message">
-    <p>
-      Already signed up? <a href="{% url 'accounts:login' %}">Log in</a>.
-    </p>
-  </div>
+ 
+     
+      <div class="dontHaveAcc"> Already signed up? <a href="{% url 'accounts:login' %}">Log in</a>.</div>
+    
 {% endblock form %}
 
+ 
