@@ -15,25 +15,31 @@
   <div class="row">
     <!-- left column -->
     <div class="col-md-3">
-      <div class="text-center">
+      <div class="text-center editProfilePic">
         <img title="profile picture" class="img-circle img-responsive" src="{% thumbnail user.profile.picture|default:'default_profile.png' 140x140 crop %}">
       </div>
     </div>
       
     <!-- edit form column -->
     <div class="col-md-9">
-      <h3>Personal info</h3>
+    <div class="form-box customFrombox formProfileEditPage">
+      <h1 class="topHeading">Personal info</h1> 
+      <div class="customFrom">
       <form enctype="multipart/form-data" method="post">
 	{% crispy user_form %}
 	{% crispy profile_form %}
+
+   <a class="btn btn-green btn-lg chngePaswrdBtn btn-block" href="{% url 'accounts:password-change' %}">Change Password</a>
       </form>
+      </div>
     </div>
   </div>
+</div>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <a class="btn btn-default pull-right" href="{% url 'accounts:password-change' %}">Change Password</a>
+     
     </div>
   </div>
 </div>
