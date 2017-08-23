@@ -48,17 +48,16 @@ class companyProfileForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.layout = Layout(
-            Field('companyName'),
-            Field('phone'),
-            Field('addressLine1'),
-            Field('addressLine2'),
-            Field('city'),
-            Field('state'),
-            Field('country'),
-            Field('zipCode'),
+            Field('companyName',css_class="companyName"),
+            Field('phone', css_class="phone"),
+            Field('address', css_class="address"),
+            Field('city', css_class="city"),
+            Field('state', css_class="state"),
+            Field('country', css_class="country"),
+            Field('zipCode', css_class="zipCode"),
             Submit('update', 'Update', css_class="btn-success"),
             )
 
     class Meta:
         model = models.companyDetails
-        fields = ['companyName', 'phone', 'addressLine1', 'addressLine2', 'city', 'state', 'zipCode', 'country']
+        fields = ['companyName', 'phone', 'address', 'city', 'state', 'zipCode', 'country']
