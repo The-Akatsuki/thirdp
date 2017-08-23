@@ -18,38 +18,136 @@
 
 
     $(function () {
-    $("#contactForm").validate({
+    $("form").validate({
 		
     rules: {
+    username: {
+		required: true,
+        email:true
+		},
+	password: {
+		required: true,
+		minlength:4,
+		maxlength:20
+		},
+	email:{
+        required: true,
+        email:true
+        },
     name: {
-		required: true,
-		minlength:3,
-		maxlength:50
-		},
-	email: {
-		required: true
-		},
-	Contact: {
-		required: true,
-		number:true,
-		minlength:9,
-		maxlength:10
-		},
-	Message: {
-		required: true,
-		minlength:10,
-		maxlength:200
-		}
+        required: true,
+        minlength:3,
+        maxlength:50
+        },
+    password1:  {
+        required: true,
+        minlength:4,
+        maxlength:20
+        },
+	password2:  {
+        equalTo: "#id_password1",
+        required: true,
+        },
     
-	 
+    companyName: {
+        required: true,
     },
-	
-     messages: {
-            },
-            submitHandler: function (form) {
-            return false;
+
+
+    phone: {
+        required: true,
+        minlength:10,
+        maxlength:12,
+        number:true
+        },
+
+    addressLine1: {
+        required: true
+        },
+
+
+    city: {
+        required: true
+        },
+    state: {
+        required: true
+        },
+   country: {
+        required: true
+        },
+
+    country: {
+        required: true
+        },
+
+    zipCode: {
+        required: true,
+        minlength:6,
+        maxlength:12,
+        number:true
+        },
+
+    nameOnCard: {
+        required: true
+        },
+    cardNumber: {
+        required: true,
+        minlength:6,
+        maxlength:20,
+        number:true
+        },
+    expirationDateMM: {
+        required: true,
+        minlength:2,
+        maxlength:2,
+        number:true
+        },
+     expirationDateYY: {
+        required: true,
+        minlength:2,
+        maxlength:4,
+        number:true
+        },
+    cvcCode: {
+        required: true,
+        minlength:3,
+        maxlength:3,
+        number:true
+        },
+    address: {
+        required: true,
+        },
+    city: {
+        required: true,
+        },
+    state: {
+        required: true,
+        },
+    
+},
+   
+
+
+    messages: {
+         password2:  {
+        equalTo: "Password does not match",
+        },
+        phone:  {
+        maxlength: "Please enter no more than 12 numbers",
+        minlength: "Please enter at least 10 numbers",
+        },
+        zipCode:  {
+        maxlength: "Please enter no more than 12 numbers",
+        minlength: "Please enter at least 6 numbers",
+        },
+
+    },
+
+
+           /* submitHandler: function (form) {
+          
 			
-            }
+            }*/
     });
     });
 	
