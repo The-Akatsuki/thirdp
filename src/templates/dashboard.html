@@ -444,6 +444,9 @@
                    if(d['success']==true){
                        html = "<i class='fa fa-check'></i> Invitation succesully  send to "+receiver
                         $(".usernotFoundText").html(html);
+                   }else{
+                        html = "<i class='fa fa-errors'></i> There is some problem sending Email. Please contact Administrator"
+                        $(".usernotFoundText").html(html);
                    }
                 }
             });
