@@ -142,3 +142,5 @@ LOGIN_REDIRECT_URL = reverse_lazy("dashboard")
 LOGIN_URL = reverse_lazy("accounts:login")
 
 THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
+
+EMAIL_CONFIG = env.email_url()
