@@ -38,4 +38,3 @@ class companyDetails(models.Model):
     zipCode = models.CharField(max_length=250, blank=True)
     country = models.CharField(max_length=250, blank=True)
 
-

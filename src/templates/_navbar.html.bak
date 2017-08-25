@@ -1,0 +1,5 @@
+
+{% if user.is_authenticated %}
+	<li {% if active_link == "dashboard" %}class="active"{% endif %}><a href="{% url 'dashboard' %}">Dashboard</a></li>
+{% endif %}
+<li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">About</a></li>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block container %}
+<div class="form-box customFrombox">
+  <div class="text-center">
+    <h1 class="topHeading">{% block form_heading %}{% endblock %}</h1>
+  </div>
+  <div class="customFrom">{% block form %}</div>
+  {% endblock %}
+</div>
+
+{% endblock container %}
+

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Profile{% endblock %}
+
+{% block container %}
+<style type="text/css">
+  textarea{
+    height:30px !important;
+    border-bottom: 1px !important;
+  }
+</style>
+ 
+<div class="form-box customFrombox formInnerPage">
+<h1 class="topHeading">Company Profile</h1>
+<div class="customFrom">
+<form class="jotform-form" action="companyprofile" method="post" name="form_72261040284447" id="72261040284447" accept-charset="utf-8">
+ {% crispy companyProfileForm %} 
+
+<div id="map"></div>
+ <div style="clear: both"></div>
+</form>
+</div>
+</div>
+      
+            
+        </div>   
+
+
+
+
+{% endblock %}

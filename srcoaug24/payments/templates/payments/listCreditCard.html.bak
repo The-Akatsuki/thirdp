@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Profile{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
+{% block container %}
+
+
+<div class="fullBg">
+
+<div class="fullWrapper">
+<div class="formWrapper">
+<h1 class="topHeading">Credit Card Details</h1>
+ <a href="{% url 'payments:addpayment' %}">Add Payment Method</a>
+                        <div class="listcontent">
+
+                        
+
+                            
+                            <div class="rides-list">
+
+                                {% for payment in payments.all %}
+                                  
+                                  <article class="ride-box clearfix">
+
+                                    <div class="ride-content">
+                                         <h3><a href="#">{{ payment.cardNumber }}</a></h3> <a href="#">{{ payment.nameOnCard }}</a>
+                                    </div>
+
+                                    <ul class="ride-meta">
+
+                                       
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-trash"></i>
+                                                Delete
+                                            </a>
+                                        </li>
+
+                                    </ul><!-- end .ride-meta -->
+
+                                </article><!-- end .ride-box -->   
+
+                                  {% endfor %}
+                          
+
+                                <div class="clearfix"></div>
+
+                               
+
+                            </div><!-- end .events-list -->
+
+                        </div><!-- end .page-content -->
+                        </div></div></div>
+
+
+                         {% endblock %}

@@ -22,7 +22,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 		newDateTime = d.strftime('%Y-%m-%d %H:%M:%S')		
 		booking_datetime = datetime.datetime.now()
 		booking_datetime= booking_datetime.strftime('%Y-%m-%d %H:%M:%S')
-		url = "http://lymosrv.ddns.net:7890/lymousine/api/v1/forcorporateapplicationridebooking"
+                url = "http://lymosrv.ddns.net/lymousine/api/v1/forcorporateapplicationridebooking"
 		# print postData['from_country']
 		# print postData['from_state']
 		# print postData['from_city']
