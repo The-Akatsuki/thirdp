@@ -3,6 +3,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from crispy_forms.bootstrap import InlineRadios
 from django.contrib.auth import get_user_model
 from . import models
 
@@ -55,9 +56,10 @@ class companyProfileForm(forms.ModelForm):
             Field('state', css_class="state"),
             Field('country', css_class="country"),
             Field('zipCode', css_class="zipCode"),
+            InlineRadios('userType'),
             Submit('update', 'Update', css_class="btn-success"),
             )
 
     class Meta:
         model = models.companyDetails
-        fields = ['companyName', 'phone', 'address', 'city', 'state', 'zipCode', 'country']
+        fields = ['companyName', 'phone', 'address', 'city', 'state', 'zipCode', 'country', 'userType']

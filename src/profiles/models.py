@@ -27,6 +27,11 @@ class Profile(BaseProfile):
     def __str__(self):
         return "{}'s profile". format(self.user)
 
+userType_CHOICES = {
+        ("company_secretary", "company Secretary"),
+        ("third_party_desk", "Third party travel desk Secretary")
+    }
+
 class companyDetails(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 primary_key=True)
@@ -37,5 +42,5 @@ class companyDetails(models.Model):
     state = models.CharField(max_length=250, blank=True)
     zipCode = models.CharField(max_length=250, blank=True)
     country = models.CharField(max_length=250, blank=True)
-
+    userType = models.CharField(max_length=50, choices=userType_CHOICES, default='company_secretary')
 

@@ -18,7 +18,7 @@
 
 
     $(function () {
-    $("form").validate({
+    $("#paymentForm , #addPaymentForm, #editCompanyForm , #editProfile , #estimater , #validateForm form").validate({
 		
     rules: {
     username: {

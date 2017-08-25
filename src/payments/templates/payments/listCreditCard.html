@@ -12,12 +12,14 @@
 {% block container %}
 
 
-<div class="fullBg">
+<div class="form-box customFrombox formInnerPage"> 
 
-<div class="fullWrapper">
-<div class="formWrapper">
-<h1 class="topHeading">Credit Card Details</h1>
- <a href="{% url 'payments:addpayment' %}">Add Payment Method</a>
+
+	<h1 class="topHeading">Credit Card Details</h1>
+
+	<div class="customFrom">
+		<div class="addPaymentMethod"><a href="{% url 'payments:addpayment' %}"><i class="fa fa-credit-card" aria-hidden="true"></i> Add Payment Method</a></div>
+
                         <div class="listcontent">
 
                         
@@ -57,7 +59,7 @@
                             </div><!-- end .events-list -->
 
                         </div><!-- end .page-content -->
-                        </div></div></div>
+                        </div></div>
 
 
                          {% endblock %}

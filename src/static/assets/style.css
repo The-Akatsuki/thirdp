@@ -964,22 +964,6 @@ div#success-alert {
 {
 	color:#ccc !important
 	}
-.redDot {
-    height: 10px;
-    width: 10px;
-    background: #52c3b7;
-    float: left;
-    border-radius: 10px;
-    margin: 10px 10px 0px 5px;
-}
-.greenDot {
-    height: 10px;
-    width: 10px;
-    background: #ec385b;
-    float: left;
-    border-radius: 10px;
-    margin: 9px 10px 0px -10px;
-}
 
 .downloadLinks {
     position: absolute;
@@ -1559,7 +1543,7 @@ input.hidden_radio {
   }
 }
   .form-taxi-short {
-  margin-bottom: 90px;
+  margin-bottom: 0px;
 }
 .form-taxi-short .menu-types {
   margin: 0 0 0 -12px;
@@ -1583,13 +1567,12 @@ input.hidden_radio {
   -moz-background-clip: padding;
   border-radius: 8px;
   background-clip: padding-box;
-  max-width: 500px;
   margin: 0 auto;
   padding: 45px 30px 30px;  
   width: 100%;
 }
 
-@media (min-width: 960px){
+/*@media (min-width: 960px){
     .form-taxi-short form{
         position: absolute;
         right: 0;
@@ -1597,7 +1580,7 @@ input.hidden_radio {
         padding-top: 150px;
         bottom: 0;
     }
-}
+}*/
 form input[type="text"] {
   width: 100% !important;
   font-size: 16px;
@@ -1735,14 +1718,13 @@ ul.ride-meta li {
     box-shadow: 0 0px 0px 1px #b4b4b4;
     border-radius: 0;
     background: #fff !important;
-    max-height: 38px;
 }
  .customFrom .form-group textarea {
     border: 0;
-    box-shadow: 0px 1px 0 0 #b4b4b4;
+    box-shadow: 0px 0 0 1px  #b4b4b4;
     border-radius: 0;
     background: #fff !important;
-    height: 50px !important;
+    height: 42px !important;
 }
 .customFrom #submit-id-update {
     float: right;
@@ -1836,7 +1818,7 @@ input#submit-id-sign_in {
     background-color: #ec385b;
     border-color: #a91e39;
     max-width: 180px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 input#submit-id-update
@@ -2021,3 +2003,149 @@ form#bookaRideform .form-group input[type="text"] {
     color: #000000;
 }
 
+.customFrom .alert {
+    margin: 0;
+}
+.companySectury {
+    text-align: right;
+    margin: 15px auto 10px;
+}
+input#ThirdpartytraveldeskSecretary, input#companySecretary {
+    max-width: unset;
+}
+.page-content.bookRides {
+    
+}
+.greenDot {
+    height: 10px;
+    width: 10px;
+    background: #52c3b7;
+    border-radius: 10px;
+    margin: 0px 0px 0px 0px;
+}
+.redDot {
+    height: 10px;
+    width: 10px;
+    background: #ec385b;
+    border-radius: 10px;
+    margin: 0px 0px 0px 10px;
+}
+.ride-content.inlines span {
+    display: inline-block;
+    text-transform: capitalize;
+}
+span.toAddress, span.fromAddress {
+    color: #333;
+}
+span.rideBy {
+    
+}
+article.ride-box {
+    padding: 10px 10px;
+}
+.ride-box ul.ride-meta {
+    margin: 10px auto 0px;
+}
+ul.ride-meta li {
+    display: inline-block;
+    margin-right: 4px;
+    box-shadow: 1px 2px 2px 0px #737373;
+    background: #ec385b;
+    padding: 6px 5px 5px 5px;
+    color: #fff;
+    margin: 0px 0px 4px 0px;
+}
+ul.ride-meta li a {
+    color: #fff;
+}
+.companySectury {
+    text-align: right;
+    margin: 0px auto 0px;
+    padding: 4px 0px 0px 0px;
+}
+.companySecturyInner {
+    display: inline-block;
+    margin: 0 0 0 15px;
+}
+.companySecturyInner input[type="checkbox"], .companySecturyInner span {
+    vertical-align: bottom;
+    text-transform: capitalize;
+}
+.companySecturyInner input[type="radio"] {
+    position: relative;
+    top: 2px;
+}
+.companySecturyInner {
+    color: #4b4b4b;
+}
+article.ride-box {
+    padding: 10px 10px;
+    margin: 0 19px 5px 0px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.form-taxi-short form {
+   
+    margin: 0 auto;
+    padding: 0px 30px 11px 30px;
+    width: 100%;
+    position: absolute;
+    top: -55px;
+    min-height: calc(100vh + 55px);
+}
+.groupOne {
+    margin-top: 100px;
+}
+
+/*******************************************************************************************************************************/
+/*********************************************************responsive************************************************************/
+/*******************************************************************************************************************************/
+
+
+@media only screen and (max-width: 991px) {
+  
+ .form-taxi-short form {
+    position: unset;
+    margin: 20px auto 20px;
+    min-height: unset;
+    padding: 50px 20px 5px 20px;
+}
+.spaceOnly {
+    display: none;
+}
+}
+@media only screen and (max-width: 480px) {
+
+.form-box.customFrombox.formInnerPage .form-group {
+    width: 100%;
+    float: none;
+}
+.bodyWrapper {
+    padding: 0px 5px;
+}
+.form-box.customFrombox.formInnerPage {
+    padding: 70px 0px 50px 0px;
+}
+.companySecturyInner {
+    font-size: 14px;
+}
+.profilePic {
+    margin: 0 auto;
+}
+.profile-head {
+    padding: 100px 10px 25px 10px !important;
+    text-align: center;
+}
+.navbar {
+    border-width: 0 0px 4px 0px;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+.profile-head {
+    padding: 70px 0px 30px 0px;
+        margin-left: -15px;
+    margin-right: -15px;
+}
+
+}

@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^booked-rides/', views.bookedRides.as_view(), name='bookedRides'),
     url(r'^rides/', include(ride.urls, namespace='ride')),
     url(r'^payments/', include(payments.urls, namespace="payments")),
-    url(r'^sendInvitationEmail/', views.sendInvitationEmail, name='sendInvitationEmail'),
+    url(r'^sendInvitationEmail/', views.sendInvitationEmail, name="sendInvitationEmail"),
 ]
 
 # User-uploaded files like profile pics need to be served in development

@@ -39,7 +39,9 @@
   </head>
 
   <body>
+	  <div class="fullBg">
 
+		  <div class="bodyWrapper"> 
     {% block navbar %}
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navbar-header">
@@ -68,12 +70,12 @@
                 <li><a href="{% url 'admin:index' %}">Admin</a></li>
                 {% endif %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle profile-menu" data-toggle="dropdown">
-			<img src="{% thumbnail user.profile.picture|default:'default_profile.png' 30x30 crop %}" alt="" />
-			{{ user.get_full_name|truncatechars:20 }}
-			<span class="caret"></span>
-		    </a>
-		    
+                  <a href="#" class="dropdown-toggle profile-menu" data-toggle="dropdown">
+                    <span class="dropdwnName">{{ user.get_full_name|truncatechars:20 }}</span>
+                    <span class="caret"></span>
+                    <img class="profileImgsmall" src="{% thumbnail user.profile.picture|default:'default_profile.png' 30x30 crop %}" alt="" />
+                  </a>
+        
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="{% url 'profiles:show_self' %}">Profile</a></li>
                     <li><a href="{% url 'profiles:companyprofile' %}">Company Details</a></li>
@@ -133,7 +135,7 @@
           </div>
         </div>
             </div> -->
-      </div>
+      </div></div></div>
     {% endblock %}
 
     <!-- Bootstrap core JavaScript

@@ -5,7 +5,7 @@ from profiles import models
 from ride.models import ridebooking
 from django.core.mail import send_mail
 from django.http import JsonResponse
-
+from django.views.decorators.csrf import csrf_exempt
 
 
 class HomePage(generic.TemplateView):
@@ -34,19 +34,21 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
 class bookedRides(LoginRequiredMixin, generic.TemplateView):    
 	template_name = "ajax_pages/booked_rides.html"
 
-class sendInvitationEmail():
-    def get(self, request, *args, **kwargs):
-        try:
-            send_mail(
-                'Subject here',
-                'Here is the message.',
-                'dineshkaushik829269@gmail.com',
-                ['dinesh829269@gmail.com'],
-                fail_silently=False,
-            )
-            data = {'success':True}
-        except:
-            data = {'success':False}
-        return JsonResponse(data)
+@csrf_exempt
+def sendInvitationEmail(request):
+    print request
+    try:
+        mailResponse = send_mail(
+            'Subject here',
+            'Here is the message.',
+            'dineshkaushik829269@gmail.com',
+            ['dinesh829269@gmail.com'],
+            fail_silently=False,
+        )
+        print mailResponse
+        data = {'success':True}
+    except:
+        data = {'success':False}
+    return JsonResponse(data)
 	
 

@@ -12,8 +12,9 @@
 
 {% block navbar-right %}
   {% if not user.is_authenticated %}
-  <a class="btn btn-default" href="{% url 'accounts:login' %}" role="button">Log in</a>
-  <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">Sign up</a>
+  <a class="login" href="{% url 'accounts:login' %}" role="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
+    <a class="signup" href="{% url 'accounts:signup' %}" role="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
+
   {% else %}
     {{ block.super }}
   {% endif %}
@@ -39,6 +40,10 @@
       </div>
     </div>
   </div>
+<style>
+.fullBg {
+	    background-image: url(/static/site/img/banner.jpg);
+}</style>
 {% endblock splash %}
 
 {% block container %}
