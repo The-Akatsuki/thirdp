@@ -315,13 +315,36 @@
       
       console.log(formData);
       $.ajax({
-                url: lymoServerURL+"lymousine/api/v1/forcorporateapplication",
+                url: lymoServerURL+"lymousine/api/v1/forcorporateapplication2/",
                 type: "post",
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(d) {
                     if(d.success == true){
-                      userHtmlContent = '<i class="fa fa-check"></i> User <strong>'+d.data.email+'</strong> exist in the system.<div class="clearfix"></div> <div style="font-size:140%;margin-top:10px"> Click <strong><span style="cursor: pointer;text-decoration:underline" onclick="form_first_content_btn_submit(';
+                        userHtmlContent ='<div class="clearfix"></div>';
+                        userHtmlContent +='<div class="clearfix">&nbsp;</div>';
+                      userHtmlContent += '<i class="fa fa-check"></i> User <strong>'+d.data.email+'</strong> exist in the system.';
+                      userHtmlContent +='<div class="clearfix">&nbsp;</div>';
+                      userHtmlContent += "<div class='col-md-12'>";
+                      userHtmlContent += "<div class='col-md-3 col-md-offset-2'>";
+                      if(d.data.picture && d.data.picture!='null'){
+                         userHtmlContent += "<img src='"+lymoServerURL+d.data.picture+"' style='width:70px;height:70px;border:5px;vorder-color:#fff;border-radius:2px;float:right'/>";
+                      }else{
+                          userHtmlContent += "<img src='{% static 'assets/images/default_profile.png.140x140_q85_crop.png' %}' style='width:70px;height:70px;border:5px;vorder-color:#fff;border-radius:2px;float:right'/>";
+                      }
+                      userHtmlContent += "</div>";
+                      if(d.data.email) {
+                          userHtmlContent += "<div class='col-md-7' style=\"\n" +
+                              "    padding: 20px 0 0 0;\n" +
+                              "    text-align: left;\n" +
+                              "\">" + d.data.name + "</br>" + d.data.email + "</div>";
+                      }
+                      if(d.data.mobile) {
+                          userHtmlContent += "<div class='col-md-7'>" + d.data.name + "</br>" + d.data.mobile + "</div>";
+                      }
+                      userHtmlContent += "</div>";
+                      userHtmlContent +='<div class="clearfix"></div>';
+                       userHtmlContent +='<div style="font-size:140%;margin-top:10px"> Click <strong><span style="cursor: pointer;text-decoration:underline" onclick="form_first_content_btn_submit(';
                       userHtmlContent += "'"+d.data.email+"')";
                       userHtmlContent += '">here</span></strong> to book a ride for the user '+d.data.email+'</div>';
                       $(".userFoundText").html(userHtmlContent);
