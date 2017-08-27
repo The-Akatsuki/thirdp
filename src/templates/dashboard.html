@@ -302,7 +302,7 @@
       //    $(".checking_user_details_waiting").hide();
       //    $(".userFoundText").show();
       // }, 2000);      
-      event.preventDefault();
+      //event.preventDefault();
       if($('#user_email').val() != ''){
         var formData = {
           'email': $('#user_email').val() //for get email 
@@ -454,17 +454,28 @@
    }
 
    function sendInvitation(carrier, receiver){
-        if(carrier == 'email'){
-            html = "Sending Invitation Email to "+receiver+" ..."
-            $(".usernotFoundText").html(html);
+
             // Email Invitation
-            InvitationURL = {% url 'sendInvitationEmail' %}
+            if(carrier == 'email'){
+                var formData = {
+                  'email': receiver //for get email
+                };
+                 html = "Sending Invitation Email to "+receiver+" ..."
+              }else{
+                var formData = {
+                  'mobile_number': $('#mobile').val() //for get email
+                };
+                 html = "Sending Invitation Email to "+receiver+" ..."
+              }
+              $(".usernotFoundText").html(html);
+            InvitationURL = lymoServerURL + 'lymousine/api/v1/appdownloademailsmssend/'
              $.ajax({
                 url: InvitationURL,
                 type: "post",
-                //data: formdata,
+                data: JSON.stringify(formData),
+                contentType: "application/json",
                 success: function(d) {
-                   if(d['success']==true){
+                   if(d.success==true){
                        html = "<i class='fa fa-check'></i> Invitation succesully  send to "+receiver
                         $(".usernotFoundText").html(html);
                    }else{
@@ -473,9 +484,7 @@
                    }
                 }
             });
-        }else{
-            //Invitation SMS
-        }
+
    }
 
 
