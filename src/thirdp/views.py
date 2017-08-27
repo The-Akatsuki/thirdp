@@ -9,30 +9,30 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 class HomePage(generic.TemplateView):
-	template_name = "home.html"
+    template_name = "home.html"
 
 
 class AboutPage(generic.TemplateView):
-	template_name = "about.html"
+    template_name = "about.html"
 
-class dashboard(LoginRequiredMixin, generic.TemplateView):  
-	template_name = "dashboard.html"
+class dashboard(LoginRequiredMixin, generic.TemplateView):
+    template_name = "dashboard.html"
 
-	def get(self, request, *args, **kwargs):
-		print self.request.user
-		b = models.companyDetails.objects.filter(user=self.request.user).count()
-		if b ==0:
-			 return redirect("profiles:companyprofile")
+    def get(self, request, *args, **kwargs):
+        print self.request.user
+        b = models.companyDetails.objects.filter(user=self.request.user).count()
+        if b==0:
+            return redirect("profiles:companyprofile")
 
-		bookedRidesData = ridebooking.objects.filter(user=self.request.user)
-		print bookedRidesData.__dict__
-		if bookedRidesData is not None:
-			kwargs['bookedRidesData'] = bookedRidesData
-		return super(dashboard, self).get(request, *args, **kwargs)
-		
+        bookedRidesData = ridebooking.objects.filter(user=self.request.user)
+        print bookedRidesData.__dict__
+        if bookedRidesData is not None:
+            kwargs['bookedRidesData'] = bookedRidesData
+        return super(dashboard, self).get(request, *args, **kwargs)
 
-class bookedRides(LoginRequiredMixin, generic.TemplateView):    
-	template_name = "ajax_pages/booked_rides.html"
+
+class bookedRides(LoginRequiredMixin, generic.TemplateView):
+    template_name = "ajax_pages/booked_rides.html"
 
 @csrf_exempt
 def sendInvitationEmail(request):
@@ -50,5 +50,5 @@ def sendInvitationEmail(request):
     except:
         data = {'success':False}
     return JsonResponse(data)
-	
+
 

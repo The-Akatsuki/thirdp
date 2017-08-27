@@ -18,6 +18,8 @@ MEDIA_ROOT = join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
 
 
+
+
 # Use Django templates using the new Django 1.8 TEMPLATES settings
 TEMPLATES = [
     {
