@@ -9,6 +9,7 @@ from django.contrib import messages
 from . import models
 import datetime
 import requests
+import json
 
 # Create your views here.
 class BookRide(LoginRequiredMixin, generic.TemplateView):
@@ -60,7 +61,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 
 		response = requests.post(url, json = payload)
 		print "response text"
-		rideData =  response.text
+		rideData =  json.loads(response.text)
 		rideId = rideData['data']['id']
 		p = models.ridebooking( ride_id = rideId,
 								pickup_lat=postData['from_lat'],
