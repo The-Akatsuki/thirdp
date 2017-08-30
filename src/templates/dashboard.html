@@ -372,6 +372,7 @@
                       $(".form_first_content_btn").show();
                       $("#bookaRideform").trigger('reset');
                       $(".userFoundText").hide();
+                      if(formData['email']){
                         var html = "<i class='fa fa-times'></i> User is not registered with Lymousine Portal. <br> Click <span style='cursor:pointer' onclick=\"sendInvitation( 'email', '"+formData['email']+"')\">here</span> to Invite "+formData['email'];
                       }else{
                          var html = "<i class='fa fa-times'></i> User is not registered with Lymousine Portal. <br> Click <span style='cursor:pointer' onclick=\"sendInvitation( 'sms', '"+formData['mobile_number']+"')\">here</span> to Invite "+formData['mobile'];
