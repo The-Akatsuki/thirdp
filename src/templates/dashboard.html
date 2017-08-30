@@ -321,7 +321,7 @@
         };
       }else{
         var formData = {
-          'mobile_number': $('#mobile').val() //for get email 
+          'mobile': $('#mobile').val() //for get email
         };
       }
       
@@ -375,7 +375,7 @@
                       if(formData['email']){
                         var html = "<i class='fa fa-times'></i> User is not registered with Lymousine Portal. <br> Click <span style='cursor:pointer' onclick=\"sendInvitation( 'email', '"+formData['email']+"')\">here</span> to Invite "+formData['email'];
                       }else{
-                         var html = "<i class='fa fa-times'></i> User is not registered with Lymousine Portal. <br> Click <span style='cursor:pointer' onclick=\"sendInvitation( 'sms', '"+formData['mobile_number']+"')\">here</span> to Invite "+formData['mobile'];
+                         var html = "<i class='fa fa-times'></i> User is not registered with Lymousine Portal. <br> Click <span style='cursor:pointer' onclick=\"sendInvitation( 'sms', '"+formData['mobile']+"')\">here</span> to Invite "+formData['mobile'];
                       }
                       $(".usernotFoundText").html(html).show();
                     }

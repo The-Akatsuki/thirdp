@@ -17,8 +17,8 @@
       <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="360" column="87" lean-forward="false" selection-start-line="360" selection-start-column="87" selection-end-line="360" selection-end-column="87" />
+            <state relative-caret-position="271">
+              <caret line="377" column="203" lean-forward="false" selection-start-line="377" selection-start-column="203" selection-end-line="377" selection-end-column="203" />
               <folding />
             </state>
           </provider>
@@ -44,6 +44,7 @@
       <find>check_user_lymousine()</find>
       <find>in the system</find>
       <find>sendInvitation</find>
+      <find>mobile</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -615,8 +616,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="360" column="87" lean-forward="false" selection-start-line="360" selection-start-column="87" selection-end-line="360" selection-end-column="87" />
+        <state relative-caret-position="271">
+          <caret line="377" column="203" lean-forward="false" selection-start-line="377" selection-start-column="203" selection-end-line="377" selection-end-column="203" />
           <folding />
         </state>
       </provider>
