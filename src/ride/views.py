@@ -41,7 +41,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 					"drop_address":postData['to'], 
 					"ride_datetime":newDateTime, 
 					"noof_passengers":1, 
-					"vehicle_type":postData['type'],
+					"vehicle_type":postData['type-value'],
 					"ride_booked_by":1, 
 					"passenger":postData['passengerid'],
 					"booking_DateTime":booking_datetime,
@@ -59,9 +59,11 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 		# print payload
 
 		response = requests.post(url, json = payload)
-		# print "response text"
-		# print response.text
-		p = models.ridebooking( pickup_lat=postData['from_lat'], 
+		print "response text"
+		rideData =  response.text
+		rideId = rideData['data']['id']
+		p = models.ridebooking( ride_id = rideId,
+								pickup_lat=postData['from_lat'],
 								pickup_long=postData['from_lon'],	
 								drop_lat=postData['to_lat'], 
 								drop_long=postData['to_lon'],
