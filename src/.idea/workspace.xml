@@ -14,11 +14,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="250">
               <caret line="214" column="59" lean-forward="false" selection-start-line="214" selection-start-column="59" selection-end-line="214" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thirdp/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="24" column="3" lean-forward="false" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ride/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="20" column="73" lean-forward="false" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -63,6 +85,7 @@
         <option value="$PROJECT_DIR$/thirdp/settings/production.py" />
         <option value="$PROJECT_DIR$/thirdp/views.py" />
         <option value="$PROJECT_DIR$/templates/dashboard.html" />
+        <option value="$PROJECT_DIR$/ride/views.py" />
       </list>
     </option>
   </component>
@@ -101,6 +124,16 @@
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ride" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="thirdp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="src" type="b2602c69:ProjectViewProjectNode" />
@@ -220,14 +253,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9387">
-          <caret line="447" column="126" lean-forward="false" selection-start-line="447" selection-start-column="126" selection-end-line="447" selection-end-column="126" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/assets/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -591,16 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/thirdp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="24" column="3" lean-forward="false" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard.html.a">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1323">
@@ -613,6 +628,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="214" column="59" lean-forward="false" selection-start-line="214" selection-start-column="59" selection-end-line="214" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thirdp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" column="3" lean-forward="false" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ride/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="20" column="73" lean-forward="false" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
           <folding />
         </state>
       </provider>

@@ -18,7 +18,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
 	def post(self, request):
 		user = self.request.user
 		postData =  request.POST
-		d = datetime.datetime.strptime(postData['Ridedate'], '%d %B %Y %I:%M %p')
+		d = datetime.datetime.strptime(postData['Ridedate'], '%d %B %Y - %H:%M')
 		newDateTime = d.strftime('%Y-%m-%d %H:%M:%S')		
 		booking_datetime = datetime.datetime.now()
 		booking_datetime= booking_datetime.strftime('%Y-%m-%d %H:%M:%S')
