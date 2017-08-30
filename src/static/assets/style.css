@@ -516,21 +516,21 @@ font-weight:bold;
 */
 .RiderBg1
 {
-	background-image:url(../image/riderBg.jpg);
+	background-image:url(https://www.lymousine.com/static/image/riderBg.jpg);
 	background-size:cover;
 	background-position:center;
 }
 
 
 .DriverBg1{
-	background-image: url(../image/forDriverBG.jpg);
+    background-image:url(https://www.lymousine.com/static/image/forDriverBG.jpg);
 	background-size:cover;
 	background-position:center;
 }
 
 
 .DriverBg2{
-    background-image: url(../image/forDriverBG2.jpg);
+    background-image:url(https://www.lymousine.com/static/image/forDriverBG2.jpg);
     background-size:cover;
     background-position:center;
 }
@@ -2016,19 +2016,27 @@ input#ThirdpartytraveldeskSecretary, input#companySecretary {
 .page-content.bookRides {
     
 }
-.greenDot {
-    height: 10px;
-    width: 10px;
+span.toAddress:before {
+    content: "";
+    height: 16px;
+    width: 16px;
     background: #52c3b7;
     border-radius: 10px;
     margin: 0px 0px 0px 0px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
 }
-.redDot {
-    height: 10px;
-    width: 10px;
+span.fromAddress:before {
+    content: "";
+    height: 16px;
+    width: 16px;
     background: #ec385b;
     border-radius: 10px;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 5px 0px 0px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
 }
 .ride-content.inlines span {
     display: inline-block;
@@ -2046,17 +2054,19 @@ article.ride-box {
 .ride-box ul.ride-meta {
     margin: 10px auto 0px;
 }
-ul.ride-meta li {
+ul.ride-meta li.buttonStyle {
     display: inline-block;
     margin-right: 4px;
     box-shadow: 1px 2px 2px 0px #737373;
-    background: #ec385b;
-    padding: 6px 5px 5px 5px;
+    background: #50c2b7;
     color: #fff;
-    margin: 0px 0px 4px 0px;
+    margin: 0px 0px 0px 8px;
+    border-radius: 0px;
 }
-ul.ride-meta li a {
+ul.ride-meta li.buttonStyle a {
     color: #fff;
+    display: block;
+    padding: 6px 5px 5px 5px;
 }
 .companySectury {
     text-align: right;
@@ -2096,11 +2106,164 @@ article.ride-box {
 .groupOne {
     margin-top: 100px;
 }
+p.watchVideo {
+    color: #ec385b;
+}
+
+h2.text-center.rideBookTitle.userFoundText span , h2.text-center.rideBookTitle.usernotFoundText span {
+    background: #e63053;
+    color: #fff;
+    border-radius: 22px;
+    padding: 10px 15px;
+    margin: 0px 6px 2px 6px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px !important;
+}
+.customFrom .form-group textarea
+{
+line-height: 15px;
+padding: 6px 5px !important;
+}
+
+h2.text-center.rideBookTitle.usernotFoundText span {
+    background: #e63053;
+    color: #fff;
+    border-radius: 22px;
+    padding: 10px 15px;
+    margin: 0px 6px 2px 6px;
+    display: inline-block;
+}
+ 
+.datetimepicker table tr td.active, .datetimepicker table tr td.active:hover, .datetimepicker table tr td.active.disabled, .datetimepicker table tr td.active.disabled:hover {
+    background-color: linear-gradient(top, #50c2b7, #158277);
+    background-image: -moz-linear-gradient(top, #50c2b7, #158277);
+    background-image: -ms-linear-gradient(top, #50c2b7, #158277);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#50c2b7), to(#158277));
+    background-image: -webkit-linear-gradient(top,  #50c2b7, #158277);
+    background-image: -o-linear-gradient(top,  #50c2b7, #158277);
+    background-image: linear-gradient(top,  #50c2b7, #158277);   
+}
+
+#div_id_userType .radio-inline {
+    margin: 0;
+    text-transform: capitalize;
+}
+ 
+.datetimepicker td, .datetimepicker th {
+    padding: 6px 10px 6px 10px !important ;
+    -moz-border-radius: 6px 10px 6px 10px  !important ;
+    border-radius: 0px ;
+    box-shadow: 1px 0px 0px 0px #e4e4e4, 0px 1px 0px 0px #e4e4e4;
+}
+.datetimepicker table tr td.active, .datetimepicker table tr td.active:hover, .datetimepicker table tr td.active.disabled, .datetimepicker table tr td.active.disabled:hover {
+    background-color: #e63053  !important;
+    background: #e63053  !important;
+    color: #fff;
+}
+
+.datetimepicker table tfoot {
+    background: #50c2b7 ;
+    background-color: #50c2b7 ;
+    color: #fff;
+    cursor: pointer;
+}
+i.icon-arrow-left:after {
+    content: "\2190";
+    font-size: 25px;
+}
+i.icon-arrow-right:after {
+    content: "\2192";
+    font-size: 25px;
+}
+span.add-on:after {
+    content: "\f073";
+    font-family: fontAwesome;
+    cursor: pointer;
+}
+.datetimepicker table thead tr:first-child {
+    background: #737373 ;
+    background-color: #737373 ;
+    color: #fff;
+}
+
+.datetimepicker table thead tr:nth-child(2) {
+    background: #50c2b7;
+    background-color: #585858;
+    color: #fff;
+}
+.datetimepicker thead tr:first-child th:hover, .datetimepicker tfoot tr:first-child th:hover {
+    background: #545454 ;
+}
+div#address h2 {
+    color: #e63053;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0 auto 15px;
+}
+address {
+    font-size: 20px;
+    line-height: 25px;
+}
+span.rideBy {
+    text-transform: capitalize;
+}
+.boxUser {
+    display: inline-block;
+    vertical-align: middle;
+}
+.userBoxInner {
+    display: inline-block;
+    border: 1px solid #49a9a0;
+    padding: 10px;
+}
+.alert.alert-success {
+    z-index: 4;
+    position: absolute;
+    width: 100%;
+}
+.boxUser.boxUser1 img {
+    display: block;
+    border-radius: 90px;
+    width: 100px;
+}
+.boxUser.boxUser2 {
+    text-align: left;
+    padding: 0px 0px 0px 10px;
+}
+.rideDAtetime {
+    color: #3c352f;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0px 0px 5px 0px;
+}
+span.ridedatetimespan {
+    margin: 0 0 0 5px;
+}
+span.rideNumberSpan1 {
+    color: #3c352f;
+    font-weight: bold;
+}
+span.rideNumberSpan2 {
+    color: #ec385b;
+    font-weight: bold;
+}
+ul.ride-meta li.buttonStyle.redbuttons {
+    background: #ec385b;
+}
+ul.ride-meta li {
+    color: #3c352f;
+    margin: 0 0 0 8px;
+}
+.datetimepicker.datetimepicker-dropdown-bottom-left.dropdown-menu {
+    border-width: 0 1px 1px 1px;
+}
+
 
 /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/
 /*******************************************************************************************************************************/
-
 
 @media only screen and (max-width: 991px) {
   
@@ -2144,8 +2307,52 @@ article.ride-box {
 }
 .profile-head {
     padding: 70px 0px 30px 0px;
-        margin-left: -15px;
-    margin-right: -15px;
+        margin-left: 0px;
+    margin-right: 0px;
+}
+.container.profile-head a.btn.btn-primary.btn.btn-primary.btn.btn-lg.btn-primary.btn-block {
+    margin: 0 auto;
+}
+.fullBg {
+    width: 100%;
+    overflow-x: hidden;
+}
+.groupOne {
+    margin-top: 70px;
+}
+.container-fluid.form-taxi-short {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.page-sub-title {
+    margin: 0px 0px 20px 0px;
+}
+.line:after {
+    left: 0px;
+    right: 0px;
+}
+.page-content {
+    margin: 0px 0px;
+}
+article.ride-box {
+    padding: 5px 5px;
+    margin: 0 0px 5px 0px;
+}
+.col-md-7.col-sm-12.col-xs-12.wrapBookrides, .col-md-5.col-sm-12.col-xs-12.wrapBookrides {
+    padding: 0;
+}
+.col-lg-5.col-sm-5.col-xs-12.vAlign.text-center.paragraph {
+    padding-top: 40px;
+}
+a.login {
+    margin: 0px 0px 0px 15px;
+}
 }
 
-}
+
+
+/*******************************************************************************************************************************/
+/*********************************************************end************************************************************/
+/*******************************************************************************************************************************/
+ 

@@ -46,11 +46,19 @@
                             {% for bookedRide in bookedRidesData.all %}
                                <article class="ride-box clearfix">
 
+                                <div class="row">
+                                    <div class="rideDAtetime col-sm-7">
+                                      <i class="fa fa-calendar"></i>
+                                      <span class="ridedatetimespan"> {{ bookedRide.ride_datetime }}</span>
+                                    </div>
+                                    <div class="rideNumber col-sm-5 text-right">
+                                      <span class="rideNumberSpan1">Ride Number :</span> <span class="rideNumberSpan2">LIM0987654321</span>
+                                    </div>
+                                </div>
+
                                     <div class="ride-content inlines">
                                         <a href="#">
-                                        <span class="greenDot"></span>
                                         <span class="fromAddress">{{ bookedRide.pickup_address }} </span>
-                                        <span class="redDot"></span>
                                         <span class="toAddress"> {{ bookedRide.drop_address }}</span>
                                         </a>
 
@@ -67,25 +75,24 @@
                                       </li>
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
-                                                <i class="fa fa-calendar"></i>
-                                                {{ bookedRide.ride_datetime }}
+                                               
                                             </a>
                                         </li><!-- end .ride-date -->
                                         
-                                        <li>
+                                       <li class="buttonStyle redbuttons">
                                             <a href="#">
                                                 <i class="fa fa-ban" aria-hidden="true"></i>
                                                 Cancel Ride
                                             </a>
                                         </li>
-                                        <li>
+                                       <li class="buttonStyle">
                                             <a href="#">
                                                 <i class="fa fa-file-pdf-o"></i>
                                                 Invoice
                                             </a>
                                         </li>
                     
-                                        <li>
+                                        <li class="buttonStyle">
                                             <a href="#">
                                                 <i class="fa fa-life-ring" aria-hidden="true"></i>
                                                 Support
@@ -147,8 +154,8 @@
           </div>
 
            
-           <h2 class="text-center rideBookTitle userFoundText" style="font-size: 16px;margin-top:10px"> <i class="fa fa-check"></i> User XYZ exist in the system. Click <span style="font-size: 18px;cursor: pointer;" onclick="form_first_content_btn_submit()">here</span> to book a ride for the user XYZ</h2> 
-           <h2 class="text-center rideBookTitle usernotFoundText" style="font-size: 16px;margin-top:10px"> <i class="fa fa-times"></i> User is not registered with Lymousine. Please ask your Staff to register with Lymousine.</h2>          
+           <h2 class="text-center rideBookTitle userFoundText" style="font-size: 16px;margin-top:10px"> <i class="fa fa-check"></i> User XYZ exist in the system. <br>Click <span style="font-size: 18px;cursor: pointer;" onclick="form_first_content_btn_submit()">here</span> to book a ride for the user XYZ</h2> 
+           <h2 class="text-center rideBookTitle usernotFoundText" style="font-size: 16px;margin-top:10px"> <i class="fa fa-times"></i> User is not registered with Lymousine. <br>Please ask your Staff to register with Lymousine.</h2>          
           <div class="clearfix"></div>
            
             
@@ -199,10 +206,15 @@
           </div>
         </div>
         <div id="map"></div>
-        <div class="row form-with-labels">            
+        <div class="row form-with-labels"> 
+
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" name="Ridedate" value="" placeholder="Date" class="ajaxField" id="datepicker"><span class="fa fa-calendar"></span>
+              <!--<input type="text" name="Ridedate" value="" placeholder="Date" class="ajaxField" id="datepicker"><span class="fa fa-calendar"></span>-->
+             <div class="input-append date form_datetime">
+               <input size="16" type="text" value="" readonly value="" placeholder="Date" class="ajaxField">
+              <span class="add-on"><i class="icon-th"></i></span>
+            </div>
             </div>
           </div>
 
@@ -325,23 +337,25 @@
                         userHtmlContent +='<div class="clearfix">&nbsp;</div>';
                       userHtmlContent += '<i class="fa fa-check"></i> User <strong>'+d.data.email+'</strong> exist in the system.';
                       userHtmlContent +='<div class="clearfix">&nbsp;</div>';
-                      userHtmlContent += "<div class='col-md-12'>";
-                      userHtmlContent += "<div class='col-md-3 col-md-offset-2'>";
+                      userHtmlContent += "<div class='row userBox'>";
+                      userHtmlContent += "<div class='userBoxInner'>";
+                      userHtmlContent += "<div class='boxUser boxUser1'>";
                       if(d.data.picture && d.data.picture!='null'){
-                         userHtmlContent += "<img src='"+lymoServerURL+d.data.picture+"' style='width:70px;height:70px;border:5px;vorder-color:#fff;border-radius:2px;float:right'/>";
+                         userHtmlContent += "<img src='"+lymoServerURL+d.data.picture+"' />";
                       }else{
-                          userHtmlContent += "<img src='{% static 'assets/images/default_profile.png.140x140_q85_crop.png' %}' style='width:70px;height:70px;border:5px;vorder-color:#fff;border-radius:2px;float:right'/>";
+                          userHtmlContent += "<img src='{% static 'assets/images/default_profile.png.140x140_q85_crop.png' %}' />";
                       }
                       userHtmlContent += "</div>";
                       if(d.data.email) {
-                          userHtmlContent += "<div class='col-md-7' style=\"\n" +
-                              "    padding: 20px 0 0 0;\n" +
+                          userHtmlContent += "<div class='boxUser boxUser2' style=\"\n" +
+                           +
                               "    text-align: left;\n" +
                               "\">" + d.data.name + "</br>" + d.data.email + "</div>";
                       }
                       if(d.data.mobile) {
-                          userHtmlContent += "<div class='col-md-7'>" + d.data.name + "</br>" + d.data.mobile + "</div>";
+                          userHtmlContent += "<div class='boxUser boxUser3'>" + d.data.name + "</br>" + d.data.mobile + "</div>";
                       }
+                      userHtmlContent += "</div>";
                       userHtmlContent += "</div>";
                       userHtmlContent +='<div class="clearfix"></div>';
                        userHtmlContent +='<div style="font-size:140%;margin-top:10px"> Click <strong><span style="cursor: pointer;text-decoration:underline" onclick="form_first_content_btn_submit(';
@@ -359,9 +373,9 @@
                       $("#bookaRideform").trigger('reset');
                       $(".userFoundText").hide();
                       if(formData['email'] != ''){
-                        var html = "<i class='fa fa-times'></i> User is not registered with Lymousine. Click <span style='cursor:pointer' onclick=\"sendInvitation( 'email', '"+formData['email']+"')\">here</span> to Invite "+formData['email'];
+                        var html = "<i class='fa fa-times'></i> User is not registered with Lymousine Portal. <br> Click <span style='cursor:pointer' onclick=\"sendInvitation( 'email', '"+formData['email']+"')\">here</span> to Invite "+formData['email'];
                       }else{
-                         var html = "<i class='fa fa-times'></i> User is not registered with Lymousine. Click <span style='cursor:pointer' onclick=\"sendInvitation( 'sms', '"+formData['mobile']+"')\">here</span> to Invite "+formData['mobile'];
+                         var html = "<i class='fa fa-times'></i> User is not registered with Lymousine Portal. <br> Click <span style='cursor:pointer' onclick=\"sendInvitation( 'sms', '"+formData['mobile']+"')\">here</span> to Invite "+formData['mobile'];
                       }
                       $(".usernotFoundText").html(html).show();
                     }
@@ -374,7 +388,7 @@
 
    function estimateRide(){
 
-    $("#estimateRidebtn").html("Estimating Ride ...");
+    $("#estimateRidebtn").html("Schedule a Ride ...");
     datetimeFormatted = $("input[name='Ridedate']").val()
     datenew = moment(datetimeFormatted, 'DD MMMM YYYY hh:mm A').format('YYYY-MM-DD')
     timenew = moment(datetimeFormatted, 'DD MMMM YYYY hh:mm A').format('hh:mm:ss')
@@ -413,7 +427,7 @@
                        $(".form_first_content").hide();
                        //$(".form_second_content").hide();
                        $("#bookrideBtn").show();
-                       $("#estimateRidebtn").html("Estimate Ride");
+                       $("#estimateRidebtn").html("Schedule a Ride");
                        $("#cancelRide").show();
         
                       // load_bookedRide()
@@ -465,7 +479,7 @@
                 var formData = {
                   'mobile_number': $('#mobile').val() //for get email
                 };
-                 html = "Sending Invitation Email to "+receiver+" ..."
+                 html = "Sending Invitation SMS to Modile no "+receiver+" ..."
               }
               $(".usernotFoundText").html(html);
             InvitationURL = lymoServerURL + 'lymousine/api/v1/appdownloademailsmssend/'
@@ -479,7 +493,7 @@
                        html = "<i class='fa fa-check'></i> Invitation succesully  send to "+receiver
                         $(".usernotFoundText").html(html);
                    }else{
-                        html = "<i class='fa fa-errors'></i> There is some problem sending Email. Please contact Administrator"
+                        html = "<i class='fa fa-errors'></i> There is some problem sending Email or Mobile SMS. Please contact Administrator"
                         $(".usernotFoundText").html(html);
                    }
                 }
@@ -500,5 +514,14 @@
 
 
  </script>
+ <script type="text/javascript" src="https://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?t=20130302"></script>
+        <script type="text/javascript">
+            $(".form_datetime").datetimepicker({
+                format: "dd MM yyyy - hh:ii",
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+        </script> 
 
   {% endblock scripts %}
