@@ -155,6 +155,47 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+  $(function () {
+    $("#bookaRideform").validate({
+        
+    rules: {
+    from: {
+        required: true,
+        },
+    to: {
+        required: true,
+        },
+    Ridedate:{
+        required: true,
+        },
+    passengers: {
+        required: true,
+        },
+   
+    
+},
+
+submitHandler: function (form) {
+    estimateRide();
+} 
+    });
+    });
+    
+
+
+
+
  		$(function () {
                 // $('#datetimepicker3').datetimepicker({
                 //     format: 'LT'
