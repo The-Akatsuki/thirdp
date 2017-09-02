@@ -251,13 +251,13 @@
          <button type="button" onclick="estimateRide()"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto; " id="estimateRidebtn">Estimate Ride</button>
          </div>
         <input type="hidden" id="type" name="type" value="2" class="ajaxField">
-        
+        <div class="clearfix"></div>
         <div id="rideEstimatedCost">          
           <h3 h2 class="text-center rideEstimatedCostTitle" style="font-size: 20px"></h3>
         </div>
 
         <div id="rideBookedfail">          
-          <h3 h2 class="text-center rideBookTitle" style="font-size: 20px">There is some problem while booking the ride, Please try again later.</h3>
+          <h3 class="text-center rideBookTitle" style="font-size: 20px;margin-top: 30px">There is some problem booking the ride, Please check the Address Again or try again later.</h3>
         </div>
 
         </div>
@@ -509,7 +509,7 @@
 
    function estimateRide(){
 
-    $("#estimateRidebtn").html("Schedule a Ride ...");
+    $("#estimateRidebtn").html("Estimating Ride ...");
     datetimeFormatted = $("input[name='Ridedate']").val()
     datenew = moment(datetimeFormatted, 'DD MMMM YYYY hh:mm A').format('YYYY-MM-DD')
     timenew = moment(datetimeFormatted, 'DD MMMM YYYY hh:mm A').format('hh:mm:ss')
@@ -548,7 +548,7 @@
                        $(".form_first_content").hide();
                        //$(".form_second_content").hide();
                        $("#bookrideBtn").show();
-                       $("#estimateRidebtn").html("Schedule a Ride");
+                       $("#estimateRidebtn").html("Estimate Ride");
                        $("#cancelRide").show();
         
                       // load_bookedRide()
@@ -560,11 +560,11 @@
                        $("#city_id").val(city_id);
                        $("#distance").val(distance);
                        $("#cost").val(estimatedCost);
-                       $("#duration").val(duration);
-                     
+                       $("#duration").val(duration);                     
      
                     }else{                      
-                      // $("#rideBookedfail").show();
+                       $("#rideBookedfail").show();
+                       $("#estimateRidebtn").html("Estimate Ride")
                       //  $("#rideBookedSuccess").hide()
                       //   $("bookrideBtn").html("Book Ride ")
                       console.log(d)
