@@ -1530,7 +1530,10 @@ input.hidden_radio {
   background-image: url("/static/assets/images/car5.png");
   background-size: 60px 25px;
 }
-
+.menu-types a.type-6 {
+  background-image: url("/static/assets/images/car6.png");
+  background-size: 60px 25px;
+}
 
 
 .menu-types a:hover,
@@ -2125,6 +2128,7 @@ h2.text-center.rideBookTitle.userFoundText span , h2.text-center.rideBookTitle.u
 {
 line-height: 15px;
 padding: 6px 5px !important;
+color: #222;
 }
 
 h2.text-center.rideBookTitle.usernotFoundText span {
@@ -2132,7 +2136,7 @@ h2.text-center.rideBookTitle.usernotFoundText span {
     color: #fff;
     border-radius: 22px;
     padding: 10px 15px;
-    margin: 0px 6px 2px 6px;
+    margin: 5px 6px 2px 6px;
     display: inline-block;
 }
  
@@ -2151,18 +2155,40 @@ h2.text-center.rideBookTitle.usernotFoundText span {
     text-transform: capitalize;
 }
  
-.datetimepicker td, .datetimepicker th {
+.datetimepicker td {
     padding: 6px 10px 6px 10px !important ;
     -moz-border-radius: 6px 10px 6px 10px  !important ;
     border-radius: 0px ;
     box-shadow: 1px 0px 0px 0px #e4e4e4, 0px 1px 0px 0px #e4e4e4;
 }
-.datetimepicker table tr td.active, .datetimepicker table tr td.active:hover, .datetimepicker table tr td.active.disabled, .datetimepicker table tr td.active.disabled:hover {
+.datetimepicker th {
+    padding: 6px 10px 6px 10px !important ;
+    -moz-border-radius: 6px 10px 6px 10px  !important ;
+    border-radius: 0px ;
+    box-shadow: 1px 0px 0px 0px #696969, 0px 1px 0px 0px #696969;
+}
+.datetimepicker.datetimepicker-dropdown-bottom-left.dropdown-menu table.table-condensed thead {
+    box-shadow: 0px 0px 0px 1px dimgrey;
+}
+.datetimepicker table tr td.active, 
+.datetimepicker table tr td.active:hover, 
+.datetimepicker table tr td.active.disabled, 
+.datetimepicker table tr td.active.disabled:hover , 
+.datetimepicker table tr td span.active, 
+.datetimepicker table tr td span.active:hover, 
+.datetimepicker table tr td span.active.disabled, 
+.datetimepicker table tr td span.active.disabled:hover {
     background-color: #e63053  !important;
     background: #e63053  !important;
     color: #fff;
 }
-
+[class*=" datetimepicker-dropdown"]:after {
+    border-bottom: 6px solid #737373;
+}
+[class*=" datetimepicker-dropdown"]:before {
+    border-bottom: 7px solid #737373;
+    border-bottom-color: rgb(115, 115, 115);
+}
 .datetimepicker table tfoot {
     background: #50c2b7 ;
     background-color: #50c2b7 ;
@@ -2213,24 +2239,38 @@ span.rideBy {
     display: inline-block;
     vertical-align: middle;
 }
+.boxUser.boxUser1 {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50px;
+}
 .userBoxInner {
     display: inline-block;
-    border: 1px solid #49a9a0;
     padding: 10px;
+    background: #34afa3;
+    box-shadow: 0px 0px 0px 1px #34afa3, inset 0px 0px 0px 2px #50c2b7;
 }
 .alert.alert-success {
     z-index: 4;
     position: absolute;
     width: 100%;
 }
+
 .boxUser.boxUser1 img {
     display: block;
-    border-radius: 90px;
     width: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 .boxUser.boxUser2 {
     text-align: left;
     padding: 0px 0px 0px 10px;
+    font-family: "proxima-nova-Bold" , sans-serif;
+    font-weight: bold;
 }
 .rideDAtetime {
     color: #3c352f;
@@ -2260,7 +2300,60 @@ ul.ride-meta li {
     border-width: 0 1px 1px 1px;
 }
 
-
+form#editCompanyForm .customFrom .form-group textarea#id_address {
+    height: 43px !important;
+}
+form#addPaymentForm #id_address {
+    height: 43px !important;
+}
+#id_userType_1, #id_userType_2 {
+    margin: 0px 0px 0px -20px;
+}
+.form-box form #id_bio.form-control {
+    height: 80px !important;
+}
+.panel-body.profileBio {
+    line-height: 22px;
+}
+.container.profilePage {
+    padding-top: 107px;
+    color: #333;
+}
+ .dataName {
+    font-family: "proxima-nova-Bold" , sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: #3c352f;
+}
+.form-taxi-short .menu-types a.active {
+    background-color: #34afa3;
+    box-shadow: 0px 0px 0px 1px #34afa3, inset 0px 0px 0px 2px #50c2b7;
+    color: #000;
+}
+.form-taxi-short .menu-types a:hover {
+    background-color: #34afa3;
+    color: #3c342f;
+    box-shadow: 0px 0px 4px 2px #2c9288, inset 0px 0px 0px 2px #50c2b7;
+}
+.alert {
+    text-align: center;
+    top: 2px;
+}
+ .day.disabled {
+    opacity: 0.3;
+}
+p#cancelRide {
+    width: 120px;
+    margin: 10px auto 10px;
+    background: #7b7b7b;
+    padding: 14px 10px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+button#bookrideBtn {
+    margin: 15px auto 1px !important;
+}
 /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/
 /*******************************************************************************************************************************/
@@ -2275,6 +2368,13 @@ ul.ride-meta li {
 }
 .spaceOnly {
     display: none;
+}
+.pull-right.floatnoneThis {
+    float: none !important;
+    top: 60px;
+}
+.groupOne {
+    margin-top: 60px;
 }
 }
 @media only screen and (max-width: 480px) {

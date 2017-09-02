@@ -35,12 +35,12 @@ userType_CHOICES = {
 class companyDetails(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 primary_key=True)
-    companyName = models.CharField(max_length=250, null=True)
-    phone = models.CharField(max_length=20,null=True)
-    address = models.TextField(null=True)
-    city = models.CharField(max_length=250, blank=True)
-    state = models.CharField(max_length=250, blank=True)
-    zipCode = models.CharField(max_length=250, blank=True)
-    country = models.CharField(max_length=250, blank=True)
-    userType = models.CharField(max_length=50, choices=userType_CHOICES, default='company_secretary')
+    companyName = models.CharField(max_length=250, null=True,verbose_name="Company Name")
+    phone = models.CharField(max_length=20,null=True,verbose_name="phone")
+    address = models.TextField(null=True, verbose_name="address")
+    city = models.CharField(max_length=250, blank=True,verbose_name="city")
+    state = models.CharField(max_length=250, blank=True,verbose_name="state")
+    zipCode = models.CharField(max_length=250, blank=True,verbose_name="zip Code")
+    country = models.CharField(max_length=250, blank=True,verbose_name="country")
+    userType = models.CharField(max_length=50, choices=userType_CHOICES, verbose_name="user Type", default='company_secretary')
 
