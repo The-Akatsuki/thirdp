@@ -7,8 +7,7 @@ from django.conf import settings
 # Create your models here.
 
 class paymentsDetails(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                primary_key=True)
+    userid = models.ForeignKey(settings.AUTH_USER_MODEL)
     nameOnCard = models.CharField(max_length=250, null=True,verbose_name="Name On Card")
     cardNumber = models.CharField(max_length=20,null=True,verbose_name="Card Number")
     expirationDateMM = models.IntegerField(verbose_name="expiration Date (MM)")

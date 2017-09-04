@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from profiles import models
 from ride.models import ridebooking
+from payments.models import paymentsDetails
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -26,8 +27,10 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
 
         bookedRidesData = ridebooking.objects.filter(user=self.request.user)
         print bookedRidesData.__dict__
+        paymentsDetailsData = paymentsDetails.objects.filter(userid=self.request.user)
         if bookedRidesData is not None:
             kwargs['bookedRidesData'] = bookedRidesData
+            kwargs['paymentsDetailsData'] = paymentsDetailsData
         return super(dashboard, self).get(request, *args, **kwargs)
 
 

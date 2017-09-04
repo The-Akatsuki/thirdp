@@ -355,6 +355,10 @@
                             {% endfor %}
                             {% endif %}
 
+                            {% if paymentsDetailsData is not None %}
+                              {{ paymentsDetailsData.cardshortname }} {{ paymentsDetailsData.cardNumber }}
+                            {% endif %}
+
                                 <div class="clearfix"></div>
 
                                 

@@ -23,7 +23,7 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
 		user = self.request.user
 		paymentForm = forms.paymentForm(request.POST)
 		payment = paymentForm.save(commit=False)
-		payment.user = user
+		payment.userid = user
 		payment.save()
 		messages.success(request, "Payments has been saved!")
 		return redirect("payments:paymentmethods")
@@ -35,7 +35,7 @@ class paymentMethods(LoginRequiredMixin, generic.TemplateView):
 
 	def get(self, request, *args, **kwargs):
 		user = self.request.user
-		b = models.paymentsDetails.objects.filter(user=user)
+		b = models.paymentsDetails.objects.filter(userid=user)
 		print b
 		kwargs["payments"] = b
 		return super(paymentMethods, self).get(request, *args, **kwargs)
