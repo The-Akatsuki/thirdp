@@ -108,7 +108,8 @@
 
                                 <div class="clearfix"></div>
 
-                                
+
+
 
                             </div><!-- end .events-list -->
 
@@ -262,11 +263,31 @@
 
         </div>
 
+
+
+         <div class="form_third_content"> 
+           <h3>Select Payment Methods</h3>
+          {% if paymentsDetailsData is not None %}
+              {% for paymentsDetails in paymentsDetailsData.all %}
+              <div class="col-md-12">
+                <label style="cursor: pointer">
+                  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}" />
+                  {{ paymentsDetails.nameOnCard }} / {{ paymentsDetails.cardNumber }}
+                </label>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+              {% endfor %}
+            {% endif %}
+          </div>                
+
+
         <div id="rideBookedSuccess">
           <h2 class="text-center rideBookTitle" style="font-size: 25px;margin-bottom: 35px"><i class="fa fa-check"></i> Ride Booked Successfully</h2>
           <h3 h2 class="text-center rideBookTitle" style="font-size: 20px"> click <span onclick="form_reset()">here</span> to book another Ride</h3>
         </div>
  
+        <div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;" onclick="proceedToPayment()" id="paymentBtn">Proceed to Payment</button>
+
         <div style="clear: both; display: block; text-align: center"> <button type="submit"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn">Book Ride</button>
 </div>
 <!--<p class="text-center" onclick="form_reset()" id="cancelRide">Cancel Ride</p>-->
@@ -315,12 +336,14 @@
    function form_first_content_btn_submit(){
     $(".form_first_content").hide();
     $(".form_second_content").show();
+    $(".form_third_content").hide();
    }
 
    function form_reset(){
     $("#bookaRideform").trigger('reset');
     $(".form_first_content").show();
-    $(".form_second_content").hide(); 
+    $(".form_second_content").hide();
+    $(".form_third_content").hide(); 
     $(".form_first_content_btn").show();
       $(".checking_user_details_waiting").hide();
       $(".userFoundText").hide();
@@ -329,6 +352,7 @@
        $("#bookrideBtn").html("Book Ride");
        $("#cancelRide").show();
         $("#bookrideBtn").hide();
+        $("#paymentBtn").hide();
        $("#estimateRidebtn").show();
    }
 
@@ -457,8 +481,10 @@
                       // $("#rideBookedSuccess").show();
                        $("#rideBookedfail").hide();
                        $(".form_first_content").hide();
-                       //$(".form_second_content").hide();
-                       $("#bookrideBtn").show();
+                       $(".form_third_content").hide();
+                       //$(".form_second_content").hide();                       
+                       $("#paymentBtn").show();
+                       $("#bookrideBtn").hide();
                        $("#estimateRidebtn").html("Estimate Ride");
                        $("#cancelRide").show();
         
@@ -533,6 +559,14 @@
                 }
             });
 
+   }
+
+   function proceedToPayment(){
+     $(".form_first_content").hide();
+     $(".form_second_content").hide();
+     $(".form_third_content").show();
+     $("#bookrideBtn").show();
+     $("#paymentBtn").hide();
    }
 
 

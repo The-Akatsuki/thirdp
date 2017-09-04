@@ -1676,7 +1676,7 @@ ul.ride-meta li {
 .timepicker-hour{
   font-size: 15px;
 }
-.form_second_content{
+.form_second_content, .form_third_content{
   display: none
 }
 .rideBookTitle{
@@ -1685,7 +1685,7 @@ ul.ride-meta li {
     margin-bottom: 10px;
     font-family: 'Fira Sans Condensed', sans-serif;
 }
-.checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess, #bookrideBtn, #rideEstimatedCost, #cancelRide{
+.checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess, #bookrideBtn, #rideEstimatedCost, #cancelRide, #paymentBtn{
   display: none;
 }
 
