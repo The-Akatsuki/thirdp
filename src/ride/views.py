@@ -106,6 +106,7 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         response = requests.post(url, json = payload)
         print "response text", response
         rideData =  json.loads(response.text)
+        return "HI"
 
 
 
