@@ -107,7 +107,7 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         print "response text", response
         rideData =  json.loads(response.text)
         if refund_amount in rideData:
-            refund_amount = rideData['refund_amount']
+            refundAmount = rideData['refund_amount']
 
         e = models.ridebooking.get(ride_id=postData['ride_id'])
         e.status = "Cancelled"
