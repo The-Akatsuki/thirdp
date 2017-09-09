@@ -75,7 +75,7 @@
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
                                             </a>
                                         </li><!-- end .ride-date -->
-                                        {% if bookedRide.ride_id is not None %} 
+                                        {% if bookedRide.ride_id is not None and  bookedRide.status != 'Ride Cancelled' %} 
                                        <li class="buttonStyle redbuttons">
                                           <form method="POST" action="{% url 'ride:cancelRide' %}" style="padding: 0;position: relative;margin: 0;min-height: 0;top: 0">
                                           {% csrf_token %}
