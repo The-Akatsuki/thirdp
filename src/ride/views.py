@@ -109,7 +109,7 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         if 'refund_amount' in rideData:
             refundAmount = rideData['refund_amount']
 
-        e = models.ridebooking.get(ride_id=postData['ride_id'])
+        e = models.ridebooking.objects.get(ride_id=postData['ride_id'])
         e.status = "Cancelled"
         e.save()
         messages.success(request, "Ride #LYMO"+str(postData['ride_id'])+" has been Cancelled")
