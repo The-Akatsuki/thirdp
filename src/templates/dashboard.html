@@ -77,10 +77,10 @@
                                         </li><!-- end .ride-date -->
                                         {% if bookedRide.ride_id is not None %} 
                                        <li class="buttonStyle redbuttons">
-                                          <form method="POST" action="{% url 'ride:cancelRide' %}" style="padding: 0;margin: 0">
+                                          <form method="POST" action="{% url 'ride:cancelRide' %}" style="padding: 0;position: relative;margin: 0;min-height: 0;top: 0">
                                           {% csrf_token %}
                                           <input type="hidden" name="ride_id" value="{{ bookedRide.ride_id }}">
-                                            <button type="submit" class="btn btn-sm btn-warning" style="padding: 0;position: relative;margin: 0;min-height: 0;top: 0;">
+                                            <button type="submit" class="btn btn-sm btn-warning" style="padding: 4px 5px 3px 5px;font-size: 10px;">
                                                <i class="fa fa-ban" aria-hidden="true"></i>
                                                 Cancel Ride
                                             </button> 
