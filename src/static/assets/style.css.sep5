@@ -1635,31 +1635,13 @@ form input[type="text"] {
     -ms-transition: all 0.4s ease-in-out 0s;
     -o-transition: all 0.4s ease-in-out 0s;
     transition: all 0.4s ease-in-out 0s;
-    border: 1px solid #fff;
+    border: 3px solid #f4f1e3;
     padding: 20px 26px;
     margin: -3px 0 0 0;
     position: relative;
 }
 .ride-content {
-    display: block;
-}
-table.paymentDetails {
-    width: 100%;
-    margin: 0 auto 0;
-}
-.table-striped > tbody > tr:nth-of-type(2n+1) {
-    background-color: #f2f2f2;
-}
-.paymentDetails thead {
-    font-weight: bold;
-    text-transform: uppercase;
-    background: #3c342f;
-    color: #fff;
-    font-size: 13px;
-    padding: 0px 0px 0px 0px;
-}
-.paymentDetails thead tr th {
-    padding: 12px 10px 10px 10px;
+    display: inline-block;
 }
 .ride-content h3 {
     display: inline;
@@ -1694,7 +1676,7 @@ ul.ride-meta li {
 .timepicker-hour{
   font-size: 15px;
 }
-.form_second_content{
+.form_second_content, .form_third_content{
   display: none
 }
 .rideBookTitle{
@@ -1703,7 +1685,7 @@ ul.ride-meta li {
     margin-bottom: 10px;
     font-family: 'Fira Sans Condensed', sans-serif;
 }
-.checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess, #bookrideBtn, #rideEstimatedCost, #cancelRide{
+.checking_user_details_waiting, .userFoundText, .usernotFoundText, #rideBookedfail, #rideBookedSuccess, #bookrideBtn, #rideEstimatedCost, #cancelRide, #paymentBtn{
   display: none;
 }
 
@@ -2111,7 +2093,8 @@ ul.ride-meta li.buttonStyle a {
 }
 article.ride-box {
     padding: 10px 10px;
-    background: rgba(255, 255, 255, 0.53);
+    margin: 0 19px 5px 0px;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .form-taxi-short form {
@@ -2187,16 +2170,6 @@ h2.text-center.rideBookTitle.usernotFoundText span {
 .datetimepicker.datetimepicker-dropdown-bottom-left.dropdown-menu table.table-condensed thead {
     box-shadow: 0px 0px 0px 1px dimgrey;
 }
-.datetimepicker table tbody { 
-}
-.datetimepicker table tfoot {
-    color: #fff;
-    position: absolute;
-    cursor: pointer;
-    top: 64px;
-    width: 100%;
-    text-align: center;
-}
 .datetimepicker table tr td.active, 
 .datetimepicker table tr td.active:hover, 
 .datetimepicker table tr td.active.disabled, 
@@ -2217,16 +2190,10 @@ h2.text-center.rideBookTitle.usernotFoundText span {
     border-bottom-color: rgb(115, 115, 115);
 }
 .datetimepicker table tfoot {
+    background: #50c2b7 ;
+    background-color: #50c2b7 ;
     color: #fff;
-    position: absolute;
     cursor: pointer;
-    top: -27px;
-    text-align: center;
-    left: 0px;
-}
-.datetimepicker th[style*="visibility: hidden;"] {
-  
-  display: block;
 }
 i.icon-arrow-left:after {
     content: "\2190";
@@ -2332,11 +2299,7 @@ ul.ride-meta li {
 .datetimepicker.datetimepicker-dropdown-bottom-left.dropdown-menu {
     border-width: 0 1px 1px 1px;
 }
-.datetimepicker table tfoot th {
-    background: #e63053;
-    border: 0;
-    box-shadow: unset;
-}
+
 form#editCompanyForm .customFrom .form-group textarea#id_address {
     height: 43px !important;
 }
@@ -2380,7 +2343,7 @@ form#addPaymentForm #id_address {
     opacity: 0.3;
 }
 p#cancelRide {
-    width: 160px;
+    width: 120px;
     margin: 10px auto 10px;
     background: #7b7b7b;
     padding: 14px 10px;
@@ -2390,65 +2353,6 @@ p#cancelRide {
 }
 button#bookrideBtn {
     margin: 15px auto 1px !important;
-}
-li.list-group-item.list-group-item-custum {
-    background: transparent;
-    margin: 0 auto;
-    padding: 5px 0px;
-    border: 0;
-}
-h3.selectPaymentMethods {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    font-weight: bold;
-    margin: 20px auto 10px;
-}
-a.addnewPayments {
-    background: #d62b4c;
-    color: #fff;
-    display: inline-block;
-    padding: 10px 16px 6px;
-    border-bottom: 3px solid #a91e39;
-    border-radius: 15px;
-    margin: 10px auto 15px;
-}
-ul.list-group {
-    margin: 0;
-}
-.form_third_content {
-    display: none;
-}
-button#paymentBtn {
-    background: #1F1F1F;
-    color: #fff;
-    font-size: 16px;
-    border-radius: 30px;
-    margin: 15px auto 5px;
-    clear: both;
-    display: inherit ;
-}
-a.addnewPayments {
-    background: #d62b4c;
-    color: #fff;
-    display: inline-block;
-    padding: 4px 6px 2px;
-    border-bottom: 3px solid #a91e39;
-    border-radius: 5px;
-    margin: 2px auto 0px;
-    font-size: 14px;
-    position: relative;
-    top: -5px;
-}
-.groupTwo {
-    padding-bottom: 65px;
-}
-.groupTwo article.ride-box {
-    margin: 2px auto 2px;
-}
-.form_third_content {
-    text-align: center;
-}
-.panel-body.paddingZero {
-    padding: 0;
 }
 /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/
