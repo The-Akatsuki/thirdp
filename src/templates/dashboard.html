@@ -58,33 +58,35 @@
 
                                     <div class="ride-content inlines">
                                         <a href="#">
-                                        <span class="fromAddress">{{ bookedRide.pickup_address }} </span>
-                                        <span class="toAddress"> {{ bookedRide.drop_address }}</span>
+                                          <span class="fromAddress">{{ bookedRide.pickup_address }} </span>
+                                          <span class="toAddress"> {{ bookedRide.drop_address }}</span>
                                         </a>
-
                                     </div>
 
                                     <ul class="ride-meta">
-                                    <li>
+                                      <li>
                                         <span class="rideBy">ride by</span>
                                         <a href="#">{{ bookedRide.passenger_email }}</a>
                                       </li>
-
                                       <li>
                                         New Ride Booked
                                       </li>
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
-                                               
                                             </a>
                                         </li><!-- end .ride-date -->
-                                        
+                                        {% if bookedRide.ride_id is not None %} 
                                        <li class="buttonStyle redbuttons">
-                                            <a href="#">
-                                                <i class="fa fa-ban" aria-hidden="true"></i>
+                                          <form method="POST" action="{% url 'ride:cancelRide' %}">
+                                          {% csrf_token %}
+                                          <input type="hidden" name="ride_id" value="{{ bookedRide.ride_id }}">
+                                            <button type="submit">
+                                               <i class="fa fa-ban" aria-hidden="true"></i>
                                                 Cancel Ride
-                                            </a>
+                                            </button> 
+                                          </form>
                                         </li>
+                                        {% endif %}
                                        <li class="buttonStyle">
                                             <a href="#">
                                                 <i class="fa fa-file-pdf-o"></i>
