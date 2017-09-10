@@ -44,7 +44,7 @@
                             <div class="rides-list">
                             {% if bookedRidesData is not None %}
                             {% for bookedRide in bookedRidesData.all %}
-                               <article class="ride-box clearfix">
+                               <article class="ride-box clearfix article_{{bookedRide.ride_id}}">
 
                                 <div class="row">
                                     <div class="rideDAtetime col-sm-7">
@@ -76,11 +76,12 @@
                                             </a>
                                         </li><!-- end .ride-date -->
                                         {% if bookedRide.ride_id is not None and  bookedRide.status != 'Ride Cancelled' %} 
-                                       <li class="buttonStyle redbuttons">
-                                          <form method="POST" action="{% url 'ride:cancelRide' %}" style="padding: 0;position: relative;margin: 0;min-height: 0;top: 0">
+                                       <li class="buttonStyle redbuttons cancelRideFormLI">
+                                          <form method="POST" action="{% url 'ride:cancelRide' %}" class="cancelRideForm" style="padding: 0;position: relative;margin: 0;min-height: 0;top: 0">
                                           {% csrf_token %}
                                           <input type="hidden" name="ride_id" value="{{ bookedRide.ride_id }}">
-                                            <button type="submit" class="btn btn-sm btn-warning" style="padding: 4px 5px 3px 5px;font-size: 10px;">
+                                          <input type="hidden" name="reason_to_cancel_ride" class="reason_to_cancel_ride" value="">
+                                          <button type="button" class="btn btn-sm btn-warning" onclick="cancelRide('article_{{bookedRide.ride_id}}')" style="padding: 4px 5px 3px 5px;font-size: 10px;">
                                                <i class="fa fa-ban" aria-hidden="true"></i>
                                                 Cancel Ride
                                             </button> 
@@ -102,6 +103,13 @@
                                         </li>
 
                                     </ul><!-- end .ride-meta -->
+                                    <div class="clearfix">&nbsp;</div>
+                                    <div class="CancelRideReasonDIV" style="color:#000;padding: 20px 0px;text-align: center;display: none;">
+                                      <label>Reason to cancel Ride</label>
+                                      <textarea name="cancelRideReason" placeholder="Reason to Cancel Ride" class="cancelRideReason" style="width: 100%"></textarea>
+                                      <button type="button" class="btn btn-danger confirmCancelRideBTN" onclick="confirmCancelRide('article_{{bookedRide.ride_id}}')">Confirm Cancellation of Ride</button>
+                                      <button type="button" class="btn btn-success closeCancelRideBTN" onclick="closeCancelRide('article_{{bookedRide.ride_id}}')">close</button>
+                                    </div>
 
                                 </article><!-- end .ride-box -->
                             
@@ -572,6 +580,26 @@
    }
 
 
+   function cancelRide(article_id){
+    $article_div = $("."+article_id);
+    $article_div.find(".CancelRideReasonDIV").show();
+    
+   }
+
+   function confirmCancelRide(article_id){
+    $article_div = $("."+article_id);
+    $cancelRideReasonVal = $article_div.find('.cancelRideReason').val();
+    $article_div.find('.reason_to_cancel_ride').val($cancelRideReasonVal)
+    $article_div.find('.confirmCancelRideBTN').html('<i class="fa fa-spinner fa-spin"></i> Cancelling Ride ...');
+    $article_div.find('.cancelRideForm').submit();
+   }
+
+   function closeCancelRide(article_id){
+    $article_div = $("."+article_id);
+    $cancelRideReasonVal = $article_div.find('.cancelRideReason').val();
+    $article_div.find(".CancelRideReasonDIV").hide();
+    $article_div.find('.confirmCancelRideBTN').html('Confirm Cancellation of Ride');
+   }
 
    $(document).ready(function(){     
      $('.menu-types').on('click', 'a', function() {
