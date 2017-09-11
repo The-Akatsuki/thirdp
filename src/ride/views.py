@@ -99,9 +99,9 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         local_datetime= booking_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
         url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellationcharges/"
         payload = {
-                    "ride_id":postData['ride_id'], 
-                    "local_datetime":local_datetime,    
-                    
+                    "ride_id":postData['ride_id'],   
+                    "local_datetime":local_datetime, 
+                     "reason_for_cancellation_text": postData['reason_to_cancel_ride']
                  }
         response = requests.post(url, json = payload)
         print "response text", response
@@ -115,7 +115,7 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         messages.success(request, "Ride #LYMO"+str(postData['ride_id'])+" has been Cancelled")
         return redirect("dashboard") 
 
-
+ 
 
 
         
