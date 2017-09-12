@@ -14,7 +14,7 @@
   {% if not user.is_authenticated %}
   <a class="login" href="{% url 'accounts:login' %}" role="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
     <a class="signup" href="{% url 'accounts:signup' %}" role="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
-<div class="logoRight"><img src="/static/site/img/logoTM.png"></div>
+
   {% else %}
     {{ block.super }}
   {% endif %}
@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col-md-8 col-sm-8">
           <h1>{% include "_brandname.html" %}</h1>
-          <p>Schedule rides for employees or as an agent book rides as a third party booking service</p>
+          <p>Third Party Ride booking for your Boss and Your Staff Members.</p>
 	 <!--  <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">Sign up for Free!</a> -->
         </div>
         <div class="col-md-4 col-sm-4">
