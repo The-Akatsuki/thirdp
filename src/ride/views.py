@@ -102,7 +102,7 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
                     "ride_order":postData['ride_id'],   
                     "local_datetime":local_datetime, 
                     "ride_status": postData['ride_status'],
-                    "cancellation_charge": postData['cancellation_charge'],
+                    "cancellation_charge": postData['cancellation_charges'],
                     "reason_for_cancellation": postData['reason_to_cancel_ride'],
                     "reason_for_cancellation_text": postData['reason_to_cancel_ride']
                  }
