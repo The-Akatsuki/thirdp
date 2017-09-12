@@ -106,6 +106,37 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         companyProfile = companyProfileForm.save(commit=False)
         companyProfile.user = user
         companyProfile.save()
+
+        if b is None:
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanysave"
+            payload = {
+                "company_name": request.post['companyName'],
+                "company_address": request.post['address'],
+                "zip_code": request.post['zipCode'],
+                "phone_no": request.post['phone'],
+                "trd_pty_usr": 1,
+                "country": request.post['country'],
+                "state": request.post['state'],
+                "city": request.post['city'],
+                "trd_party_user_type": request.post['userType'],
+                }
+            print payload
+            response = requests.post(url, json = payload)
+        else:
+            payload = {
+                "company_name": request.post['companyName'],
+                "company_address": request.post['address'],
+                "zip_code": request.post['zipCode'],
+                "phone_no": request.post['phone'],
+                "trd_pty_usr": 1,
+                "country": request.post['country'],
+                "state": request.post['state'],
+                "city": request.post['city'],
+                "trd_party_user_type": request.post['userType'],
+                }
+            print payload
+            response = requests.post(url, json = payload)
+
         messages.success(request, "Company details has been saved!")
         return redirect("payments:addpayment")
         #return redirect("profiles:show_self")
