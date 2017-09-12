@@ -601,7 +601,7 @@
                 contentType: "application/json",
                 success: function(d) {
                   console.log(d['refund_amount']);
-                   if(d['refund_amount']){
+                   if(d['refund_amount'] != 'undefined'){
                       $article_div.find(".CancelRideReasonDIV").show();
 
                        html = "Ride Amount: <strong>$"+d['ride_amount']+"</strong><br/> Amount to be refunded: <strong>$"+ d['refund_amount']+"</strong><br/> Cancellation Charges: <strong>$"+ d['cancellation_charges']+"</strong>";
