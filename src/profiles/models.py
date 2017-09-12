@@ -8,6 +8,7 @@ from django.conf import settings
 class BaseProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 primary_key=True)
+    mobile = models.CharField(max_length=20,null=True,verbose_name="Mobile")
     slug = models.UUIDField(default=uuid.uuid4, blank=True, editable=False)
     # Add more user profile fields here. Make sure they are nullable
     # or with default values
@@ -43,4 +44,5 @@ class companyDetails(models.Model):
     zipCode = models.CharField(max_length=250, blank=True,verbose_name="zip Code")
     country = models.CharField(max_length=250, blank=True,verbose_name="country")
     userType = models.CharField(max_length=50, choices=userType_CHOICES, verbose_name="user Type", default='company_secretary')
+    
 
