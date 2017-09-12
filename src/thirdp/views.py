@@ -7,6 +7,7 @@ from payments.models import paymentsDetails
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
 
 class HomePage(generic.TemplateView):
@@ -20,7 +21,10 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
     template_name = "dashboard.html"
 
     def get(self, request, *args, **kwargs):
-        print self.request.user
+        user = self.request.user
+        if user.profile.mobile == '':
+            request.session['__init_dashboard'] = True
+            return redirect("profiles:edit_self")
         b = models.companyDetails.objects.filter(user=self.request.user).count()
         if b==0:
             return redirect("profiles:companyprofile")

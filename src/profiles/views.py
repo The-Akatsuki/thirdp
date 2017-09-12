@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import forms
 from . import models
+import requests
 
 
 class ShowProfile(LoginRequiredMixin, generic.TemplateView):
@@ -30,6 +31,8 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
     http_method_names = ['get', 'post']
 
     def get(self, request, *args, **kwargs):
+        if '__init_dashboard' in request.session:
+            print "Session Found";
         user = self.request.user
         if "user_form" not in kwargs:
             kwargs["user_form"] = forms.UserForm(instance=user)
@@ -56,6 +59,29 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
         profile = profile_form.save(commit=False)
         profile.user = user
         profile.save()
+        if '__init_dashboard' in request.session:
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyusersave"
+            payload = {
+                "name": user.name,
+                "email": user.email,
+                "mobile_no": request.POST['mobile'],
+                "bio": request.POST['bio']
+            }
+            print payload
+            response = requests.post(url, json = payload)
+            del request.session['__init_dashboard']
+            messages.success(request, "Profile details saved!")
+            return redirect("dashboard")
+        else:
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyuser/"+user.email
+            payload = {
+                "name": user.get_full_name,
+                "mobile_no": request.POST['mobile'],
+                "bio": request.POST['bio']
+            }
+            print payload
+            response = requests.post(url, json = payload)
+
         messages.success(request, "Profile details saved!")
         return redirect("profiles:show_self")
 
