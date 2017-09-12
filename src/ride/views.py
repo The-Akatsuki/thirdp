@@ -100,7 +100,7 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellationcharges/"
         payload = {
                     "ride_order":postData['ride_id'],   
-                    "local_datetime":local_datetime, 
+                    #"local_datetime":local_datetime, 
                     "ride_status": postData['ride_status'],
                     "cancellation_charge": postData['cancellation_charges'],
                     "reason_for_cancellation": postData['reason_to_cancel_ride'],
