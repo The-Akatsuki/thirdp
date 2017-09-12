@@ -106,9 +106,10 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
                     "reason_for_cancellation": postData['reason_to_cancel_ride'],
                     "reason_for_cancellation_text": postData['reason_to_cancel_ride']
                  }
-        print payload
+        print payload, url
+
         response = requests.post(url, json = payload)
-        print "response text", response
+        print "response text", response.text
         rideData =  json.loads(response.text)
         if 'refund_amount' in rideData:
             refundAmount = rideData['refund_amount']
