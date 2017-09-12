@@ -97,7 +97,7 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         postData =  request.POST
         booking_datetime = datetime.datetime.now()
         local_datetime= booking_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
-        url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellationcharges/"
+        url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellation/"
         payload = {
                     "ride_order":postData['ride_id'],   
                     #"local_datetime":local_datetime, 
