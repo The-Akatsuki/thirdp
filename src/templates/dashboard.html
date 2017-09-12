@@ -81,6 +81,7 @@
                                           {% csrf_token %}
                                           <input type="hidden" name="ride_id" value="{{ bookedRide.ride_id }}">
                                           <input type="hidden" name="reason_to_cancel_ride" class="reason_to_cancel_ride" value="">
+                                          <input type="hidden" name="cancellation_charges" class="cancellation_charges" value="">
                                           <input type="hidden" name="ride_status" value="9">
                                           <button type="button" class="btn btn-sm btn-warning CancelRideBTN" onclick="cancelRide('article_{{bookedRide.ride_id}}', {{bookedRide.ride_id}})" style="padding: 4px 5px 3px 5px;font-size: 10px;">
                                                <i class="fa fa-ban" aria-hidden="true"></i>
@@ -607,7 +608,7 @@
 
                        html = "Ride Amount: <strong>$"+d['ride_amount']+"</strong><br/> Amount to be refunded: <strong>$"+ d['refund_amount']+"</strong><br/> Cancellation Charges: <strong>$"+ d['cancellation_charges']+"</strong>";
                          $article_div.find('.cancelRideRefundAmount').show().html(html)
-
+                         $article_div.find('.cancellation_charges').val(d['cancellation_charges']);
                          dropdownHTML =  "";                         
                          $.each(d['cancellation_business_rules'], function(index, value){
                           console.log(value, value['cancel_reason_name']);
