@@ -81,7 +81,7 @@
                                           {% csrf_token %}
                                           <input type="hidden" name="ride_id" value="{{ bookedRide.ride_id }}">
                                           <input type="hidden" name="reason_to_cancel_ride" class="reason_to_cancel_ride" value="">
-                                          <button type="button" class="btn btn-sm btn-warning" onclick="cancelRide('article_{{bookedRide.ride_id}}')" style="padding: 4px 5px 3px 5px;font-size: 10px;">
+                                          <button type="button" class="btn btn-sm btn-warning CancelRideBTN" onclick="cancelRide('article_{{bookedRide.ride_id}}', {{bookedRide.ride_id}})" style="padding: 4px 5px 3px 5px;font-size: 10px;">
                                                <i class="fa fa-ban" aria-hidden="true"></i>
                                                 Cancel Ride
                                             </button> 
@@ -104,9 +104,12 @@
 
                                     </ul><!-- end .ride-meta -->
                                     <div class="clearfix">&nbsp;</div>
+                                    <h4 class="cancelRideRefundAmount" style="display: none;padding-top: 10px;border-top: 1px solid #b4acac;margin-top: 10px;text-align: center;"></h4>
                                     <div class="CancelRideReasonDIV" style="color:#000;padding: 20px 0px;text-align: center;display: none;">
                                       <label>Reason to cancel Ride</label>
-                                      <textarea name="cancelRideReason" placeholder="Reason to Cancel Ride" class="cancelRideReason" style="width: 100%"></textarea>
+                                      <select class="reason_to_cancel_ride_dropdown" name="cancelRideReason"></select>
+                                      <!-- <textarea name="cancelRideReason" placeholder="Reason to Cancel Ride" class="cancelRideReason" style="width: 100%"></textarea> -->
+                                      <div class="clearfix">&nbsp;</div>
                                       <button type="button" class="btn btn-danger confirmCancelRideBTN" onclick="confirmCancelRide('article_{{bookedRide.ride_id}}')">Confirm Cancellation of Ride</button>
                                       <button type="button" class="btn btn-success closeCancelRideBTN" onclick="closeCancelRide('article_{{bookedRide.ride_id}}')">close</button>
                                     </div>
@@ -580,9 +583,49 @@
    }
 
 
-   function cancelRide(article_id){
+   function cancelRide(article_id, ride_id){
     $article_div = $("."+article_id);
-    $article_div.find(".CancelRideReasonDIV").show();
+    
+    $article_div.find('.CancelRideBTN').html('<i class="fa fa-spinner"></i> Estimating Refund Amount ...')
+
+    CancellationURL = lymoServerURL+"lymousine/api/v2/thirdpartyridecancellationcharges/"
+    var CurrentDateTime = new moment().format("YYYY-MM-DDTHH:mm:ssZ");
+    var formData = {
+                  'ride_id': ride_id, //for get email
+                  'local_datetime': CurrentDateTime
+                };
+    $.ajax({
+                url: CancellationURL,
+                type: "post",
+                data: JSON.stringify(formData),
+                contentType: "application/json",
+                success: function(d) {
+                  console.log(d['refund_amount']);
+                   if(d['refund_amount']){
+                      $article_div.find(".CancelRideReasonDIV").show();
+
+                       html = "Ride Amount: <strong>$"+d['ride_amount']+"</strong><br/> Amount to be refunded: <strong>$"+ d['refund_amount']+"</strong><br/> Cancellation Charges: <strong>$"+ d['cancellation_charges']+"</strong>";
+                         $article_div.find('.cancelRideRefundAmount').show().html(html)
+
+                         dropdownHTML =  "";                         
+                         $.each(d['cancellation_business_rules'], function(index, value){
+                          console.log(value, value['cancel_reason_name']);
+                            dropdownHTML += "<option value='"+value['id']+"'>"+value['cancel_reason_name']+"</option>";
+                         })
+                         $article_div.find('.reason_to_cancel_ride_dropdown').html(dropdownHTML);
+                         
+
+                         $article_div.find('.CancelRideBTN').hide().html('<i class="fa fa-ban"></i> Cancel Ride')
+
+
+                   }else{
+                        html = "<i class='fa fa-errors'></i> There is some problem sending Email or Mobile SMS. Please contact Administrator"
+                        $article_div.find('.cancelRideRefundAmount').show().html(html)
+                        $article_div.find('.CancelRideBTN').html('<i class="fa fa-ban"></i> Cancel Ride')
+
+                   }
+                }
+            });
     
    }
 
@@ -598,6 +641,8 @@
     $article_div = $("."+article_id);
     $cancelRideReasonVal = $article_div.find('.cancelRideReason').val();
     $article_div.find(".CancelRideReasonDIV").hide();
+    $article_div.find('.cancelRideRefundAmount').hide();
+    $article_div.find('.CancelRideBTN').show().html('<i class="fa fa-ban"></i> Cancel Ride')
     $article_div.find('.confirmCancelRideBTN').html('Confirm Cancellation of Ride');
    }
 
