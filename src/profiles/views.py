@@ -126,7 +126,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
             response = requests.post(url, json = payload)
             print response.text
         else:
-            url = "http://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanyupdate/"+user.email            
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanyupdate/"+user.email            
             payload = {
                 "company_name": request.post['companyName'],
                 "company_address": request.post['address'],
