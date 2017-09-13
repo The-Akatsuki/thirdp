@@ -108,39 +108,39 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         companyProfile.user = user
         companyProfile.save()
 
-        print request.post
+        #print request.POST
         if b is None:
             url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanysave"
             payload = {
-                "company_name": request.post['companyName'],
-                "company_address": request.post['address'],
-                "zip_code": request.post['zipCode'],
-                "phone_no": request.post['phone'],
+                "company_name": request.POST['companyName'],
+                "company_address": request.POST['address'],
+                "zip_code": request.POST['zipCode'],
+                "phone_no": request.POST['phone'],
                 "trd_pty_usr": 1,
-                "country": request.post['country'],
-                "state": request.post['state'],
-                "city": request.post['city'],
-                "trd_party_user_type": request.post['userType'],
+                "country": request.POST['country'],
+                "state": request.POST['state'],
+                "city": request.POST['city'],
+                "trd_party_user_type": request.POST['userType'],
                 }
-            print payload, 123
-            #response = requests.post(url, json = payload)
+            print payload
+            response = requests.post(url, json = payload)
             print response.text
         else:
             url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanyupdate/"+str(user.email)
             print url         
             payload = {
-                "company_name": request.post['companyName'],
-                "company_address": request.post['address'],
-                "zip_code": request.post['zipCode'],
-                "phone_no": request.post['phone'],
+                "company_name": request.POST['companyName'],
+                "company_address": request.POST['address'],
+                "zip_code": request.POST['zipCode'],
+                "phone_no": request.POST['phone'],
                 "trd_pty_usr": 1,
-                "country": request.post['country'],
-                "state": request.post['state'],
-                "city": request.post['city'],
-                "trd_party_user_type": request.post['userType'],
+                "country": request.POST['country'],
+                "state": request.POST['state'],
+                "city": request.POST['city'],
+                "trd_party_user_type": request.POST['userType'],
                 }
-            print payload, 456
-            #response = requests.post(url, json = payload)
+            print payload
+            response = requests.post(url, json = payload)
             print response.text
 
         messages.success(request, "Company details has been saved!")
