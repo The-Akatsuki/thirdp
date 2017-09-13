@@ -108,6 +108,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         companyProfile.user = user
         companyProfile.save()
 
+        print request.post
         if b is None:
             url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanysave"
             payload = {
