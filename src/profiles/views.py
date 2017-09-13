@@ -122,11 +122,12 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 "city": request.post['city'],
                 "trd_party_user_type": request.post['userType'],
                 }
-            print payload
-            response = requests.post(url, json = payload)
+            print payload, 123
+            #response = requests.post(url, json = payload)
             print response.text
         else:
-            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanyupdate/"+user.email            
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanyupdate/"+str(user.email)
+            print url         
             payload = {
                 "company_name": request.post['companyName'],
                 "company_address": request.post['address'],
@@ -138,8 +139,8 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 "city": request.post['city'],
                 "trd_party_user_type": request.post['userType'],
                 }
-            print payload
-            response = requests.post(url, json = payload)
+            print payload, 456
+            #response = requests.post(url, json = payload)
             print response.text
 
         messages.success(request, "Company details has been saved!")
