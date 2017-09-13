@@ -48,8 +48,8 @@ def sendInvitationEmail(request):
         mailResponse = send_mail(
             'Subject here',
             'Here is the message.',
-            'dineshkaushik829269@gmail.com',
-            ['dinesh829269@gmail.com'],
+            'lymousinecar@gmail.com',
+            ['lymousinecar@gmail.com'],
             fail_silently=False,
         )
         print mailResponse
