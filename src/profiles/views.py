@@ -123,6 +123,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 }
             print payload
             response = requests.post(url, json = payload)
+            print response.text
         else:
             url = "http://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanyupdate/"+user.email            
             payload = {
@@ -138,6 +139,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 }
             print payload
             response = requests.post(url, json = payload)
+            print response.text
 
         messages.success(request, "Company details has been saved!")
         return redirect("payments:addpayment")
