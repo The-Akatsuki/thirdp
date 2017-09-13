@@ -140,7 +140,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 "trd_party_user_type": request.POST['userType'],
                 }
             print payload
-            response = requests.post(url, json = payload)
+            response = requests.put(url, json = payload)
             print response.text
 
         messages.success(request, "Company details has been saved!")
