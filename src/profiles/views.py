@@ -80,8 +80,8 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
                 "bio": request.POST['bio']
             }
             print payload
-            response = requests.post(url, json = payload)
-            print response
+            response = requests.put(url, json = payload)
+            print response, response.text
 
         messages.success(request, "Profile details saved!")
         return redirect("profiles:show_self")
