@@ -63,9 +63,11 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
             url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyusersave"
             payload = {
                 "name": user.name,
-                "email": user.email,
-                "mobile_no": request.POST['mobile'],
-                "bio": request.POST['bio']
+                "email_id": user.email,
+                "mobile_no": "123456789012",
+                "bio": "test",
+               #"mobile_no": request.POST['mobile'],
+              # "bio": request.POST['bio']
             }
             print payload
             response = requests.post(url, json = payload)
