@@ -18,6 +18,7 @@ class BaseProfile(models.Model):
                                 blank=True)
     bio = models.CharField("Short Bio", max_length=200, blank=True, null=True)
     email_verified = models.BooleanField("Email verified", default=False)
+    lymo_user_id= models.CharField(max_length=25,null=True,blank=True)
 
     class Meta:
         abstract = True
@@ -44,5 +45,6 @@ class companyDetails(models.Model):
     zipCode = models.CharField(max_length=250, blank=True,verbose_name="zip Code")
     country = models.CharField(max_length=250, blank=True,verbose_name="country")
     userType = models.CharField(max_length=50, choices=userType_CHOICES, verbose_name="user Type", default='company_secretary')
-    
+    lymo_company_id= models.CharField(max_length=250, blank=True,verbose_name="lymousine_company_id") 
+    lymo_profile_id= models.CharField(max_length=250, blank=True,verbose_name="lymousine_profile_id")  
 

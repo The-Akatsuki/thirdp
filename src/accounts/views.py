@@ -38,11 +38,14 @@ class SignUpView(bracesviews.AnonymousRequiredMixin,
     template_name = 'accounts/signup.html'
     success_url = reverse_lazy('home')
     form_valid_message = "You're signed up!"
+    print "creating new uasesr"
 
     def form_valid(self, form):
         r = super(SignUpView, self).form_valid(form)
         username = form.cleaned_data["email"]
         password = form.cleaned_data["password1"]
+        print "all data"
+        print form.cleaned_data
         user = auth.authenticate(email=username, password=password)
         auth.login(self.request, user)
         return r

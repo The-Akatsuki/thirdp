@@ -18,3 +18,4 @@ class paymentsDetails(models.Model):
     state = models.CharField(max_length=250, blank=True,verbose_name="State")
     zipCode = models.CharField(max_length=250, blank=True,verbose_name="Zip Code")
     cardshortname = models.CharField(max_length=25,null=True,verbose_name="Card short Name")
+    lymo_company_id= models.CharField(max_length=250, blank=True,null=True)

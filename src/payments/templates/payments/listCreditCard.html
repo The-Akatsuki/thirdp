@@ -1,57 +1,61 @@
-{% extends "base.html" %} {% load staticfiles %} {% load thumbnail %} {% block title %}{{ block.super }}Profile{% endblock %} {% block navbar-left %} {% include "_navbar.html" with active_link="about" %} {% endblock %} {% block container %}
+{% extends "base.html" %}
 
-<div class="form-box customFrombox formInnerPage">
+{% load staticfiles %}
+{% load thumbnail %}
 
-    <h1 class="topHeading">Credit Card Details</h1>
+{% block title %}{{ block.super }}Profile{% endblock %}
 
-    <div class="customFrom">
-        <div class="addPaymentMethod"><a href="{% url 'payments:addpayment' %}"><i class="fa fa-credit-card" aria-hidden="true"></i> Add Payment Method</a></div>
-
-        <div class="listcontent">
-
-            <div class="rides-list">
-               
-                <article class="ride-box clearfix">
-
-                    <div class="ride-content">
-
-                        <div class="table-responsive">
-
-                            <table class="paymentDetails table table-striped">
-                                <thead>
-                                    <th> Card Number </th>
-                                    <th class="text-center"> Name On Card</th>
-                                    <th class="text-right"> Delete </th>
-                                </thead>
-                                 {% for payment in payments.all %}
-
-                                <tr>
-                                    <td> <a href="#">{{ payment.cardNumber }}</a> </td>
-                                    <th class="text-center"> <a href="#">{{ payment.nameOnCard }}</a></th>
-                                    <th class="text-right">
-                                        <a href="#"> <i class="fa fa-trash"></i> </a>
-                                    </th>
-                                </tr>
-                                {% endfor %}
-
-                            </table>
-                        </div>
-
-                    </div>
-
-                </article>
-                <!-- end .ride-box -->
-
-                
-
-                <div class="clearfix"></div>
-
-            </div>
-            <!-- end .events-list -->
-
-        </div>
-        <!-- end .page-content -->
-    </div>
-</div>
-
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
 {% endblock %}
+
+{% block container %}
+
+
+<div class="form-box customFrombox formInnerPage"> 
+
+
+	<h1 class="topHeading">Credit Card Details</h1>
+
+	<div class="customFrom">
+		<div class="addPaymentMethod"><a href="{% url 'payments:addpayment' %}"><i class="fa fa-credit-card" aria-hidden="true"></i> Add Payment Method</a></div>
+
+                        <div class="listcontent">
+
+                         <div class="rides-list">
+                          {% for payment in payments.all %}
+                                  
+                          <article class="ride-box clearfix">
+
+                          <div class="ride-content">
+                          <h3><a href="#">{{ payment.cardNumber }}</a></h3> <a href="#">{{ payment.nameOnCard }}</a>
+                                    </div>
+
+                                    <ul class="ride-meta">
+
+                                       
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-trash"></i>
+                                                Delete
+                                            </a>
+                                        </li>
+
+                                    </ul><!-- end .ride-meta -->
+
+                                </article><!-- end .ride-box -->   
+
+                                  {% endfor %}
+                          
+
+                                <div class="clearfix"></div>
+
+                               
+
+                            </div><!-- end .events-list -->
+
+                        </div><!-- end .page-content -->
+                        </div></div>
+
+
+                         {% endblock %}

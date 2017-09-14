@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from . import forms
 from . import models
 import requests
+import json
 
 
 class ShowProfile(LoginRequiredMixin, generic.TemplateView):
@@ -59,31 +60,33 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
         profile = profile_form.save(commit=False)
         profile.user = user
         profile.save()
-        if '__init_dashboard' in request.session:
-            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyusersave"
-            payload = {
-                "name": user.name,
-                "email_id": user.email,
-                "mobile_no": "123456789012",
-                "bio": "test",
-               #"mobile_no": request.POST['mobile'],
-              # "bio": request.POST['bio']
-            }
-            print payload
-            response = requests.post(url, json = payload)
-            del request.session['__init_dashboard']
-            messages.success(request, "Profile details saved!")
-            return redirect("dashboard")
-        else:
-            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyuser/"+user.email
-            payload = {
-                "name": user.name,
-                "mobile_no": request.POST['mobile'],
-                "bio": request.POST['bio']
-            }
-            print payload
-            response = requests.put(url, json = payload)
-            print response, response.text
+        try:
+            if True:
+                url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyusersave"
+                payload = {
+                    "name": user.name,
+                    "email_id": user.email,
+                    "mobile_no": request.POST['mobile'],
+                    "bio": request.POST['bio']
+                }
+                print url
+                print payload
+                response = requests.post(url, json = payload)
+                print response
+                print response.text
+                print type(response.text)
+                data_to_store =json.loads(response.text)
+                if data_to_store["success"]== True:
+                    data_to_store_id = data_to_store["data"]["id"]
+                    print data_to_store_id
+                    print request.user.id
+                    models.Profile.objects.filter(user=request.user.id).update(lymo_user_id=data_to_store_id)
+                    print "updated"
+                messages.success(request, "Profile details saved!")
+                return redirect("dashboard")
+        except Exception as e:
+            print e
+            print "error in api hitting"
 
         messages.success(request, "Profile details saved!")
         return redirect("profiles:show_self")
@@ -100,18 +103,23 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         return super(EditCompanyProfile, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwards):
-        user = self.request.user
-        b = models.companyDetails.objects.filter(user=user).first()
-        print b
-        companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
-        #b = models.companyDetails.objects.filter(user=self.request.user)
-        #print b;
-        companyProfile = companyProfileForm.save(commit=False)
-        companyProfile.user = user
-        companyProfile.save()
-
-        #print request.POST
-        if b is None:
+        try:
+            user = self.request.user
+            b = models.companyDetails.objects.filter(user=user).first()
+            print b
+            companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
+            #b = models.companyDetails.objects.filter(user=self.request.user)
+            #print b;
+            companyProfile = companyProfileForm.save(commit=False)
+            companyProfile.user = user
+            companyProfile.save()
+            profile_data=models.Profile.objects.filter(user=request.user.id).first()
+            if profile_data is not None:            #
+                lymo_profile_id= profile_data.lymo_user_id
+            else:
+                lymo_profile_id=None
+            #print request.POST
+            # if b is None:
             url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanysave"
             payload = {
                 "company_name": request.POST['companyName'],
@@ -122,29 +130,29 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 "country": request.POST['country'],
                 "state": request.POST['state'],
                 "city": request.POST['city'],
-                "trd_party_user_type": request.POST['userType'],
+                # "trd_party_user_type": request.POST['userType'],
+                "trd_party_user_type":"company_secretary",
+                "trd_pty_usr":lymo_profile_id,
+                "created_by":lymo_profile_id,
+                "updated_by":lymo_profile_id
                 }
             print payload
+            print url
             response = requests.post(url, json = payload)
-            print response.text
-        else:
-            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanyupdate/"+str(user.email)
-            print url         
-            payload = {
-                "company_name": request.POST['companyName'],
-                "company_address": request.POST['address'],
-                "zip_code": request.POST['zipCode'],
-                "phone_no": request.POST['phone'],
-                "trd_pty_usr": 1,
-                "country": request.POST['country'],
-                "state": request.POST['state'],
-                "city": request.POST['city'],
-                "trd_party_user_type": request.POST['userType'],
-                }
-            print payload
-            response = requests.put(url, json = payload)
-            print response.text
-
-        messages.success(request, "Company details has been saved!")
-        return redirect("payments:addpayment")
+            print response
+            data_to_store =json.loads(response.text)
+            print data_to_store
+            print type(data_to_store["success"])
+            if data_to_store["success"] == True:
+                lymo_profile_id = data_to_store["data"]["trd_pty_usr"]
+                lymo_company_id = data_to_store["data"]["id"]
+                print lymo_profile_id
+                print lymo_company_id
+                data = models.companyDetails.objects.filter(user=user).update(lymo_profile_id=lymo_profile_id,lymo_company_id=lymo_company_id)
+            print response.text  
+            print response     
+            messages.success(request, "Company details has been saved!")
+            return redirect("payments:addpayment")
+        except Exception as e:
+            print e
         #return redirect("profiles:show_self")
