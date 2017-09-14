@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import forms
 from . import models
+import requests
 
 
 class ShowProfile(LoginRequiredMixin, generic.TemplateView):
@@ -30,6 +31,8 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
     http_method_names = ['get', 'post']
 
     def get(self, request, *args, **kwargs):
+        if '__init_dashboard' in request.session:
+            print "Session Found";
         user = self.request.user
         if "user_form" not in kwargs:
             kwargs["user_form"] = forms.UserForm(instance=user)
@@ -56,6 +59,32 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
         profile = profile_form.save(commit=False)
         profile.user = user
         profile.save()
+        if '__init_dashboard' in request.session:
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyusersave"
+            payload = {
+                "name": user.name,
+                "email_id": user.email,
+                "mobile_no": "123456789012",
+                "bio": "test",
+               #"mobile_no": request.POST['mobile'],
+              # "bio": request.POST['bio']
+            }
+            print payload
+            response = requests.post(url, json = payload)
+            del request.session['__init_dashboard']
+            messages.success(request, "Profile details saved!")
+            return redirect("dashboard")
+        else:
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyuser/"+user.email
+            payload = {
+                "name": user.name,
+                "mobile_no": request.POST['mobile'],
+                "bio": request.POST['bio']
+            }
+            print payload
+            response = requests.put(url, json = payload)
+            print response, response.text
+
         messages.success(request, "Profile details saved!")
         return redirect("profiles:show_self")
 
@@ -80,6 +109,42 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         companyProfile = companyProfileForm.save(commit=False)
         companyProfile.user = user
         companyProfile.save()
+
+        #print request.POST
+        if b is None:
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanysave"
+            payload = {
+                "company_name": request.POST['companyName'],
+                "company_address": request.POST['address'],
+                "zip_code": request.POST['zipCode'],
+                "phone_no": request.POST['phone'],
+                "trd_pty_usr": 1,
+                "country": request.POST['country'],
+                "state": request.POST['state'],
+                "city": request.POST['city'],
+                "trd_party_user_type": request.POST['userType'],
+                }
+            print payload
+            response = requests.post(url, json = payload)
+            print response.text
+        else:
+            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanyupdate/"+str(user.email)
+            print url         
+            payload = {
+                "company_name": request.POST['companyName'],
+                "company_address": request.POST['address'],
+                "zip_code": request.POST['zipCode'],
+                "phone_no": request.POST['phone'],
+                "trd_pty_usr": 1,
+                "country": request.POST['country'],
+                "state": request.POST['state'],
+                "city": request.POST['city'],
+                "trd_party_user_type": request.POST['userType'],
+                }
+            print payload
+            response = requests.put(url, json = payload)
+            print response.text
+
         messages.success(request, "Company details has been saved!")
         return redirect("payments:addpayment")
         #return redirect("profiles:show_self")

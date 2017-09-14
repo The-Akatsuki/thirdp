@@ -49,3 +49,16 @@ cd ~/
 clear
 ls
 exit
+clear
+ls
+clear
+ls
+python manage.py runserver 
+cs src/
+cd src/
+clear
+python manage.py runserver 
+ls
+cd ..
+ls
+exit

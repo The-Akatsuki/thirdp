@@ -2391,65 +2391,17 @@ p#cancelRide {
 button#bookrideBtn {
     margin: 15px auto 1px !important;
 }
-li.list-group-item.list-group-item-custum {
-    background: transparent;
-    margin: 0 auto;
-    padding: 5px 0px;
-    border: 0;
+.logoRight img {
+    position: absolute;
+    width: 110px;
+    top: 60px;
+    right: 0;
+    left: 0;
+    margin: auto;
 }
-h3.selectPaymentMethods {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    font-weight: bold;
-    margin: 20px auto 10px;
-}
-a.addnewPayments {
-    background: #d62b4c;
-    color: #fff;
-    display: inline-block;
-    padding: 10px 16px 6px;
-    border-bottom: 3px solid #a91e39;
-    border-radius: 15px;
-    margin: 10px auto 15px;
-}
-ul.list-group {
-    margin: 0;
-}
-.form_third_content {
-    display: none;
-}
-button#paymentBtn {
-    background: #1F1F1F;
-    color: #fff;
-    font-size: 16px;
-    border-radius: 30px;
-    margin: 15px auto 5px;
-    clear: both;
-    display: inherit ;
-}
-a.addnewPayments {
-    background: #d62b4c;
-    color: #fff;
-    display: inline-block;
-    padding: 4px 6px 2px;
-    border-bottom: 3px solid #a91e39;
-    border-radius: 5px;
-    margin: 2px auto 0px;
-    font-size: 14px;
+.nav.navbar-nav.navbar-right {
     position: relative;
-    top: -5px;
-}
-.groupTwo {
-    padding-bottom: 65px;
-}
-.groupTwo article.ride-box {
-    margin: 2px auto 2px;
-}
-.form_third_content {
-    text-align: center;
-}
-.panel-body.paddingZero {
-    padding: 0;
-}
+
 /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/
 /*******************************************************************************************************************************/
