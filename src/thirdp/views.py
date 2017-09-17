@@ -49,7 +49,9 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         kwargs['companyStatus'] = False
         if 'success' in companyStatus:
             if companyStatus.success == False:
-                kwargs['companyStatus'] = False        
+                kwargs['companyStatus'] = False
+            else:
+                kwargs['companyStatus'] = True 
 
         kwargs['lymoSrvURL'] = LYMOSRV_URL
         kwargs['lymoRideEstimateURL'] = LYMO_RIDE_ESTIMATE_URL
