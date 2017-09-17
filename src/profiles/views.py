@@ -151,7 +151,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
             if '__init_dashboard_company' in request.session:
                 messages.success(request, "Company details has been saved!")
                 del request.session['__init_dashboard_company']
-                return redirect("dashoboard")
+                return redirect("dashboard")
             
         except Exception as e:
             print e

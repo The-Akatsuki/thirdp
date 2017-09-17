@@ -45,9 +45,10 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         }
 
         companyStatus = requests.post(url, json = payload);
-        kwargs['companyStatus'] = True
-        if companyStatus.success == False:
-            kwargs['companyStatus'] = False
+        kwargs['companyStatus'] = False
+        if 'success' in companyStatus:
+            if companyStatus.success == False:
+                kwargs['companyStatus'] = False
         
 
         kwargs['lymoSrvURL'] = LYMOSRV_URL
