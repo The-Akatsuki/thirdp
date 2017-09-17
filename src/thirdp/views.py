@@ -46,12 +46,11 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         print payload
         response = requests.post(url, json = payload)
         print ("48 line ")
-        companyStatusText = response.text
-
+        companyStatusText = json.loads(response.text)
         print response.text
         kwargs['companyStatus'] = False
         if 'success' in companyStatusText:
-            if companyStatusText.success == False:
+            if companyStatusText['success'] == False:
                 print "line 52"
                 kwargs['companyStatus'] = False
             else:
