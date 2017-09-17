@@ -43,13 +43,13 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         payload = {
             "email_id": user.email
         }
-
+        print payload
         companyStatus = requests.post(url, json = payload);
+        print companyStatus
         kwargs['companyStatus'] = False
         if 'success' in companyStatus:
             if companyStatus.success == False:
-                kwargs['companyStatus'] = False
-        
+                kwargs['companyStatus'] = False        
 
         kwargs['lymoSrvURL'] = LYMOSRV_URL
         kwargs['lymoRideEstimateURL'] = LYMO_RIDE_ESTIMATE_URL
