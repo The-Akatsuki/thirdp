@@ -295,7 +295,7 @@
               {% for paymentsDetails in paymentsDetailsData.all %}
               <div class="col-md-12">
                 <label style="cursor: pointer">
-                  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}" />
+                  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}"  onclick="changePayment({{ paymentsDetails.cardNumber }}, {{ paymentsDetails.nameOnCard }}, {{ paymentsDetails.expirationDateMM }}, {{ paymentsDetails.expirationDateYY }})" />
                   {{ paymentsDetails.nameOnCard }} / {{ paymentsDetails.cardNumber }}
                 </label>
                 </div>
@@ -311,7 +311,7 @@
                         <label for="cardNumber">
                             CARD HOLDER NUMBER</label>
                         <div class="input-group">
-                            <input type="text" data-braintree-name="cardholder_name" class="form-control" id="cardHolderNumber" placeholder="Card Holder Name"
+                            <input type="text" data-braintree-name="cardholder_name" class="form-control" id="cardHolderName" placeholder="Card Holder Name"
                                 required autofocus />
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                         </div>
@@ -418,6 +418,13 @@ braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
       // } 
     });
     });
+
+  function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY ){
+      $("#cardHolderName").val(nameOnCard);
+      $("#cardNumber").val(cardNumber);
+      $("#expityMonth").val(expirationDateMM);
+      $("#expityYear").val(expirationDateYY);
+  }
 
    
    function form_first_content_btn_submit(){
