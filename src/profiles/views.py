@@ -126,7 +126,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
             #print request.POST
             # if b is None:
             phone_no = request.POST['phone'].replace(" ", "")
-            url = LYMOSRV_URL+"lymousine/api/v1/v1/thirdpartycompanysave"
+            url = LYMOSRV_URL+"lymousine/api/v1/thirdpartycompanysave"
             payload = {
                 "company_name": request.POST['companyName'],
                 "company_address": request.POST['address'],
