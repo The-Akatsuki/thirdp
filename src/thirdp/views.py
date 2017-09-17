@@ -45,7 +45,7 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         }
         print payload
         companyStatus = requests.post(url, json = payload);
-        companyStatusText = companyStatus.text
+        companyStatusText = json.loads(companyStatus.text)
         kwargs['companyStatus'] = False
         if 'success' in companyStatusText:
             if companyStatusText.success == False:
