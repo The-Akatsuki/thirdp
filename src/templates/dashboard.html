@@ -137,8 +137,9 @@
 <div class="col-md-5 col-sm-12 col-xs-12">
 
 {% if companyStatus == False %}
-  <form action="{% url 'ride:bookaride' %}" method="POST" class="col-md-4 pull-right" id="bookaRideform">
-   Company is Verified by Lymoserver, Please Wait for sometime or contact <a href="lymousine.com">Lymousine</a>
+  <form action="#" method="POST" class="col-md-4 pull-right" id="bookaRideform" style="padding-top:200px">
+   <h3> Company is Not Verified by Lymoserver<h3>
+   <h4>Please Wait for sometime or contact <a href="lymousine.com">Lymousine</a></h4>
   </form>
  {% else %}
 
