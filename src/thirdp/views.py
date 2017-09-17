@@ -45,13 +45,17 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         }
         print payload
         companyStatus = requests.post(url, json = payload);
-        print companyStatus
+        print companyStatus.Text
         kwargs['companyStatus'] = False
         if 'success' in companyStatus:
             if companyStatus.success == False:
+                print "line 52"
                 kwargs['companyStatus'] = False
             else:
+                print "line 55"
                 kwargs['companyStatus'] = True 
+
+        print kwargs['companyStatus']
 
         kwargs['lymoSrvURL'] = LYMOSRV_URL
         kwargs['lymoRideEstimateURL'] = LYMO_RIDE_ESTIMATE_URL
