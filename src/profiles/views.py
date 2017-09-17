@@ -142,7 +142,10 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 "created_by":lymo_profile_id,
                 "updated_by":lymo_profile_id
                 }
+            print payload
+            print url            
             response = requests.post(url, json = payload)
+            print response
             data_to_store =json.loads(response.text)
             if data_to_store["success"] == True:
                 lymo_profile_id = data_to_store["data"]["trd_pty_usr"]
