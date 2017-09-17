@@ -295,7 +295,7 @@
               {% for paymentsDetails in paymentsDetailsData.all %}
               <div class="col-md-12">
                 <label style="cursor: pointer">
-                  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}"  onclick="changePayment({{ paymentsDetails.cardNumber }}, {{ paymentsDetails.nameOnCard }}, {{ paymentsDetails.expirationDateMM }}, {{ paymentsDetails.expirationDateYY }})" />
+                  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}"  onclick="changePayment('{{ paymentsDetails.cardNumber }}', '{{ paymentsDetails.nameOnCard }}', '{{ paymentsDetails.expirationDateMM }}', '{{ paymentsDetails.expirationDateYY }}')" />
                   {{ paymentsDetails.nameOnCard }} / {{ paymentsDetails.cardNumber }}
                 </label>
                 </div>
