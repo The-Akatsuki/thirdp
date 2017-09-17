@@ -8,11 +8,16 @@ from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
+import requests
+
+import environ
+env = environ.Env()
+LYMOSRV_URL = env('LYMOSRV_URL')
+LYMO_RIDE_ESTIMATE_URL = env('LYMO_RIDE_ESTIMATE_URL')
 
 
 class HomePage(generic.TemplateView):
     template_name = "home.html"
-
 
 class AboutPage(generic.TemplateView):
     template_name = "about.html"
@@ -22,19 +27,37 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
         user = self.request.user
-        if user.profile.mobile == '':
-            request.session['__init_dashboard'] = True
+        if user.profile.mobile == '' or user.profile.mobile == None:
+            request.session['__init_dashboard_profile'] = True
             return redirect("profiles:edit_self")
-        b = models.companyDetails.objects.filter(user=self.request.user).count()
-        if b==0:
+        companyDetailsData = models.companyDetails.objects.filter(user=self.request.user).count()
+        if companyDetailsData==0:
+            request.session['__init_dashboard_company'] = True
             return redirect("profiles:companyprofile")
+        paymentsDetailsData = paymentsDetails.objects.filter(userid=self.request.user)
+        if paymentsDetailsData.count() ==0:
+            request.session['__init_dashboard_payments'] = True
+            return redirect("payments:addpayment")        
+
+        url = LYMOSRV_URL+"lymousine/api/v1/thirdpartycompanyinfo"
+        payload = {
+            "email_id": user.email
+        }
+
+        companyStatus = requests.post(url, json = payload);
+        kwargs['companyStatus'] = True
+        if companyStatus.success == False:
+            kwargs['companyStatus'] = False
+        
+
+        kwargs['lymoSrvURL'] = LYMOSRV_URL
+        kwargs['lymoRideEstimateURL'] = LYMO_RIDE_ESTIMATE_URL
 
         bookedRidesData = ridebooking.objects.filter(user=self.request.user)
         print bookedRidesData.__dict__
-        paymentsDetailsData = paymentsDetails.objects.filter(userid=self.request.user)
         if bookedRidesData is not None:
             kwargs['bookedRidesData'] = bookedRidesData
-            kwargs['paymentsDetailsData'] = paymentsDetailsData
+            kwargs['paymentsDetailsData'] = paymentsDetailsData            
         return super(dashboard, self).get(request, *args, **kwargs)
 
 

@@ -135,6 +135,11 @@
 
 
 <div class="col-md-5 col-sm-12 col-xs-12">
+
+{% if companyStatus == False %}
+ Compnay is Verified by Lymoserver, Please Wait for sometime or contact <a href="lymousine.com">Lymousine</a>
+ {% else %}
+
 <form action="{% url 'ride:bookaride' %}" method="POST" class="col-md-4 pull-right" id="bookaRideform">
 {% csrf_token %}
 <div class="spaceOnly"><br><br><br><br><br><br><br><br><br><br></div>
@@ -309,6 +314,8 @@
 
 	<p class="text-center"onClick="window.location.reload()" id="cancelRide">Cancel Ride</p>
       </form>
+    {% endif %}
+
 </div>
 
 
@@ -320,8 +327,8 @@
  <script type="text/javascript">
 
   //var lymoServerURL = "http://127.0.0.1:5003/"
-  var lymoServerURL = "https://lymosrv.ddns.net/"
-  var lymoServerURL_estimate = "https://esti.ddns.net/"
+  var lymoServerURL = "{{ lymoSrvURL }}";
+  var lymoServerURL_estimate = "{{ lymoRideEstimateURL }}";
 
   $(function () {
     $("#bookaRideform").validate({

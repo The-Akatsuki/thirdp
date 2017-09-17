@@ -8,6 +8,10 @@ from . import models
 import requests
 import json
 
+import environ
+env = environ.Env()
+LYMOSRV_URL = env('LYMOSRV_URL')
+
 
 class ShowProfile(LoginRequiredMixin, generic.TemplateView):
     template_name = "profiles/show_profile.html"
@@ -32,8 +36,6 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
     http_method_names = ['get', 'post']
 
     def get(self, request, *args, **kwargs):
-        if '__init_dashboard' in request.session:
-            print "Session Found";
         user = self.request.user
         if "user_form" not in kwargs:
             kwargs["user_form"] = forms.UserForm(instance=user)
@@ -62,7 +64,7 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
         profile.save()
         try:
             if True:
-                url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartyusersave"
+                url = LYMOSRV_URL+"lymousine/api/v1/thirdpartyusersave"
                 payload = {
                     "name": user.name,
                     "email_id": user.email,
@@ -88,6 +90,10 @@ class EditProfile(LoginRequiredMixin, generic.TemplateView):
             print e
             print "error in api hitting"
 
+        if '__init_dashboard_profile' in request.session:
+            messages.success(request, "Profile details saved!")
+            del request.session['__init_dashboard_profile']
+            return redirect("dashboard")
         messages.success(request, "Profile details saved!")
         return redirect("profiles:show_self")
 
@@ -106,7 +112,6 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         try:
             user = self.request.user
             b = models.companyDetails.objects.filter(user=user).first()
-            print b
             companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
             #b = models.companyDetails.objects.filter(user=self.request.user)
             #print b;
@@ -120,7 +125,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 lymo_profile_id=None
             #print request.POST
             # if b is None:
-            url = "https://lymosrv.ddns.net/lymousine/api/v1/thirdpartycompanysave"
+            url = LYMOSRV_URL+"lymousine/api/v1/v1/thirdpartycompanysave"
             payload = {
                 "company_name": request.POST['companyName'],
                 "company_address": request.POST['address'],
@@ -136,23 +141,20 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 "created_by":lymo_profile_id,
                 "updated_by":lymo_profile_id
                 }
-            print payload
-            print url
             response = requests.post(url, json = payload)
-            print response
             data_to_store =json.loads(response.text)
-            print data_to_store
-            print type(data_to_store["success"])
             if data_to_store["success"] == True:
                 lymo_profile_id = data_to_store["data"]["trd_pty_usr"]
                 lymo_company_id = data_to_store["data"]["id"]
-                print lymo_profile_id
-                print lymo_company_id
                 data = models.companyDetails.objects.filter(user=user).update(lymo_profile_id=lymo_profile_id,lymo_company_id=lymo_company_id)
-            print response.text  
-            print response     
-            messages.success(request, "Company details has been saved!")
-            return redirect("payments:addpayment")
+
+            if '__init_dashboard_company' in request.session:
+                messages.success(request, "Company details has been saved!")
+                del request.session['__init_dashboard_company']
+                return redirect("dashoboard")
+            
         except Exception as e:
             print e
         #return redirect("profiles:show_self")
+        messages.success(request, "Company details has been saved!")
+        return redirect("profiles:companyprofile")
