@@ -87,7 +87,8 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         #     status=200,
         #     mimetype='application/json'
         # )
-        
+        print response.text
+        print "12121212"
         return  HttpResponse(response, mimetype="application/json" )
 
         #return redirect("dashboard")            
