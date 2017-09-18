@@ -55,14 +55,22 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
                     "state":postData['state_id'],
                     "city":postData['city_id']
                  }
-
-
         # print payload
 
         response = requests.post(url, json = payload)
         print "response text"
         rideData =  json.loads(response.text)
         rideId = rideData['data']['id']
+        transaction_amount: postData['estimatedCost'],
+        nonce_from_the_client: postData['payment_method_nonce']
+        paymentDataURL = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartybtnonpayment/"
+        paymentData = {"ride_id": rideId,
+                        "transaction_amount": transaction_amount,
+                        "nonce_from_the_client": nonce_from_the_client
+                        }
+        paymentDataresponse = requests.post(paymentDataURL, json = payload)
+        print "response text", paymentDataresponse
+
         p = models.ridebooking( ride_id = rideId,
                                 pickup_lat=postData['from_lat'],
                                 pickup_long=postData['from_lon'],   

@@ -309,6 +309,8 @@
 
 
 <div class="panel-body">
+
+<input type="hidden" name="estimatedCost" id="estimatedCost" value="">
                     <div class="form-group">
                         <label for="cardNumber">
                             CARD HOLDER NAME</label>
@@ -604,6 +606,8 @@ function getToken(cardHolderName, zip_code){
                        $("#bookrideBtn").hide();
                        $("#estimateRidebtn").html("Estimate Ride");
                        $("#cancelRide").show();
+
+                       $("#estimatedCost").val(estimatedCost);
         
                       // load_bookedRide()
                        $(".rideEstimatedCostTitle").html("Estimated Cost for the Journey is : $"+ estimatedCost);
