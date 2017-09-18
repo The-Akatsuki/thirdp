@@ -305,7 +305,7 @@
 
              <div id="payment-form">
 
-             {{ companyDetailsData }}
+
 
 
 <div class="panel-body">
@@ -425,6 +425,8 @@ function getToken(cardHolderName, zip_code){
 
     url = lymoServerURL+"lymousine/api/v2/thirdpartybttokengenration/"
     data = {
+      "company": {{ companyDetailsData.lymo_profile_id }},
+      "lymo_user_id": {{ companyDetailsData.lymo_profile_id }},
       "card_holder_name":cardHolderName,
       "zip_code": zip_code,
       "website" :"www.thirdparty.com"
