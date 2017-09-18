@@ -249,12 +249,7 @@
 
            <div class="col-md-6">
             <div class="form-group">
-              <select id="passengers-input" name="passengers" placeholder="No. of passengers" class="ajaxField">
-                <option  value="1">1</option>
-                <option  value="1">2</option>
-                <option  value="1">3</option>
-                <option  value="1">4</option>
-              </select>
+              <input type="text" id="passengers-input" name="passengers" value="1" placeholder="No. of passengers" class="ajaxField">
             </div>
           </div>
 
@@ -396,8 +391,6 @@
   var lymoServerURL = "{{ lymoSrvURL }}";
   var lymoServerURL_estimate = "{{ lymoRideEstimateURL }}";
 
-  var vehicleTypeResponse = "";
-
   $(function () {
     $("#bookaRideform").validate({
         
@@ -465,15 +458,15 @@ function getToken(){
 
                             rideId = Rideresponse['data']['id'];
                              var client_token = response['bt_client_token'];
-                console.log("setting up brain tree", response);
+                console.log("setting up brain tree", client_token);
                 //braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
                  //braintree.setup(clientToken, "dropin", { container: "payment-form" });
 
                  var client = new braintree.api.Client({clientToken: client_token});
 
                   client.tokenizeCard({
-                    number: '4111111111111111',
-                    expirationDate: '10/20'
+                    number: '5328285975312316',
+                    expirationDate: '02/18'
                   }, function (err, nonce) {
                     // Send nonce to your server
                     transaction_amount = $("#estimatedCost").val();
