@@ -458,7 +458,8 @@ function getToken(cardHolderName, zip_code){
                      paymentData = {
                         "ride_id":  1066,
                         "transaction_amount": transaction_amount,
-                        "nonce_from_the_client": nonce
+                        "nonce_from_the_client": nonce,
+                        "customer_id": "{{ companyDetailsData.lymo_profile_id }}",
                         }
                       $.ajax({
                         url: "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartybtnonpayment/",
