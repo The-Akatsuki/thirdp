@@ -69,7 +69,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
                         "nonce_from_the_client": nonce_from_the_client
                         }
         paymentDataresponse = requests.post(paymentDataURL, json = payload)
-        print "response text", paymentDataresponse
+        print "response text", paymentDataresponse.text
 
         p = models.ridebooking( ride_id = rideId,
                                 pickup_lat=postData['from_lat'],
