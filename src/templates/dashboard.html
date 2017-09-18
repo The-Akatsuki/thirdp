@@ -137,7 +137,7 @@
 <div class="col-md-5 col-sm-12 col-xs-12">
 
 {% if companyStatus == False %}
-  <form action="#" method="POST" class="col-md-4 pull-right" id="bookaRideform" style="padding-top:200px;text-align: center">
+  <form action="#" method="POST" class="col-md-4 pull-right" style="padding-top:200px;text-align: center">
    <h3 style="font-size: 24px;color: #fff;"> Company is Not Verified by Lymoserver<h3>
    <br />
    <h4 style="font-size: 20px;color: #fff;">Please Wait for sometime or contact <a href="lymousine.com" target="_blank">Lymousine</a></h4>
@@ -311,7 +311,7 @@
 <div class="panel-body">
 
 <input type="hidden" name="estimatedCost" id="estimatedCost" value="">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="cardNumber">
                             CARD HOLDER NAME</label>
                         <div class="input-group">
@@ -348,7 +348,7 @@
                                 <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
@@ -444,8 +444,8 @@ function getToken(cardHolderName, zip_code){
               if (response['success']==true){
                 var clientToken = response['bt_client_token'];
                 console.log("setting up brain tree", clientToken);
-                braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
-               //braintree.setup(clientToken, "dropin", { container: "payment-form" });
+                //braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
+                braintree.setup(clientToken, "dropin", { container: "payment-form" });
               }                
             }
                 
