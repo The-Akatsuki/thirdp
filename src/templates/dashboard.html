@@ -307,7 +307,7 @@
 
 
 
-<!-- 
+
 <div class="panel-body">
 
 <input type="hidden" name="estimatedCost" id="estimatedCost" value="">
@@ -352,7 +352,7 @@
                 </div>
 
             </div>
- -->
+
           </div>                
 
 
@@ -444,8 +444,8 @@ function getToken(cardHolderName, zip_code){
               if (response['success']==true){
                 var clientToken = response['bt_client_token'];
                 console.log("setting up brain tree", clientToken);
-               // braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
-               braintree.setup(clientToken, "dropin", { container: "payment-form" });
+                braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
+               //braintree.setup(clientToken, "dropin", { container: "payment-form" });
               }                
             }
                 
