@@ -99,7 +99,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         print b.__dict__
         return super(BookRide, self).get(request, *args, **kwargs)
 
-class BookRideReq(object):
+class BookRideReq(LoginRequiredMixin, generic.TemplateView):
     """docstring for ClassName"""
     template_name = "ride/book_ride.html"
     http_method_names = ['get', 'post']
