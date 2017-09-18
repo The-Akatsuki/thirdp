@@ -82,7 +82,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         messages.success(request, "Your Ride has been booked!")
 
         response = app.response_class(
-            response=json.dumps(rideData),
+            data=json.dumps(rideData),
             status=200,
             mimetype='application/json'
         )
