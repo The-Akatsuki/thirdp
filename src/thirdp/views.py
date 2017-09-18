@@ -67,7 +67,7 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
 
         kwargs['lymoSrvURL'] = LYMOSRV_URL
         kwargs['lymoRideEstimateURL'] = LYMO_RIDE_ESTIMATE_URL
-        kwargs['vehicleTypeResponse'] = vehicleTypeResponse
+        kwargs['vehicleTypeResponse'] = vehicleTypeResponse.text
 
         companyDetailsDatastring =  companyDetailsData.first()
 
