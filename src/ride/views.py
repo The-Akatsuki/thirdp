@@ -99,6 +99,17 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         print b.__dict__
         return super(BookRide, self).get(request, *args, **kwargs)
 
+class BookRideReq(object):
+    """docstring for ClassName"""
+    template_name = "ride/book_ride.html"
+    http_method_names = ['get', 'post']
+
+    def post(self, request):
+        user = self.request.user
+        postData =  request.POST        
+        messages.success(request, "Your Ride has been booked!")
+        return redirect("dashboard") 
+        
 
 class cancelRide(LoginRequiredMixin, generic.TemplateView):
     template_name = "ride/book_ride.html"
