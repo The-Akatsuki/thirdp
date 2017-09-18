@@ -366,7 +366,7 @@
  
         <div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;" onclick="proceedToPayment()" id="paymentBtn">Proceed to Payment</button>
 
-        <div style="clear: both; display: block; text-align: center"> <button type="submit"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn">Book Ride</button>
+        <div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn" >Book Ride</button>
 </div>
 <!--<p class="text-center" onclick="form_reset()" id="cancelRide">Cancel Ride</p>-->
 
@@ -462,7 +462,7 @@ function getToken(cardHolderName, zip_code){
                         "customer_id": response['customer_id'],
                         }
                       $.ajax({
-                        url: "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartybtnonpayment/",
+                        url: lymoServerURL+"lymousine/api/v2/thirdpartybtnonpayment/",
                         type: "post",
                         data: JSON.stringify(paymentData),
                         contentType: 'application/json; charset=utf-8',

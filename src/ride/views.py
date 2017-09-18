@@ -11,6 +11,7 @@ import datetime
 import requests
 import json
 
+
 # Create your views here.
 class BookRide(LoginRequiredMixin, generic.TemplateView):
     template_name = "ride/book_ride.html"
@@ -61,16 +62,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         print "response text"
         rideData =  json.loads(response.text)
         rideId = rideData['data']['id']
-        transaction_amount =  postData['estimatedCost'],
-        nonce_from_the_client =  postData['payment_method_nonce']
-        paymentDataURL = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartybtnonpayment/"
-        paymentData = {"ride_id":  rideId,
-                        "transaction_amount": transaction_amount,
-                        "nonce_from_the_client": nonce_from_the_client
-                        }
-        paymentDataresponse = requests.post(paymentDataURL, json = payload)
-        print "response text", paymentDataresponse.text
-
+       
         p = models.ridebooking( ride_id = rideId,
                                 pickup_lat=postData['from_lat'],
                                 pickup_long=postData['from_lon'],   
@@ -88,7 +80,15 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
                                 user = user)    
         p.save()    
         messages.success(request, "Your Ride has been booked!")
-        return redirect("dashboard")            
+
+        response = app.response_class(
+            response=json.dumps(rideData),
+            status=200,
+            mimetype='application/json'
+        )
+        return response
+
+        #return redirect("dashboard")            
     
     def get(self, request, *args, **kwargs):
         user = self.request.user
