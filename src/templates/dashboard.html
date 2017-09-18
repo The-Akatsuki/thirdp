@@ -471,9 +471,12 @@ function getToken(){
 
                  var client = new braintree.api.Client({clientToken: client_token});
 
+                 var cardNumber = $("#cardNumber").val(cardNumber);
+                 var exprityData = $("#expityMonth").val(expirationDateMM) + "/"+ $("#expityYear").val(expirationDateYY);
+
                   client.tokenizeCard({
-                    number: '4111111111111111',
-                    expirationDate: '10/20'
+                    number: cardNumber,
+                    expirationDate: exprityData
                   }, function (err, nonce) {
                     // Send nonce to your server
                     transaction_amount = $("#estimatedCost").val();
