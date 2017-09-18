@@ -63,14 +63,14 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         kwargs['lymoSrvURL'] = LYMOSRV_URL
         kwargs['lymoRideEstimateURL'] = LYMO_RIDE_ESTIMATE_URL
 
-        print companyDetailsData.first()
+        companyDetailsDatastring =  companyDetailsData.first()
 
         bookedRidesData = ridebooking.objects.filter(user=self.request.user)
         print bookedRidesData.__dict__
         if bookedRidesData is not None:
             kwargs['bookedRidesData'] = bookedRidesData
             kwargs['paymentsDetailsData'] = paymentsDetailsData 
-            kwargs['companyDetailsData'] = companyDetailsData           
+            kwargs['companyDetailsData'] = companyDetailsDatastring           
         return super(dashboard, self).get(request, *args, **kwargs)
 
 
