@@ -10,6 +10,7 @@ from . import models
 import datetime
 import requests
 import json
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -81,12 +82,13 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         p.save()    
         messages.success(request, "Your Ride has been booked!")
 
-        response = app.response_class(
-            data=json.dumps(rideData),
-            status=200,
-            mimetype='application/json'
-        )
-        return response
+        # response = app.response_class(
+        #     data=json.dumps(rideData),
+        #     status=200,
+        #     mimetype='application/json'
+        # )
+        
+        return  HttpResponse(json.dumps(rideData), mimetype="application/json" )
 
         #return redirect("dashboard")            
     
