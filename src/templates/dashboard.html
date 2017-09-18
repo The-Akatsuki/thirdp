@@ -137,14 +137,14 @@
 <div class="col-md-5 col-sm-12 col-xs-12">
 
 {% if companyStatus == False %}
-  <form action="#" method="POST" class="col-md-4 pull-right" id="bookaRideform" style="padding-top:200px;text-align: center">
+  <form action="#" method="POST" class="col-md-4 pull-right" style="padding-top:200px;text-align: center">
    <h3 style="font-size: 24px;color: #fff;"> Company is Not Verified by Lymoserver<h3>
    <br />
    <h4 style="font-size: 20px;color: #fff;">Please Wait for sometime or contact <a href="lymousine.com" target="_blank">Lymousine</a></h4>
   </form>
  {% else %}
 
-<form action="{% url 'ride:bookaride' %}" method="POST" class="col-md-4 pull-right" id="bookaRideform">
+<form action="{% url 'ride:bookaridereque' %}" method="POST" class="col-md-4 pull-right" id="bookaRideform">
 {% csrf_token %}
 <div class="spaceOnly"><br><br><br><br><br><br><br><br><br><br></div>
 
@@ -311,6 +311,7 @@
 <div class="panel-body">
 
 <input type="hidden" name="estimatedCost" id="estimatedCost" value="">
+<input type="hidden" name="zip_code" id="zip_code" value="">
                     <div class="form-group">
                         <label for="cardNumber">
                             CARD HOLDER NAME</label>
@@ -366,7 +367,7 @@
  
         <div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;" onclick="proceedToPayment()" id="paymentBtn">Proceed to Payment</button>
 
-        <div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn" >Book Ride</button>
+        <div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn"  onclick="getToken()">Book Ride</button>
 </div>
 <!--<p class="text-center" onclick="form_reset()" id="cancelRide">Cancel Ride</p>-->
 
@@ -420,10 +421,13 @@
       $("#expityMonth").val(expirationDateMM);
       $("#expityYear").val(expirationDateYY);
 
-      getToken(nameOnCard, zip_code)
+      //getToken(nameOnCard, zip_code)
   }
 
-function getToken(cardHolderName, zip_code){
+function getToken(){
+  $("#bookrideBtn").html("<i class='fa fa-spinner fa-spin'></i> Booking Ride. Please wait...");
+  var cardHolderName = $("#cardHolderName").val();
+  var zip_code = $("#zip_code").val();
 
     url = lymoServerURL+"lymousine/api/v2/thirdpartybttokengenration/"
     data = {
@@ -479,6 +483,7 @@ function getToken(cardHolderName, zip_code){
                         contentType: 'application/json; charset=utf-8',
                         dataType: 'json',    
                       success: function(response) {
+                        $("#bookaRideform").submit();
                       }
                       });
 
