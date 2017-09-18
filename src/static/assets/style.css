@@ -1998,7 +1998,7 @@ span.fa.fa-calendar.calndr {
     top: 0;
 }
 
-form#bookaRideform .form-group input[type="text"] {
+form#bookaRideform .form-group input[type="text"], form#bookaRideform .form-group select {
     font-size: 14px;
     padding: 16px 25px 16px 6px;
 }
