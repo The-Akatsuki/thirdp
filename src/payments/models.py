@@ -12,7 +12,7 @@ class paymentsDetails(models.Model):
     cardNumber = models.CharField(max_length=20,null=True,verbose_name="Card Number")
     expirationDateMM = models.IntegerField(verbose_name="expiration Date (MM)")
     expirationDateYY = models.IntegerField(verbose_name="expiration Date (YY)")
-    #cvcCode = models.IntegerField(verbose_name="CVV Code")
+    cvcCode = models.IntegerField(verbose_name="CVV Code")
     address = models.TextField(null=True,verbose_name="Address")
     city = models.CharField(max_length=250, blank=True,verbose_name="City")
     state = models.CharField(max_length=250, blank=True,verbose_name="State")
