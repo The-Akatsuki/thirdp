@@ -88,7 +88,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         #     mimetype='application/json'
         # )
         
-        return  HttpResponse(json.dumps(rideData), mimetype="application/json" )
+        return  HttpResponse(response, mimetype="application/json" )
 
         #return redirect("dashboard")            
     
