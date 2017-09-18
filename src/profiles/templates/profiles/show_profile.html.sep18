@@ -31,8 +31,8 @@
 	    <span class="glyphicon glyphicon-ok-circle" aria-hidden="true" title="This email address has been verified"></span>
 	    <span class="sr-only">Verified</span>
 	  {% else %}
-	   <!-- <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" title="This email address is not verified"></span>-->
-	   <!--  <span class="sr-only">Not Verified</span>-->
+	    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" title="This email address is not verified"></span>
+	    <span class="sr-only">Not Verified</span>
 	  {% endif %}
 	</li>
         <li class="list-group-item text-right"><span class="pull-left"><strong>Joined</strong></span> {{ show_user.date_joined }}</li>

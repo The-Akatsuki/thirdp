@@ -2304,7 +2304,7 @@ form#editCompanyForm .customFrom .form-group textarea#id_address {
     height: 43px !important;
 }
 form#addPaymentForm #id_address {
-    height: 42px !important;
+    height: 43px !important;
 }
 #id_userType_1, #id_userType_2 {
     margin: 0px 0px 0px -20px;
@@ -2364,10 +2364,7 @@ button#bookrideBtn {
 }
 .nav.navbar-nav.navbar-right {
     position: relative;
-}
-#locationMap {
-    width: 100%;
-}
+
 /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/
 /*******************************************************************************************************************************/
