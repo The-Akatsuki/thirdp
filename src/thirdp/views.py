@@ -17,7 +17,7 @@ LYMOSRV_URL = env('LYMOSRV_URL')
 LYMO_RIDE_ESTIMATE_URL = env('LYMO_RIDE_ESTIMATE_URL')
 
 
-class HomePage(generic.TemplateView):
+class HomePage(generic.TemplateView):       
     template_name = "home.html"
 
 class AboutPage(generic.TemplateView):
