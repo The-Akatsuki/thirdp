@@ -62,12 +62,12 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
 
 
 
-        vehicleTypeurl = LYMOSRV_URL+"lymousine/api/v1/driver/configuration/vehicletype"
-        vehicleTypeResponse = requests.get(url)
+        #vehicleTypeurl = LYMOSRV_URL+"lymousine/api/v1/driver/configuration/vehicletype"
+        #vehicleTypeResponse = requests.get(url)
 
         kwargs['lymoSrvURL'] = LYMOSRV_URL
         kwargs['lymoRideEstimateURL'] = LYMO_RIDE_ESTIMATE_URL
-        kwargs['vehicleTypeResponse'] = vehicleTypeResponse.text
+        #kwargs['vehicleTypeResponse'] = vehicleTypeResponse.text
 
         companyDetailsDatastring =  companyDetailsData.first()
 
