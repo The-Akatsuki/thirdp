@@ -249,61 +249,66 @@
 
            <div class="col-md-6">
             <div class="form-group">
-              <input type="text" id="passengers-input" name="passengers" value="1" placeholder="No. of passengers" class="ajaxField">
-            </div>
-          </div>
+      <select id="passengers-select" name="passengers" placeholder="No. of passengers" class="ajaxField">
+	<option  value="1">1</option>
+	<option  value="1">2</option>
+	<option  value="1">3</option>
+	<option  value="1">4</option>
+      </select>
+    </div>
+  </div>
 
-          <div class="col-md-6">
-            <div class="form-group">
-              <input type="text" id="Remarks-input" name="Remarks" value="" placeholder="Remarks" class="ajaxField">
-            </div>
-          </div>
-          
-          <!-- <div class="col-md-6">
-            <div class="form-group">
-              <input type="text" name="Ridetime" value="" placeholder="Time" class="ajaxField" id="timepicker"><span class="fa fa-calendar"></span>
-            </div>
-          </div> -->
-          <div class="clearfix">&nbsp;</div>
-          <p class="text-center">for: <span class="finalFormUserCheck">XYZ</span></p>
-          <div class="clearfix"></div>
-          <div class="clearfix">&nbsp;</div>
-
-
-        </div>
-
-        <div style="clear: both; display: block; text-align: center">
-         <button type="button" onclick="estimateRide()"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto; " id="estimateRidebtn">Estimate Ride</button>
-         </div>
-        <input type="hidden" id="type" name="type" value="2" class="ajaxField">
-        <div class="clearfix"></div>
-        <div id="rideEstimatedCost">          
-          <h3 h2 class="text-center rideEstimatedCostTitle" style="font-size: 20px"></h3>
-        </div>
-
-        <div id="rideBookedfail">          
-          <h3 class="text-center rideBookTitle" style="font-size: 20px;margin-top: 30px">There is some problem booking the ride, Please check the Address Again or try again later.</h3>
-        </div>
-
-        </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <input type="text" id="Remarks-input" name="Remarks" value="" placeholder="Remarks" class="ajaxField">
+    </div>
+  </div>
+  
+  <!-- <div class="col-md-6">
+    <div class="form-group">
+      <input type="text" name="Ridetime" value="" placeholder="Time" class="ajaxField" id="timepicker"><span class="fa fa-calendar"></span>
+    </div>
+  </div> -->
+  <div class="clearfix">&nbsp;</div>
+  <p class="text-center">for: <span class="finalFormUserCheck">XYZ</span></p>
+  <div class="clearfix"></div>
+  <div class="clearfix">&nbsp;</div>
 
 
+</div>
 
-         <div class="form_third_content"> 
-           <h3>Select Payment Methods</h3>
-          {% if paymentsDetailsData is not None %}
-              {% for paymentsDetails in paymentsDetailsData.all %}
-              <div class="col-md-12">
-                <label style="cursor: pointer">
-                  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}"  onclick="changePayment('{{ paymentsDetails.cardNumber }}', '{{ paymentsDetails.nameOnCard }}', '{{ paymentsDetails.expirationDateMM }}', '{{ paymentsDetails.expirationDateYY }}', '{{ paymentsDetails.zipCode }}')" />
-                  {{ paymentsDetails.nameOnCard }} / {{ paymentsDetails.cardNumber }}
-                </label>
-                </div>
-                <div class="clearfix">&nbsp;</div>
-              {% endfor %}
-            {% endif %}
+<div style="clear: both; display: block; text-align: center">
+ <button type="button" onclick="estimateRide()"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto; " id="estimateRidebtn">Estimate Ride</button>
+ </div>
+<input type="hidden" id="type" name="type" value="2" class="ajaxField">
+<div class="clearfix"></div>
+<div id="rideEstimatedCost">          
+  <h3 h2 class="text-center rideEstimatedCostTitle" style="font-size: 20px"></h3>
+</div>
 
-             <div id="payment-form">
+<div id="rideBookedfail">          
+  <h3 class="text-center rideBookTitle" style="font-size: 20px;margin-top: 30px">There is some problem booking the ride, Please check the Address Again or try again later.</h3>
+</div>
+
+</div>
+
+
+
+ <div class="form_third_content"> 
+   <h3>Select Payment Methods</h3>
+  {% if paymentsDetailsData is not None %}
+      {% for paymentsDetails in paymentsDetailsData.all %}
+      <div class="col-md-12">
+	<label style="cursor: pointer">
+	  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}"  onclick="changePayment('{{ paymentsDetails.cardNumber }}', '{{ paymentsDetails.nameOnCard }}', '{{ paymentsDetails.expirationDateMM }}', '{{ paymentsDetails.expirationDateYY }}', '{{ paymentsDetails.zipCode }}')" />
+	  {{ paymentsDetails.nameOnCard }} / {{ paymentsDetails.cardNumber }}
+	</label>
+	</div>
+	<div class="clearfix">&nbsp;</div>
+      {% endfor %}
+    {% endif %}
+
+     <div id="payment-form">
 
 
 
@@ -312,68 +317,68 @@
 
 <input type="hidden" name="estimatedCost" id="estimatedCost" value="">
 <input type="hidden" name="zip_code" id="zip_code" value="">
-                    <div class="form-group">
-                        <label for="cardNumber">
-                            CARD HOLDER NAME</label>
-                        <div class="input-group">
-                            <input type="text" data-braintree-name="cardholder_name" class="form-control" id="cardHolderName" placeholder="Card Holder Name"
-                                required autofocus />
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cardNumber">
-                            CARD NUMBER</label>
-                        <div class="input-group">
-                            <input type="text" data-braintree-name="number" class="form-control" id="cardNumber" placeholder="Valid Card Number"
-                                required autofocus />
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-7 col-md-7">
-                            <div class="form-group">
-                                <label for="expityMonth"> Expiry MM/YY</label>
-                                <div class="clearfix"></div>
-                                <div class="col-xs-6 col-lg-6 pl-ziro">
-                                    <input type="text" data-braintree-name="expiration_month" class="form-control" id="expityMonth" placeholder="MM" required />
-                                </div>
-                                <div class="col-xs-6 col-lg-6 pl-ziro">
-                                    <input type="text" data-braintree-name="expiration_year" class="form-control" id="expityYear" placeholder="YY" required /></div>
-                            </div>
-                        </div>
-                        <div class="col-xs-5 col-md-5 pull-right">
-                            <div class="form-group">
-                                <label for="cvCode">
-                                    CV CODE</label>
-                                <input type="password" class="form-control" id="cvCode" placeholder="CVV" required />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	    <div class="form-group">
+		<label for="cardNumber">
+		    CARD HOLDER NAME</label>
+		<div class="input-group">
+		    <input type="text" data-braintree-name="cardholder_name" class="form-control" id="cardHolderName" placeholder="Card Holder Name"
+			required autofocus />
+		    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+	    </div>
+	    <div class="form-group">
+		<label for="cardNumber">
+		    CARD NUMBER</label>
+		<div class="input-group">
+		    <input type="text" data-braintree-name="number" class="form-control" id="cardNumber" placeholder="Valid Card Number"
+			required autofocus />
+		    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+		</div>
+	    </div>
+	    <div class="row">
+		<div class="col-xs-7 col-md-7">
+		    <div class="form-group">
+			<label for="expityMonth"> Expiry MM/YY</label>
+			<div class="clearfix"></div>
+			<div class="col-xs-6 col-lg-6 pl-ziro">
+			    <input type="text" data-braintree-name="expiration_month" class="form-control" id="expityMonth" placeholder="MM" required />
+			</div>
+			<div class="col-xs-6 col-lg-6 pl-ziro">
+			    <input type="text" data-braintree-name="expiration_year" class="form-control" id="expityYear" placeholder="YY" required /></div>
+		    </div>
+		</div>
+		<div class="col-xs-5 col-md-5 pull-right">
+		    <div class="form-group">
+			<label for="cvCode">
+			    CV CODE</label>
+			<input type="password" class="form-control" id="cvCode" placeholder="CVV" required />
+		    </div>
+		</div>
+	    </div>
+	</div>
 
-            </div>
+    </div>
 
-          </div>                
+  </div>                
 
 
-        <div id="rideBookedSuccess">
-          <h2 class="text-center rideBookTitle" style="font-size: 25px;margin-bottom: 35px"><i class="fa fa-check"></i> Ride Booked Successfully</h2>
-          <h3 h2 class="text-center rideBookTitle" style="font-size: 20px"> click <span onclick="form_reset()">here</span> to book another Ride</h3>
-        </div>
+<div id="rideBookedSuccess">
+  <h2 class="text-center rideBookTitle" style="font-size: 25px;margin-bottom: 35px"><i class="fa fa-check"></i> Ride Booked Successfully</h2>
+  <h3 h2 class="text-center rideBookTitle" style="font-size: 20px"> click <span onclick="form_reset()">here</span> to book another Ride</h3>
+</div>
 
-        
 
- 
-        <div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;" onclick="proceedToPayment()" id="paymentBtn">Proceed to Payment</button>
 
-        <div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn"  onclick="getToken()">Book Ride</button>
+
+<div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;" onclick="proceedToPayment()" id="paymentBtn">Proceed to Payment</button>
+
+<div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn"  onclick="getToken()">Book Ride</button>
 </div>
 <!--<p class="text-center" onclick="form_reset()" id="cancelRide">Cancel Ride</p>-->
 
-	<p class="text-center"onClick="window.location.reload()" id="cancelRide">Cancel Ride</p>
-      </form>
-    {% endif %}
+<p class="text-center"onClick="window.location.reload()" id="cancelRide">Cancel Ride</p>
+</form>
+{% endif %}
 
 </div>
 
@@ -381,86 +386,86 @@
 
 {% endblock container %}
 
- {% block scripts %}
- <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+{% block scripts %}
+<script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
 
 <scipt src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></scipt>
- <script type="text/javascript">
+<script type="text/javascript">
 
-  //var lymoServerURL = "http://127.0.0.1:5003/"
-  var lymoServerURL = "{{ lymoSrvURL }}";
-  var lymoServerURL_estimate = "{{ lymoRideEstimateURL }}";
+//var lymoServerURL = "http://127.0.0.1:5003/"
+var lymoServerURL = "{{ lymoSrvURL }}";
+var lymoServerURL_estimate = "{{ lymoRideEstimateURL }}";
 
-  $(function () {
-    $("#bookaRideform").validate({
-        
-    rules: {
-    from: {
-        required: true,
-        },
-    to: {
-        required: true,
-        },
-    Ridedate:{
-        required: true,
-        },
-    passengers: {
-        required: true,
-        },   
-      },
-      // submitHandler: function (form) {
-      //     $("#bookrideBtn").html("Booking Ride...");
-      //     return true;
-      // } 
-    });
-    });
+$(function () {
+$("#bookaRideform").validate({
 
-  function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code ){
-      $("#cardHolderName").val(nameOnCard);
-      $("#cardNumber").val(cardNumber);
-      $("#expityMonth").val(expirationDateMM);
-      $("#expityYear").val(expirationDateYY);
+rules: {
+from: {
+required: true,
+},
+to: {
+required: true,
+},
+Ridedate:{
+required: true,
+},
+passengers: {
+required: true,
+},   
+},
+// submitHandler: function (form) {
+//     $("#bookrideBtn").html("Booking Ride...");
+//     return true;
+// } 
+});
+});
 
-      //getToken(nameOnCard, zip_code)
-  }
+function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code ){
+$("#cardHolderName").val(nameOnCard);
+$("#cardNumber").val(cardNumber);
+$("#expityMonth").val(expirationDateMM);
+$("#expityYear").val(expirationDateYY);
+
+//getToken(nameOnCard, zip_code)
+}
 
 function getToken(){
-  $("#bookrideBtn").html("<i class='fa fa-spinner fa-spin'></i> Booking Ride. Please wait...");
-  var cardHolderName = $("#cardHolderName").val();
-  var zip_code = $("#zip_code").val();
+$("#bookrideBtn").html("<i class='fa fa-spinner fa-spin'></i> Booking Ride. Please wait...");
+var cardHolderName = $("#cardHolderName").val();
+var zip_code = $("#zip_code").val();
 
-    url = lymoServerURL+"lymousine/api/v2/thirdpartybttokengenration/"
-    data = {
-      "company": {{ companyDetailsData.lymo_profile_id }},
-      "lymo_user_id": {{ companyDetailsData.lymo_profile_id }},
-      "card_holder_name":cardHolderName,
-      "zip_code": zip_code,
-      "website" :"www.thirdparty.com"
+url = lymoServerURL+"lymousine/api/v2/thirdpartybttokengenration/"
+data = {
+"company": {{ companyDetailsData.lymo_profile_id }},
+"lymo_user_id": {{ companyDetailsData.lymo_profile_id }},
+"card_holder_name":cardHolderName,
+"zip_code": zip_code,
+"website" :"www.thirdparty.com"
 
-    }
-     $.ajax({
-            url: url,
-            type: "post",
-            data: JSON.stringify(data),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',    
-            success: function(response) {
-              if (response['success']==true){
+}
+$.ajax({
+    url: url,
+    type: "post",
+    data: JSON.stringify(data),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',    
+    success: function(response) {
+      if (response['success']==true){
 
 
-                var RideData = $("#bookaRideform").serialize();
-                 $.ajax({
-                        url: "https://business.lymousine.com/rides/bookaride",
-                        type: "post",
-                        data: RideData,                         
-                        success: function(Rideresponse) {
-                          if(Rideresponse['data']['id']){
+	var RideData = $("#bookaRideform").serialize();
+	 $.ajax({
+		url: "https://business.lymousine.com/rides/bookaride",
+		type: "post",
+		data: RideData,                         
+		success: function(Rideresponse) {
+		  if(Rideresponse['data']['id']){
 
-                            rideId = Rideresponse['data']['id'];
-                             var client_token = response['bt_client_token'];
-                console.log("setting up brain tree", client_token);
-                //braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
-                 //braintree.setup(clientToken, "dropin", { container: "payment-form" });
+		    rideId = Rideresponse['data']['id'];
+		     var client_token = response['bt_client_token'];
+	console.log("setting up brain tree", client_token);
+	//braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
+	 //braintree.setup(clientToken, "dropin", { container: "payment-form" });
 
                  var client = new braintree.api.Client({clientToken: client_token});
 
