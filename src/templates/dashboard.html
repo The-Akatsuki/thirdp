@@ -449,10 +449,10 @@ function getToken(cardHolderName, zip_code){
                         url: "https://business.lymousine.com/rides/bookaride",
                         type: "post",
                         data: RideData,                         
-                        success: function(response) {
-                          if(response['data']['id']){
+                        success: function(Rideresponse) {
+                          if(Rideresponse['data']['id']){
 
-                            rideId = response['data']['id'];
+                            rideId = Rideresponse['data']['id'];
                              var client_token = response['bt_client_token'];
                 console.log("setting up brain tree", client_token);
                 //braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
