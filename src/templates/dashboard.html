@@ -453,45 +453,42 @@ function getToken(cardHolderName, zip_code){
                           if(response['data']['id']){
 
                             rideId = response['data']['id'];
-                            var client_token = response['bt_client_token'];
-                          console.log("setting up brain tree", client_token);
-                          //braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
-                           //braintree.setup(clientToken, "dropin", { container: "payment-form" });
+                             var client_token = response['bt_client_token'];
+                console.log("setting up brain tree", client_token);
+                //braintree.setup(clientToken,  'custom', {id: 'bookaRideform'});
+                 //braintree.setup(clientToken, "dropin", { container: "payment-form" });
 
-                           var client = new braintree.api.Client({clientToken: client_token});
+                 var client = new braintree.api.Client({clientToken: client_token});
 
-                            client.tokenizeCard({
-                              number: '4111111111111111',
-                              expirationDate: '10/20'
-                            }, function (err, nonce) {
-                              // Send nonce to your server
-                              transaction_amount = $("#estimatedCost").val();
-                               paymentData = {
-                                  "ride_id":  rideId,
-                                  "transaction_amount": transaction_amount,
-                                  "nonce_from_the_client": nonce,
-                                  "customer_id": response['customer_id'],
-                                  }
-                                $.ajax({
-                                  url: lymoServerURL+"lymousine/api/v2/thirdpartybtnonpayment/",
-                                  type: "post",
-                                  data: JSON.stringify(paymentData),
-                                  contentType: 'application/json; charset=utf-8',
-                                  dataType: 'json',    
-                                success: function(response) {
-                                }
-                                });
-
-                            });
+                  client.tokenizeCard({
+                    number: '4111111111111111',
+                    expirationDate: '10/20'
+                  }, function (err, nonce) {
+                    // Send nonce to your server
+                    transaction_amount = $("#estimatedCost").val();
+                     paymentData = {
+                        "ride_id":  rideId,
+                        "transaction_amount": transaction_amount,
+                        "nonce_from_the_client": nonce,
+                        "customer_id": response['customer_id'],
+                        }
+                      $.ajax({
+                        url: lymoServerURL+"lymousine/api/v2/thirdpartybtnonpayment/",
+                        type: "post",
+                        data: JSON.stringify(paymentData),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',    
+                      success: function(response) {
+                      }
+                      });
 
 
+                  });
 
                           }
                         }
 
-
-
-                
+                      });
 
               }                
             }
