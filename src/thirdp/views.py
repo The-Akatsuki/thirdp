@@ -16,7 +16,7 @@ env = environ.Env()
 LYMOSRV_URL = env('LYMOSRV_URL')
 LYMO_RIDE_ESTIMATE_URL = env('LYMO_RIDE_ESTIMATE_URL')
 
-
+    
 class HomePage(generic.TemplateView):       
     template_name = "home.html"
 
@@ -31,8 +31,8 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         if user.profile.mobile == '' or user.profile.mobile == None:
             request.session['__init_dashboard_profile'] = True
             return redirect("profiles:edit_self")
-        companyDetailsData = models.companyDetails.objects.filter(user=self.request.user).count()
-        if companyDetailsData==0:
+        companyDetailsData = models.companyDetails.objects.filter(user=self.request.user)
+        if companyDetailsData.count()==0:
             request.session['__init_dashboard_company'] = True
             return redirect("profiles:companyprofile")
         paymentsDetailsData = paymentsDetails.objects.filter(userid=self.request.user)
@@ -63,11 +63,14 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         kwargs['lymoSrvURL'] = LYMOSRV_URL
         kwargs['lymoRideEstimateURL'] = LYMO_RIDE_ESTIMATE_URL
 
+        print companyDetailsData.first()
+
         bookedRidesData = ridebooking.objects.filter(user=self.request.user)
         print bookedRidesData.__dict__
         if bookedRidesData is not None:
             kwargs['bookedRidesData'] = bookedRidesData
-            kwargs['paymentsDetailsData'] = paymentsDetailsData            
+            kwargs['paymentsDetailsData'] = paymentsDetailsData 
+            kwargs['companyDetailsData'] = companyDetailsData           
         return super(dashboard, self).get(request, *args, **kwargs)
 
 
