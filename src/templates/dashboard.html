@@ -422,6 +422,19 @@
     });
     });
 
+  function passengerSelect(){
+    var url = lymoServerURL+"/lymousine/api/v1/driver/configuration/vehicletype";
+    $.ajax({
+                url: lymoServerURL+"lymousine/api/v1/forcorporateapplication2/",
+                type: "get",
+                success: function(d) {
+                  console.log(d)
+                  $("#passengers-select")
+                }
+              });
+    
+  }
+
   function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code ){
       $("#cardHolderName").val(nameOnCard);
       $("#cardNumber").val(cardNumber);
