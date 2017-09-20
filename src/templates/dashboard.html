@@ -550,7 +550,7 @@ function bookRideSYNC(){
       "input-zipcode": $("#input-zipcode").val()
     }
     $("#zip_code").val($("#input-zipcode").val());
-    var url =  "https://business.lymousine.com/rides/addpaymentjson";
+    var url =  "https://business.lymousine.com/payments/addpaymentjson";
     $.ajax({
       url: url,
       type: "post",
