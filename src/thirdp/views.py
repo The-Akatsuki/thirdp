@@ -55,8 +55,9 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
                 print "line 52"
                 kwargs['companyStatus'] = False
             else:
-                print "line 55"
-                kwargs['companyStatus'] = True 
+                print "line 55", companyStatusText['data']['status'].lower()
+                if companyStatusText['data']['status'].lower() != 'pending':
+                    kwargs['companyStatus'] = True 
 
         print kwargs['companyStatus']
 
