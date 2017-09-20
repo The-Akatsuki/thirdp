@@ -1584,7 +1584,7 @@ input.hidden_radio {
         bottom: 0;
     }
 }*/
-form input[type="text"], form select {
+form input[type="text"] {
   width: 100% !important;
   font-size: 16px;
   display: block;
@@ -1802,11 +1802,10 @@ ul.ride-meta li {
 }
 label.error {
     position: absolute;
-    bottom: -12px;
+    bottom: -17px;
     color: #ec385b;
     text-align: right;
     right: 4px;
-    font-size: 13px;
 }
 #hint_id_password2 {
     display: none;
@@ -1999,7 +1998,7 @@ span.fa.fa-calendar.calndr {
     top: 0;
 }
 
-form#bookaRideform .form-group input[type="text"], form#bookaRideform .form-group select {
+form#bookaRideform .form-group input[type="text"] {
     font-size: 14px;
     padding: 16px 25px 16px 6px;
 }
@@ -2365,18 +2364,7 @@ button#bookrideBtn {
 }
 .nav.navbar-nav.navbar-right {
     position: relative;
-}
-#locationMap {
-    width: 100%;
-}
-input#id_username , input#id_email {
-    text-transform: lowercase !important;
-}
-.form-group.adjustable {
-    position: absolute;
-    margin: -10px auto 0px;
-    font-size: 13px;
-}
+
 /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/
 /*******************************************************************************************************************************/

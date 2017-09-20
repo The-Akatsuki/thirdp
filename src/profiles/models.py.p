@@ -31,7 +31,6 @@ class Profile(BaseProfile):
 
 userType_CHOICES = {
         ("company_secretary", "company Secretary"),
- #       ("third_party_desk", "Third party travel desk Secretary")
         ("company_commission", "Third party travel desk Secretary")
     }
 

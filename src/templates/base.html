@@ -309,15 +309,19 @@ function origin_address_calculation(){
         var originInput = document.getElementById('origin-input');
         var destinationInput = document.getElementById('destination-input');
 
-        var id_companyName = document.getElementById('id_companyName');
+        //var id_companyName = document.getElementById('id_companyName');
         
-        var originAutocomplete = new google.maps.places.Autocomplete(
-            originInput);
-        var destinationAutocomplete = new google.maps.places.Autocomplete(
-            destinationInput);
+       // var originAutocomplete = new google.maps.places.Autocomplete(originInput);
+        //var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
 
-        var CompanyAutoCompete = new google.maps.places.Autocomplete(
-            id_companyName);
+        //var CompanyAutoCompete = new google.maps.places.Autocomplete(id_companyName);
+	     
+	     var id_address = document.getElementById('id_address');
+	             
+	     var originAutocomplete = new google.maps.places.Autocomplete(originInput);
+	     var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+
+            var CompanyAutoCompete = new google.maps.places.Autocomplete(id_address);
 
 
         google.maps.event.addListener(originAutocomplete, 'place_changed', function() {

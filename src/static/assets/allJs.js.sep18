@@ -52,12 +52,7 @@
     companyName: {
         required: true,
     },
-    mobile: {
-        required: true,
-        minlength:10,
-        maxlength:12,
-        number:true
-        },
+
 
     phone: {
         required: true,
@@ -87,8 +82,8 @@
 
     zipCode: {
         required: true,
-        minlength:4,
-        maxlength:6,
+        minlength:6,
+        maxlength:12,
         number:true
         },
 
@@ -97,21 +92,20 @@
         },
     cardNumber: {
         required: true,
-        minlength:15,
-        maxlength:16,
+        minlength:6,
+        maxlength:20,
         number:true
         },
     expirationDateMM: {
         required: true,
         minlength:2,
         maxlength:2,
-        max: 12,
         number:true
         },
      expirationDateYY: {
         required: true,
         minlength:2,
-        maxlength:2,
+        maxlength:4,
         number:true
         },
     cvcCode: {
@@ -137,10 +131,6 @@
     messages: {
          password2:  {
         equalTo: "Password does not match",
-        },
-        mobile:  {
-        maxlength: "Please enter no more than 12 numbers",
-        minlength: "Please enter at least 10 numbers",
         },
         phone:  {
         maxlength: "Please enter no more than 12 numbers",
