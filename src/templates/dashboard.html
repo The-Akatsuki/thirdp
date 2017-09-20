@@ -325,6 +325,8 @@
 
 <input type="hidden" name="estimatedCost" id="estimatedCost" value="">
 <input type="hidden" name="zip_code" id="zip_code" value="">
+
+<div id="payment-inputs" style="display: none;">
 	    <div class="form-group">
 		<label for="cardNumber">
 		    CARD HOLDER NAME</label>
@@ -363,6 +365,9 @@
 		    </div>
 		</div>
 	    </div>
+  </div>
+
+
 	</div>
 
     </div>
@@ -464,6 +469,8 @@
       $("#expityMonth").val(expirationDateMM);
       $("#expityYear").val(expirationDateYY);
       $("#zip_code").val(zip_code);
+
+      $("#payment-inputs").show();
       //getToken(nameOnCard, zip_code)
   }
 
