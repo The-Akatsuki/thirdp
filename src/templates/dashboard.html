@@ -430,20 +430,32 @@
       // } 
     });
 
-    passengerSelect();
+    getVehicleTypeInfo();
     });
 
-  function passengerSelect(){
+  function getVehicleTypeInfo(){
     var url = lymoServerURL+"/lymousine/api/v1/driver/configuration/vehicletype";
     $.ajax({
                 url: url,
                 type: "get",
                 success: function(d) {
                   console.log(d)
-                  $("#passengers-select")
+                  vehicleTypeResponse = d;
                 }
               });
     
+  }
+
+  function passengerChange($vehicleID){
+    $.each(vehicleTypeResponse, function(index, value)){
+      if($vehicleID == value.id){
+        var html = "";
+        for($i=1; $i<=value.no_of_seats; $i++){
+          var html = "<option  value="+$i+">"+$i+"</option>"
+        }
+        $("#passengers-select").html(html);
+      }
+    }
   }
 
   function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code ){
@@ -844,6 +856,7 @@ $.ajax({
      $('.menu-types').on('click', 'a', function() {
       $(this).addClass('active').siblings('.active').removeClass('active');
       $(this).parent().find('.type-value').val($(this).data('value'));
+      passengerChange($(this).data('value'));
       return false;
     });
    });
