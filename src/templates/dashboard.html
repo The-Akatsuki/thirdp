@@ -451,7 +451,7 @@
       if($vehicleID == value.id){
         var html = "";
         for($i=1; $i<=value.no_of_seats; $i++){
-          var html += "<option  value="+$i+">"+$i+"</option>"
+          html += "<option  value="+$i+">"+$i+"</option>"
         }
         $("#passengers-select").html(html);
       }
