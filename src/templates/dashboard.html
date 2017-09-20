@@ -68,9 +68,10 @@
                                         <span class="rideBy">ride by</span>
                                         <a href="#">{{ bookedRide.passenger_email }}</a>
                                       </li>
-                                      <li>
+                                    <!--  <li>
                                         {{ bookedRide.status }}
                                       </li>
+					-->
                                         <li class="ride-date">
                                             <a href="#" class="tooltip-link" data-original-title="Date" data-toggle="tooltip">
                                             </a>
@@ -255,7 +256,7 @@
 	<option  value="1">3</option>
 	<option  value="1">4</option>
       </select>
-    </div>
+</div>
   </div>
 
   <div class="col-md-6">
@@ -281,6 +282,13 @@
  <button type="button" onclick="estimateRide()"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto; " id="estimateRidebtn">Estimate Ride</button>
  </div>
 <input type="hidden" id="type" name="type" value="2" class="ajaxField">
+
+
+
+
+<button type="button" value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter" style="background: #E63053;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto; " id="estimateRidebtn">Submit</button>
+
+
 <div class="clearfix"></div>
 <div id="rideEstimatedCost">          
   <h3 h2 class="text-center rideEstimatedCostTitle" style="font-size: 20px"></h3>
@@ -390,44 +398,47 @@
 <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
 
 <scipt src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></scipt>
-<script type="text/javascript">
 
-//var lymoServerURL = "http://127.0.0.1:5003/"
-var lymoServerURL = "{{ lymoSrvURL }}";
-var lymoServerURL_estimate = "{{ lymoRideEstimateURL }}";
+ <script type="text/javascript">
 
-$(function () {
-$("#bookaRideform").validate({
+  //var lymoServerURL = "http://127.0.0.1:5003/"
+  var lymoServerURL = "{{ lymoSrvURL }}";
+  var lymoServerURL_estimate = "{{ lymoRideEstimateURL }}";
 
-rules: {
-from: {
-required: true,
-},
-to: {
-required: true,
-},
-Ridedate:{
-required: true,
-},
-passengers: {
-required: true,
-},   
-},
-// submitHandler: function (form) {
-//     $("#bookrideBtn").html("Booking Ride...");
-//     return true;
-// } 
-});
-});
+  var vehicleTypeResponse = "";
 
-function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code ){
-$("#cardHolderName").val(nameOnCard);
-$("#cardNumber").val(cardNumber);
-$("#expityMonth").val(expirationDateMM);
-$("#expityYear").val(expirationDateYY);
+  $(function () {
+    $("#bookaRideform").validate({
+        
+    rules: {
+    from: {
+        required: true,
+        },
+    to: {
+        required: true,
+        },
+    Ridedate:{
+        required: true,
+        },
+    passengers: {
+        required: true,
+        },   
+      },
+      // submitHandler: function (form) {
+      //     $("#bookrideBtn").html("Booking Ride...");
+      //     return true;
+      // } 
+    });
+    });
 
-//getToken(nameOnCard, zip_code)
-}
+  function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code ){
+      $("#cardHolderName").val(nameOnCard);
+      $("#cardNumber").val(cardNumber);
+      $("#expityMonth").val(expirationDateMM);
+      $("#expityYear").val(expirationDateYY);
+      $("#zip_code").val(zip_code);
+      //getToken(nameOnCard, zip_code)
+  }
 
 function getToken(){
 $("#bookrideBtn").html("<i class='fa fa-spinner fa-spin'></i> Booking Ride. Please wait...");
@@ -436,7 +447,7 @@ var zip_code = $("#zip_code").val();
 
 url = lymoServerURL+"lymousine/api/v2/thirdpartybttokengenration/"
 data = {
-"company": {{ companyDetailsData.lymo_profile_id }},
+"company": {{ companyDetailsData.lymo_company_id }},
 "lymo_user_id": {{ companyDetailsData.lymo_profile_id }},
 "card_holder_name":cardHolderName,
 "zip_code": zip_code,
@@ -729,7 +740,7 @@ $.ajax({
                 contentType: "application/json",
                 success: function(d) {
                    if(d.success==true){
-                       html = "<i class='fa fa-check'></i> Invitation succesully  send to "+receiver
+                       html = "<i class='fa fa-check'></i> Invitation successfully  send to "+receiver
                         $(".usernotFoundText").html(html);
                    }else{
                         html = "<i class='fa fa-errors'></i> There is some problem sending Email or Mobile SMS. Please contact Administrator"
@@ -766,8 +777,9 @@ $.ajax({
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(d) {
+			console.log(d);
                   console.log(d['refund_amount']);
-                   if(d['refund_amount'] != 'undefined'){
+                   if(d['success'] != false){
                       $article_div.find(".CancelRideReasonDIV").show();
 
                        html = "Ride Amount: <strong>$"+d['ride_amount']+"</strong><br/> Amount to be refunded: <strong>$"+ d['refund_amount']+"</strong><br/> Cancellation Charges: <strong>$"+ d['cancellation_charges']+"</strong>";
@@ -785,7 +797,8 @@ $.ajax({
 
 
                    }else{
-                        html = "<i class='fa fa-errors'></i> There is some problem sending Email or Mobile SMS. Please contact Administrator"
+			   console.log(d['ride_status']['ride_status_name'])
+			    html = "<i class='fa fa-errors'></i> Ride Status is <strong>"+d['ride_status']['ride_status_name']+" </strong>("+d['ride_status']['ride_status_desc']+") hence same cannot be cancelled as Payment was not fullfilled";
                         $article_div.find('.cancelRideRefundAmount').show().html(html)
                         $article_div.find('.CancelRideBTN').html('<i class="fa fa-ban"></i> Cancel Ride')
 

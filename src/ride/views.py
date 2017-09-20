@@ -25,7 +25,8 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         newDateTime = d.strftime('%Y-%m-%d %H:%M:%S')       
         booking_datetime = datetime.datetime.now()
         booking_datetime= booking_datetime.strftime('%Y-%m-%d %H:%M:%S')
-        url = "https://lymosrv.ddns.net/lymousine/api/v1/forcorporateapplicationridebooking"
+        #url = "https://lymosrv.ddns.net/lymousine/api/v1/forcorporateapplicationridebooking"
+        url = "https://lymousine.zyleck.com/lymousine/api/v1/forcorporateapplicationridebooking"
         # print postData['from_country']
         # print postData['from_state']
         # print postData['from_city']
@@ -55,7 +56,9 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
                     "ride_type":1,
                     "country":postData['country_id'],
                     "state":postData['state_id'],
-                    "city":postData['city_id']
+                    "city":postData['city_id'],
+                    "timezone_name":'America/New_York'
+
                  }
         # print payload
 
@@ -119,7 +122,8 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         postData =  request.POST
         booking_datetime = datetime.datetime.now()
         local_datetime= booking_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
-        url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellation/"
+        url = "https://lymousine.zyleck.com/lymousine/api/v2/thirdpartyridecancellation/"
+        #url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellation/"
         payload = {
                     "ride_order":postData['ride_id'],   
                     #"local_datetime":local_datetime, 

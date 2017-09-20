@@ -1802,11 +1802,10 @@ ul.ride-meta li {
 }
 label.error {
     position: absolute;
-    bottom: -12px;
+    bottom: -17px;
     color: #ec385b;
     text-align: right;
     right: 4px;
-    font-size: 13px;
 }
 #hint_id_password2 {
     display: none;
@@ -2305,7 +2304,7 @@ form#editCompanyForm .customFrom .form-group textarea#id_address {
     height: 43px !important;
 }
 form#addPaymentForm #id_address {
-    height: 43px !important;
+    height: 42px !important;
 }
 #id_userType_1, #id_userType_2 {
     margin: 0px 0px 0px -20px;
@@ -2368,14 +2367,6 @@ button#bookrideBtn {
 }
 #locationMap {
     width: 100%;
-}
-input#id_username , input#id_email {
-    text-transform: lowercase !important;
-}
-.form-group.adjustable {
-    position: absolute;
-    margin: -10px auto 0px;
-    font-size: 13px;
 }
 /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/

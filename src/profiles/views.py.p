@@ -112,7 +112,11 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
         try:
             user = self.request.user
             b = models.companyDetails.objects.filter(user=user).first()
+            print "this is post data"
+            print request.POST
             companyProfileForm = forms.companyProfileForm(request.POST, instance=b)
+            print "company profile data "
+            # print companyProfileForm
             #b = models.companyDetails.objects.filter(user=self.request.user)
             #print b;
             companyProfile = companyProfileForm.save(commit=False)
@@ -132,12 +136,12 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
                 "company_address": request.POST['address'],
                 "zip_code": request.POST['zipCode'],
                 "phone_no": phone_no,
-                #"trd_pty_usr": 1,
+                "trd_pty_usr": 1,
                 "country": request.POST['country'],
                 "state": request.POST['state'],
                 "city": request.POST['city'],
-                "trd_party_user_type": request.POST['userType'],
-                ##"trd_party_user_type":"company_secretary",
+                # "trd_party_user_type": request.POST['userType'],
+                "trd_party_user_type":request.POST["userType"],
                 "trd_pty_usr":lymo_profile_id,
                 "created_by":lymo_profile_id,
                 "updated_by":lymo_profile_id
@@ -145,6 +149,7 @@ class EditCompanyProfile(LoginRequiredMixin, generic.TemplateView):
             print payload
             print url            
             response = requests.post(url, json = payload)
+            print response
             print response.text
             data_to_store =json.loads(response.text)
             if data_to_store["success"] == True:
