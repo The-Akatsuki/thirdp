@@ -447,7 +447,7 @@
   }
 
   function passengerChange($vehicleID){
-    $.each(vehicleTypeResponse, function(index, value)){
+    $.each(vehicleTypeResponse, function(index, value){
       if($vehicleID == value.id){
         var html = "";
         for($i=1; $i<=value.no_of_seats; $i++){
@@ -455,7 +455,7 @@
         }
         $("#passengers-select").html(html);
       }
-    }
+    });
   }
 
   function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code ){
