@@ -25,8 +25,20 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         newDateTime = d.strftime('%Y-%m-%d %H:%M:%S')       
         booking_datetime = datetime.datetime.now()
         booking_datetime= booking_datetime.strftime('%Y-%m-%d %H:%M:%S')
-        #url = "https://lymosrv.ddns.net/lymousine/api/v1/forcorporateapplicationridebooking"
-        url = "https://lymousine.zyleck.com/lymousine/api/v1/forcorporateapplicationridebooking"
+        try:
+            company_details = models.companyDetails.objects.filter(user=self.request.user).first()
+            if company_details is not None:
+                lymo_company_id= company_details.lymo_company_id
+                lymo_profile_id= company_details.lymo_profile_id
+                calculation_key= str(company_details.userType)
+        except Exception as e:
+               print e
+               lymo_company_id=1
+               lymo_profile_id=1
+               calculation_key="company_secretary"
+
+        url = "https://lymosrv.ddns.net/lymousine/api/v1/forcorporateapplicationridebooking"
+        #url = "https://lymousine.zyleck.com/lymousine/api/v1/forcorporateapplicationridebooking"
         # print postData['from_country']
         # print postData['from_state']
         # print postData['from_city']
@@ -57,14 +69,18 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
                     "country":postData['country_id'],
                     "state":postData['state_id'],
                     "city":postData['city_id'],
-                    "timezone_name":'America/New_York'
-
+                    "timezone_name":'America/New_York',
+                    "company_id":lymo_company_id,
+                    "user_id":lymo_profile_id,
+                    "calculation_key":calculation_key,
+                    "third_party_type":calculation_key
                  }
         # print payload
 
         response = requests.post(url, json = payload)
         print "response text"
         rideData =  json.loads(response.text)
+        print response.text
         rideId = rideData['data']['id']
        
         p = models.ridebooking( ride_id = rideId,
@@ -122,8 +138,8 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         postData =  request.POST
         booking_datetime = datetime.datetime.now()
         local_datetime= booking_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
-        url = "https://lymousine.zyleck.com/lymousine/api/v2/thirdpartyridecancellation/"
-        #url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellation/"
+        #url = "https://lymousine.zyleck.com/lymousine/api/v2/thirdpartyridecancellation/"
+        url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellation/"
         payload = {
                     "ride_order":postData['ride_id'],   
                     #"local_datetime":local_datetime, 
@@ -145,8 +161,3 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         e.save()
         messages.success(request, "Ride #LYMO"+str(postData['ride_id'])+" has been Cancelled")
         return redirect("dashboard") 
-
- 
-
-
-        

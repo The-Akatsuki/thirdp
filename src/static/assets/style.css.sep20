@@ -1482,31 +1482,59 @@ input.hidden_radio {
 
 
 .menu-types a {
-  -webkit-border 
+  -webkit-border-radius: 4px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 4px;
+  -moz-background-clip: padding;
+  border-radius: 4px;
+  background-clip: padding-box;
+  display: inline-block;
+  vertical-align: middle;
+  /*    font-family: 'Fjalla One', sans-serif;*/
+  font-family: 'Fira Sans Condensed', sans-serif;
+  /*font-size: 12px;*/
+  text-transform: uppercase;
+  color: #1F1F1F;
+  width: 65px;
+  height: 72px;
+  background-repeat: no-repeat;
+  background-position: 50% 36%;
+  text-align: center;
+  padding: 42px 0 10px 0;
+  margin: 0 20px;
+  transition: background .4s ease;
+  line-height: 25.6px;
+  font-weight: bold;
+  font-size: 11px;
 }
 .menu-types a.red {
   color: #9F340A;
 }
 .menu-types a.type-1 {
   background-image: url("/static/assets/images/car1.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-2 {
   background-image: url("/static/assets/images/car2.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-3 {
   background-image: url("/static/assets/images/car3.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-4 {
   background-image: url("/static/assets/images/car4.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-5 {
   background-image: url("/static/assets/images/car5.png");
+  background-size: 60px 25px;
 }
 .menu-types a.type-6 {
   background-image: url("/static/assets/images/car6.png");
+  background-size: 60px 25px;
 }
 
-.menu-types a { border-radius: 30px;   background-size: 60px 60px !important;    height: 60px;    width: 60px;    display: inline-block;}
 
 .menu-types a:hover,
 .menu-types a.active {
@@ -1535,7 +1563,7 @@ input.hidden_radio {
   margin: 40px 0 15px;
 }
 .form-taxi-short form {
-   background: #ec385b;
+    background: #50c2b7;
   -webkit-border-radius: 8px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 8px;
@@ -1546,16 +1574,7 @@ input.hidden_radio {
   padding: 45px 30px 30px;  
   width: 100%;
 }
-.btnStyle {
-    background: #3c342f;
-    color: #fff !important;
-    font-size: 16px;
-    border-radius: 30px;
-    margin: 0 auto;
-    display: block;
-    clear: both;
-    border-color: #2C2522;
-}
+
 /*@media (min-width: 960px){
     .form-taxi-short form{
         position: absolute;
@@ -1565,7 +1584,6 @@ input.hidden_radio {
         bottom: 0;
     }
 }*/
-.form-taxi-short form * {    color: #fff;}
 form input[type="text"], form select {
   width: 100% !important;
   font-size: 16px;
@@ -2097,7 +2115,7 @@ p.watchVideo {
 }
 
 h2.text-center.rideBookTitle.userFoundText span , h2.text-center.rideBookTitle.usernotFoundText span {
-    background: #50c2b7;
+    background: #e63053;
     color: #fff;
     border-radius: 22px;
     padding: 10px 15px;
@@ -2230,13 +2248,11 @@ span.rideBy {
     border-radius: 50px;
 }
 .userBoxInner {
-      display: inline-block;
+    display: inline-block;
     padding: 10px;
-    background: #e13456;
-    box-shadow: 0px 0px 0px 2px #b72642, inset 0px 0px 0px 2px #ec385b;
-    margin: 0 auto 10px;
+    background: #34afa3;
+    box-shadow: 0px 0px 0px 1px #34afa3, inset 0px 0px 0px 2px #50c2b7;
 }
- 
 .alert.alert-success {
     z-index: 4;
     position: absolute;
@@ -2310,16 +2326,16 @@ form#addPaymentForm #id_address {
     font-size: 25px;
     color: #3c352f;
 }
-
 .form-taxi-short .menu-types a.active {
-	    background-color: #ed375a;
-	        box-shadow: 0px 0px 0px 4px #52c3b7, 0px 0px 5px 3px #c92141;
-		    color: #000;
+    background-color: #34afa3;
+    box-shadow: 0px 0px 0px 1px #34afa3, inset 0px 0px 0px 2px #50c2b7;
+    color: #000;
 }
-
-
-
-.form-taxi-short .menu-types a:hover {    background-color: #ec385b;    color: #3c342f;    box-shadow: 0px 0px 0px 1px #c92141, 0px 0px 7px 3px #c92141;}
+.form-taxi-short .menu-types a:hover {
+    background-color: #34afa3;
+    color: #3c342f;
+    box-shadow: 0px 0px 4px 2px #2c9288, inset 0px 0px 0px 2px #50c2b7;
+}
 .alert {
     text-align: center;
     top: 2px;
@@ -2361,46 +2377,6 @@ input#id_username , input#id_email {
     margin: -10px auto 0px;
     font-size: 13px;
 }
-.rideBookTitle {
-    font-size: 15px;
-}
-.btn {    
-    background-image: none !important; 
-       -webkit-box-shadow: none !important; 
-          -moz-box-shadow: none !important;  
-          box-shadow: none !important;}
-#passengers-select option {
-    color: #3c342f;
-}
-.rideEstimatedCostTitle {    
-    margin: 0 auto 10px;
-}
-form#bookaRideform .form-group input[type="text"],form#bookaRideform .form-group input[type="password"], form#bookaRideform .form-group select {    
-    height: 45px;    
-    width: 100% !important;    
-    font-size: 16px;    
-    display: block;    
-    margin: 0 auto;    
-    padding: 10px 25px 10px 6px;    
-    border: 1px solid #E6E6E6;    
-    -webkit-border-radius: 3px;    
-    -webkit-background-clip: padding-box;    
-    -moz-border-radius: 3px;    
-    -moz-background-clip: padding;    
-    border-radius: 3px;    
-    background-clip: padding-box;
-    color: #3c342f;
-}
-.form-taxi-short form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.form_third_content h3 {  
-  font-size: 20px;   
-   font-weight: bold;}
- button:hover, button:active, button:focus, button, button::-moz-focus-inner {   
-  outline: 0 !important;}
-  .form-taxi-short .menu-types a {    margin: 0px 4px 0 4px;}
 /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/
 /*******************************************************************************************************************************/
@@ -2495,7 +2471,6 @@ article.ride-box {
 a.login {
     margin: 0px 0px 0px 15px;
 }
-
 }
 
 

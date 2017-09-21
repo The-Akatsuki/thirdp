@@ -66,7 +66,7 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
             if '__init_dashboard_payments' in request.session:
                 messages.success(request, "Payment Method has been saved!")
                 del request.session['__init_dashboard_payments']
-                return redirect("dashoboard")
+                return redirect("dashboard")
 
         except Exception as e:
             print e 
