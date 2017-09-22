@@ -72,7 +72,7 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
             print e 
         return redirect("payments:paymentmethods")
 
-class editPayment(LoginRequiredMixin, generic.TemplateView, id):
+class editPayment(id, LoginRequiredMixin, generic.TemplateView):
     template_name = "payments/addPaymentMethod.html"
     http_method_names = ['get', 'post']
 
