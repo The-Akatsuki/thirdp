@@ -125,6 +125,19 @@ class addPaymentJSON(LoginRequiredMixin, generic.TemplateView):
             print e 
         return JsonResponse(response)
 
+
+
+class deletePayment(LoginRequiredMixin, generic.TemplateView):
+    template_name = "payments/addPaymentMethod.html"
+    http_method_names = ['get', 'post']
+
+    def get(self, request, id=None, *args, **kwargs):
+        if "paymentForm" not in kwargs:
+            paymentData = models.paymentsDetails.objects.filter(id=id).delete()
+            return redirect("payments:paymentmethods")
+        return super(addPayment, self).get(request, *args, **kwargs)
+
+
 class paymentMethods(LoginRequiredMixin, generic.TemplateView):
     template_name = "payments/listCreditCard.html"
     http_method_names = ['get', 'post']
