@@ -23,7 +23,8 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
         if "paymentForm" not in kwargs:
-            kwargs["paymentForm"] = forms.paymentForm()
+            paymentData = models.paymentsDetails.objects.filter(userid=request.user.id).first()
+            kwargs["paymentForm"] = forms.paymentForm(instance=paymentData)
         return super(addPayment, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):

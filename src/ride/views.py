@@ -13,6 +13,10 @@ import json
 from django.http import JsonResponse
 
 
+import environ
+env = environ.Env()
+LYMOSRV_URL = env('LYMOSRV_URL')
+
 # Create your views here.
 class BookRide(LoginRequiredMixin, generic.TemplateView):
     template_name = "ride/book_ride.html"
@@ -37,7 +41,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
                lymo_profile_id=1
                calculation_key="company_secretary"
 
-        url = "https://lymosrv.ddns.net/lymousine/api/v1/forcorporateapplicationridebooking"
+        url = LYMOSRV_URL+"lymousine/api/v1/forcorporateapplicationridebooking"
         #url = "https://lymousine.zyleck.com/lymousine/api/v1/forcorporateapplicationridebooking"
         # print postData['from_country']
         # print postData['from_state']
@@ -139,7 +143,7 @@ class cancelRide(LoginRequiredMixin, generic.TemplateView):
         booking_datetime = datetime.datetime.now()
         local_datetime= booking_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
         #url = "https://lymousine.zyleck.com/lymousine/api/v2/thirdpartyridecancellation/"
-        url = "https://lymosrv.ddns.net/lymousine/api/v2/thirdpartyridecancellation/"
+        url = LYMOSRV_URL+"lymousine/api/v2/thirdpartyridecancellation/"
         payload = {
                     "ride_order":postData['ride_id'],   
                     #"local_datetime":local_datetime, 

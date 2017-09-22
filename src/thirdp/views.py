@@ -61,8 +61,6 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
 
         print kwargs['companyStatus']
 
-
-
         #vehicleTypeurl = LYMOSRV_URL+"lymousine/api/v1/driver/configuration/vehicletype"
         #vehicleTypeResponse = requests.get(url)
 
