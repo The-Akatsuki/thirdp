@@ -23,8 +23,7 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
         if "paymentForm" not in kwargs:
-            paymentData = models.paymentsDetails.objects.filter(userid=request.user.id).first()
-            kwargs["paymentForm"] = forms.paymentForm(instance=paymentData)
+            kwargs["paymentForm"] = forms.paymentForm()
         return super(addPayment, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -72,6 +71,16 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
         except Exception as e:
             print e 
         return redirect("payments:paymentmethods")
+
+class editPayment(LoginRequiredMixin, generic.TemplateView, id):
+    template_name = "payments/addPaymentMethod.html"
+    http_method_names = ['get', 'post']
+
+    def get(self, request, *args, **kwargs):
+        if "paymentForm" not in kwargs:
+            paymentData = models.paymentsDetails.objects.filter(id=id).first()
+            kwargs["paymentForm"] = forms.paymentForm(instance=paymentData)
+        return super(addPayment, self).get(request, *args, **kwargs)
 
 class addPaymentJSON(LoginRequiredMixin, generic.TemplateView):
     template_name = "payments/addPaymentMethod.html"
