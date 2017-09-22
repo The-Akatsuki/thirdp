@@ -21,7 +21,7 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
     template_name = "payments/addPaymentMethod.html"
     http_method_names = ['get', 'post']
 
-    def get(self, request, *args, **kwargs, id=None):
+    def get(self, request, id=None, *args, **kwargs):
         if "paymentForm" not in kwargs:
             if id is not None:
                 paymentData = models.paymentsDetails.objects.filter(id=id).first()
