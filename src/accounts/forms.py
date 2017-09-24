@@ -20,7 +20,7 @@ class LoginForm(AuthenticationForm):
         self.helper.layout = Layout(
             Field('username', placeholder="Enter Email", autofocus=""),
             Field('password', placeholder="Enter Password"),
-            HTML('<a href="{}">Forgot Password?</a>'.format(
+            HTML('<a href="{}"></a>'.format(
                 reverse("accounts:password-reset"))),
             Field('remember_me'),
             Submit('sign_in', 'Log in',

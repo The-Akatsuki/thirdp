@@ -86,6 +86,10 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         rideData =  json.loads(response.text)
         print response.text
         rideId = rideData['data']['id']
+        try:
+           passenger_name= rideData["data"]["passenger_name"]
+        except :
+           passenger_name= " "
        
         p = models.ridebooking( ride_id = rideId,
                                 pickup_lat=postData['from_lat'],
@@ -101,6 +105,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
                                 passenger=postData['passengerid'],
                                 passenger_email=postData['email'],
                                 status='New Ride Booked',
+                                passenger_name= passenger_name,
                                 user = user)    
         p.save()    
         messages.success(request, "Your Ride has been booked!")

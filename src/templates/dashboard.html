@@ -21,6 +21,11 @@
       </div>
     </div>
   </div>
+
+
+                         
+
+
 </div> -->
 
 <div class="container-fluid form-taxi-short">
@@ -28,9 +33,25 @@
 
 <div class="col-md-7 col-sm-12 col-xs-12">
 
-                      <div class="groupOne">  
+                      <div class="groupOne"> 
+                      <div class="row">
+                        <div class="col-xs-6 text-left">
+                          <div class="compnayLogo "><img src="{% static 'assets/images/logo.png' %}" class="img-responsive img">
+                          </div>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                          <div class="compnayLogo pull-right"><img src="{% static 'assets/images/forBusiness.png' %}" class="img-responsive img"> 
+                          </div>
+                        </div>
+                      </div> 
+
+
+
                       <div class="page-sub-title text-center" style="position: relative;">
-                            <h2>Booked rides</h2>
+
+                      
+                          <h2>Booked rides</h2>
+                       
                             <div class="line"></div>
                         </div><!-- end .page-sub-title -->
                         </div>
@@ -45,6 +66,11 @@
                             {% if bookedRidesData is not None %}
                             {% for bookedRide in bookedRidesData.all %}
                                <article class="ride-box clearfix article_{{bookedRide.ride_id}}">
+                                <div class="row">
+                                  <div class="text-center riderNameIcon futura col-sm-12">
+					  <i class="fa fa-user-circle-o" aria-hidden="true"></i>  <span class="ridedatetimespan"> {{ bookedRide.passenger_name }}</span>
+                                  </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="rideDAtetime col-sm-7">
@@ -149,9 +175,26 @@
 <div class="spaceOnly"><br><br><br><br><br><br><br><br><br><br></div>
 
          <div class="row form-with-labels text-center form_first_content">
+         
+ 
          <h2 class="text-center rideBookTitle" style="font-size: 25px;">Book Ride</h2>
-          <div class="clearfix">&nbsp;</div> 
-         <h2 class="text-center rideBookTitle">Enter Email or Mobile Number of your Contact</h2>          
+
+
+
+
+
+          <div class="text-center rideBookText"> 
+        <p class="bolder"> A simple way to book rides </p>  
+        <div class="boxone">
+        <i class="fa fa-car" aria-hidden="true"></i> As an employer for your employees, <div class="text-center"> or </div><i class="fa fa-car" aria-hidden="true"></i> As an agent for someone else. 
+         </div>
+         <div class="boxtwo"> Use one or more corporate cards to pay for rides enabling you to control business travel habits, expensing and billing.
+         </div>
+         </div>
+
+<div class="clearfix">&nbsp;</div> 
+
+         <h2 class="text-center rideBookTitle futura">Enter Email or Mobile Number of your Rider</h2>          
           <div class="clearfix">&nbsp;</div>
 
           <div class="col-md-8 col-md-offset-2">
@@ -192,12 +235,12 @@
         <div class="form_second_content">  
         <input type="hidden" value="" name="passengerid" id="passengerid">      
         <div class="menu-types">
-          <a href="#" data-value="1" class="type-1 active"></a>
-          <a href="#" data-value="3"  class="type-3"></a>
-          <a href="#" data-value="2" class="type-2"></a>
-          <a href="#" data-value="4" class="type-4"></a>
-          <a href="#" data-value="5" class="type-5"></a>
-	  <a href="#" data-value="6" class="type-6"></a>
+          <a href="1" data-value="1" onclick="mynewevent(this)" class="type-1 active"></a>
+          <a href="3" data-value="3" onclick="mynewevent(this)" class="type-3"></a>
+          <a href="2" data-value="2" onclick="mynewevent(this)" class="type-2"></a>
+          <a href="4" data-value="4" onclick="mynewevent(this)" class="type-4"></a>
+          <a href="5" data-value="5" onclick="mynewevent(this)" class="type-5"></a>
+	       <a href="8" data-value="8" onclick="mynewevent(this)" class="type-8"></a>
 
           <input type="hidden" name="type-value" id="type_value" class="type-value ajaxField" value="1">
         </div>
@@ -280,7 +323,7 @@
 <div id="mybutton" style="clear: both; display: block; text-align: center">
  <button type="button" onclick="estimateRide()"  value="Book Ride" class="btn btn-lg btn-black btn-white aligncenter btnStyle" id="estimateRidebtn">Estimate Ride</button>
  </div>
-<input type="hidden" id="type" name="type" value="2" class="ajaxField">
+<input type="hidden" id="type" name="type" value="1" class="ajaxField">
 
 
 
@@ -600,10 +643,13 @@ $.ajax({
 
                  var cardNumber = $("#cardNumber").val();
                  var exprityData = $("#expityMonth").val() + "/"+ $("#expityYear").val();
+		 var Cvv = $("#cvCode").val();
 
                   client.tokenizeCard({
                     number: cardNumber,
+		    cvv:Cvv,
                     expirationDate: exprityData
+			    
                   }, function (err, nonce) {
                     // Send nonce to your server
                     transaction_amount = $("#estimatedCost").val();
@@ -969,16 +1015,19 @@ $.ajax({
 
  <script type="text/javascript">
 
-  $(".type-1,.type-3,.type-2,.type-4,.type-5,.type-6,#mydate").click( function (){
-    var myvalue =$("#origin-input").val();
-    if(myvalue){
+  function mynewevent(abc){
+   // var myvalue =$("#origin-input").val();
+   // if(myvalue){
+     var vehval = abc.getAttribute("href");
+    
+     $('#type').val(vehval);
        $("#estimateRidebtn").css("cssText","display: block !important;")
        $("#estimateRidebtn").css("cssText","background: #3c342f !important;")
         $("#rideEstimatedCost").css("cssText","display: none !important;")
         $("#mydiv1").css("cssText","display: none !important;")
-     }
+     //}
        
-}); 
+} 
   $("#origin-input,#destination-input").keypress( function (){
 
        $("#estimateRidebtn").css("cssText","display: block !important;")
