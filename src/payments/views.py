@@ -138,7 +138,7 @@ class addPaymentrevert(LoginRequiredMixin, generic.TemplateView):
         request.session['__book_ride_form_data'] = request.POST
         if "paymentForm" not in kwargs:
             kwargs["paymentForm"] = forms.paymentForm()
-        return super(addPayment, self).get(request, *args, **kwargs)
+        return super(addPaymentrevert, self).get(request, *args, **kwargs)
 
         
 
