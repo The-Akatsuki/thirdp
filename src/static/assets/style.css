@@ -1502,7 +1502,7 @@ input.hidden_radio {
 .menu-types a.type-5 {
   background-image: url("/static/assets/images/car5.png");
 }
-.menu-types a.type-6 {
+.menu-types a.type-8 {
   background-image: url("/static/assets/images/car6.png");
 }
 
@@ -2090,7 +2090,7 @@ article.ride-box {
     min-height: calc(100vh + 55px);
 }
 .groupOne {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 p.watchVideo {
     color: #ec385b;
@@ -2114,15 +2114,7 @@ padding: 6px 5px !important;
 color: #222;
 }
 
-h2.text-center.rideBookTitle.usernotFoundText span {
-    background: #e63053;
-    color: #fff;
-    border-radius: 22px;
-    padding: 10px 15px;
-    margin: 5px 6px 2px 6px;
-    display: inline-block;
-}
- 
+h2.text-center.rideBookTitle.usernotFoundText span {    background: #50c2b7;    color: #fff;    border-radius: 22px;    padding: 10px 15px;    margin: 5px 6px 2px 6px;    display: inline-block;}  
 .datetimepicker table tr td.active, .datetimepicker table tr td.active:hover, .datetimepicker table tr td.active.disabled, .datetimepicker table tr td.active.disabled:hover {
     background-color: linear-gradient(top, #50c2b7, #158277);
     background-image: -moz-linear-gradient(top, #50c2b7, #158277);
@@ -2401,7 +2393,53 @@ form#bookaRideform .form-group input[type="text"],form#bookaRideform .form-group
  button:hover, button:active, button:focus, button, button::-moz-focus-inner {   
   outline: 0 !important;}
   .form-taxi-short .menu-types a {    margin: 0px 4px 0 4px;}
-/*******************************************************************************************************************************/
+ .alert-danger {    background-color: #ec385b;    border-color: #c8193b;    color: #ffffff;} 
+ .usernotFoundText {    margin: 15px auto 6px;}
+ .alert.alert-success {    background-color: #3c342f;    border-color: #231d1a;    color: #ffffff;    box-shadow: 0px 0px 3px 0px #444;    z-index: 9999;    padding: 15px 25px 10px 25px;    font-size: 20px;    font-weight: bold;}
+ .alert.alert-success .close {    position: relative;    top: -3px;}
+ .alert {    margin-top: 45px !important;}
+
+ .compnayLogo img {
+    height: 35px;
+}
+
+.rideBookText {
+    font-size: 15px;
+    margin: 15px auto 25px;
+    font-style: italic;
+}
+.riderNameIcon {
+    color: #3c342f;
+}
+.bolder {
+    font-weight: bold;
+    margin: 0px auto 15px;
+    font-size: 17px;
+    display: block;
+}
+.rideBookText .fa.fa-car {
+    font-size: 11px;
+}
+ 
+.boxone, .boxtwo {
+    vertical-align: top;
+    max-width: 370px;
+   
+    text-align: justify;
+    padding: 7px;
+    margin: 0px auto 10px;
+}
+.boxone {
+    background: #e13456;
+    box-shadow: 0px 0px 0px 2px #b72642, inset 0px 0px 0px 2px #ec385b;
+}
+.boxone {
+    font-size: 20px;
+}
+.boxtwo {
+    font-size: 16px;
+}
+ /*******************************************************************************************************************************/
 /*********************************************************responsive************************************************************/
 /*******************************************************************************************************************************/
 
@@ -2495,7 +2533,12 @@ article.ride-box {
 a.login {
     margin: 0px 0px 0px 15px;
 }
-
+.compnayLogo img {
+    height: 20px;
+}
+.compnayLogo {
+    margin: 0 auto 20px;
+}
 }
 
 

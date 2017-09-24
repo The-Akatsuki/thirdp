@@ -18,6 +18,7 @@ class ridebooking(models.Model):
 	ride_datetime = models.CharField(max_length=50, null=True)
 	passenger = models.CharField(max_length=250, null=True)
 	passenger_email = models.CharField(max_length=250, null=True)
+        passenger_name = models.CharField(max_length=250, null=True)
 	vehicle_type = models.CharField(max_length=250, null=True)
 	noof_passengers = models.CharField(max_length=250, null=True)
 	ride_booked_by = models.CharField(max_length=250, null=True)
