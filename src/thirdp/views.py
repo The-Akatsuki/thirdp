@@ -71,8 +71,8 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         companyDetailsDatastring =  companyDetailsData.first()
 
         if '__add_payment_revert' in request.session:
-            kwargs['__book_ride_form_data'] = request.session['__book_ride_form_data']
-            print "Line 75", kwargs['__book_ride_form_data']
+            kwargs['book_ride_form_data'] = request.session['__book_ride_form_data']
+            print "Line 75", kwargs['book_ride_form_data']
             messages.success(request, "Payment Method has been saved!")
             del request.session['__add_payment_revert']                
             return redirect("dashboard")
