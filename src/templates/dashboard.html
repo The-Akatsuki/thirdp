@@ -317,7 +317,7 @@
 
      <div class="col-md-12">
   <label style="cursor: pointer">
-    <input type="radio" name="paymentsDetails" value="add_new_card"  onclick="changePayment('', '', '', '', '')" />
+    <input type="radio" name="paymentsDetails" value="add_new_card"  onclick="addNewCard()" />
     <i class="fa fa-plus"></i> Add New Card
   </label>
   </div>
@@ -524,6 +524,11 @@
       }
       //add-card-class
       //getToken(nameOnCard, zip_code)
+  }
+
+
+  function addNewCard(){
+    $("#bookaRideform").attr('action', '{% url 'payments:addpaymentrevert' %}').submit();
   }
 
 
