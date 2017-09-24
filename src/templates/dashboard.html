@@ -199,7 +199,7 @@
 
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
-              <input type="text" name="email" value="" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()"><span class="fa fa-person"></span>
+              <input type="text" name="email" value="" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()" value=" {% if __book_ride_form_data %} {{ __book_ride_form_data['email'] }} {% endif %}"><span class="fa fa-person"></span>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -233,7 +233,7 @@
         </div>
 
         <div class="form_second_content">  
-        <input type="hidden" value="" name="passengerid" id="passengerid">      
+        <input type="hidden" value="" name="passengerid" id="passengerid" {% if __book_ride_form_data %} {{ __book_ride_form_data['passengerid'] }} {% endif %}>      
         <div class="menu-types">
           <a href="1" data-value="1" onclick="mynewevent(this)" class="type-1 active"></a>
           <a href="3" data-value="3" onclick="mynewevent(this)" class="type-3"></a>
