@@ -68,7 +68,7 @@
 								                <div class="panel-bodyFull">
 											                
 											                <div class="customFrom">
-														                    <form role="form" action="addpayment" class="validationForm" id="addPaymentForm" method="POST" action="../{% url 'payments:addpayment'  %}">                    
+														                    <form role="form" class="validationForm" id="addPaymentForm" method="POST" action="{% url 'payments:addpayment' %}">                    
 																	                         {% crispy paymentForm %} 
 																				                      <div style="clear: both"></div>
 																						                          </form>
