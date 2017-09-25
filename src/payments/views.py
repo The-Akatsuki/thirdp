@@ -96,14 +96,12 @@ class editPayment(LoginRequiredMixin, generic.TemplateView):
                 kwargs["paymentForm"] = forms.paymentForm()
         return super(editPayment, self).get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, id=None, *args, **kwargs):
         try:
             user = self.request.user
             paymentData = models.paymentsDetails.objects.filter(id=id).first()
             paymentForm = forms.paymentForm(request.POST, instance=paymentData)
             payment = paymentForm.save(commit=False)
-            payment.userid = user
-            payment.save()
             messages.success(request, "Payments has been saved!")
             data = companyDetails.objects.filter(user=request.user.id).first()
             #hiting the api for save
