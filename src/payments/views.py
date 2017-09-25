@@ -33,7 +33,8 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
     def post(self, request, *args, **kwargs):
         try:
             user = self.request.user
-            paymentForm = forms.paymentForm(request.POST)
+            paymentData = models.paymentsDetails.objects.filter(card_number=request.POST['cardNumber']).first()
+            paymentForm = forms.paymentForm(request.POST, instance=paymentData)
             payment = paymentForm.save(commit=False)
             payment.userid = user
             payment.save()
