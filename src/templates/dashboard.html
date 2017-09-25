@@ -199,6 +199,7 @@
 
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
+            {{ book_ride_form_data }}
             <input type="text" name="email" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()"  {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.email }}" {% endif %}><span class="fa fa-person"></span>
             </div>
           </div>
@@ -475,7 +476,7 @@
 
 <div id="mydiv1" style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter btnStyle"  onclick="proceedToPayment()" id="paymentBtn">Proceed to Payment</button>
 
-<div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn"  onclick="bookRideSYNC()">Book Ride</button>
+<div style="clear: both; display: block; text-align: center"> <button type="button"  class="btn btn-lg btn-black btn-white aligncenter" style="background: #1F1F1F;color: #fff;font-size: 16px;border-radius: 30px; margin: 0 auto;clear: both;"  id="bookrideBtn" {% if book_ride_form_data is not None %} style="display:block;" {% endif %}  onclick="bookRideSYNC()">Book Ride</button>
 </div>
 <!--<p class="text-center" onclick="form_reset()" id="cancelRide">Cancel Ride</p>-->
 
