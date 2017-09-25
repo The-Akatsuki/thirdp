@@ -200,7 +200,9 @@
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
             {{ book_ride_form_data }}
+            {{ book_ride_form_data_email }}
               <input type="text" name="email" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()"  {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.email }}" {% endif %}><span class="fa fa-person"></span>
+            }
             }
             </div>
           </div>
