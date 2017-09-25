@@ -77,8 +77,7 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
             kwargs['book_ride_form_data_email'] = kwargs['book_ride_form_data']['email']
             messages.success(request, "Payment Method has been saved!")
             #del request.session['__add_payment_revert']                
-            return redirect("dashboard")
-
+            
         bookedRidesData = ridebooking.objects.filter(user=self.request.user)
         print bookedRidesData.__dict__
         if bookedRidesData is not None:
