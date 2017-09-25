@@ -345,7 +345,7 @@
 
 
 
- <div class="form_third_content"> 
+ <div class="form_third_content" {% if book_ride_form_data is not None %} style="display:block;" {% endif %}> 
    <h3>Select Payment Methods</h3>
   {% if paymentsDetailsData is not None %}
       {% for paymentsDetails in paymentsDetailsData.all %}
