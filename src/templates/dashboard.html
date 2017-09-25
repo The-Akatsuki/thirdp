@@ -199,7 +199,6 @@
 
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
-            {{ book_ride_form_data }}
             <input type="text" name="email" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()"  {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.email }}" {% endif %}><span class="fa fa-person"></span>
             </div>
           </div>
@@ -361,8 +360,9 @@
 
      <div class="col-md-12">
   <label style="cursor: pointer">
-    <input type="radio" name="paymentsDetails" value="add_new_card"  onclick="addNewCard()" />
+    <button type="button" name="paymentsDetails" class="btn btn-default" onclick="addNewCard()" >
     <i class="fa fa-plus"></i> Add New Card
+    </button>
   </label>
   </div>
 
