@@ -75,7 +75,8 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
             kwargs['book_ride_form_data'] = request.session['__book_ride_form_data']
             print "Line 75", kwargs['book_ride_form_data']
             messages.success(request, "Payment Method has been saved!")
-            #del request.session['__add_payment_revert']                
+            del request.session['__add_payment_revert'] 
+            del request.session['__book_ride_form_data']                
             
         bookedRidesData = ridebooking.objects.filter(user=self.request.user)
         print bookedRidesData.__dict__
