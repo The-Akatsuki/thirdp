@@ -73,6 +73,7 @@ class addPayment(LoginRequiredMixin, generic.TemplateView):
                 return redirect("dashboard")
 
             if '__add_payment_revert' in request.session:
+                del request.session['__add_payment_revert']
                 messages.success(request, "Payment Method has been saved!")
                 return redirect("dashboard")
             
