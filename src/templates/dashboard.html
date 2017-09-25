@@ -233,7 +233,7 @@
         </div>
 
         <div class="form_second_content">  
-        <input type="hidden" value="" name="passengerid" id="passengerid" {% if book_ride_form_data %} {{ book_ride_form_data.passengerid }} {% endif %}>      
+        <input type="hidden" value="" name="passengerid" id="passengerid" {% if book_ride_form_data is not Non %} value="{{ book_ride_form_data.passengerid }}" {% endif %}>      
         <div class="menu-types">
           <a href="1" data-value="1" onclick="mynewevent(this)" class="type-1 active"></a>
           <a href="3" data-value="3" onclick="mynewevent(this)" class="type-3"></a>
