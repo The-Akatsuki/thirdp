@@ -174,7 +174,7 @@
 {% csrf_token %}
 <div class="spaceOnly"><br><br><br><br><br><br><br><br><br><br></div>
 
-         <div class="row form-with-labels text-center form_first_content">
+         <div class="row form-with-labels text-center form_first_content" {% if book_ride_form_data is not None %} style="display:none" {% endif %}>
          
  
          <h2 class="text-center rideBookTitle" style="font-size: 25px;">Book Ride</h2>
@@ -200,8 +200,7 @@
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
             {{ book_ride_form_data }}
-            {{ book_ride_form_data_email }}
-              <input type="text" name="email" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()"  {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.email }}" {% endif %}><span class="fa fa-person"></span>
+            <input type="text" name="email" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()"  {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.email }}" {% endif %}><span class="fa fa-person"></span>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -210,7 +209,7 @@
           
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
-              <input type="text" name="mobile" value="" placeholder="Mobile"  id="mobile" class="ajaxField required" aria-required="true"><span class="fa fa-phone"></span>
+              <input type="text" name="mobile" value="" placeholder="Mobile"  id="mobile" class="ajaxField required" aria-required="true"  {% if book_ride_form_data is not None %}{% if 'mobile' in book_ride_form_data %} value="{{ book_ride_form_data.mobile }}" {% endif %}{% endif %}><span class="fa fa-phone"></span>
             </div>
           </div>
 
@@ -234,8 +233,8 @@
 
         </div>
 
-        <div class="form_second_content">  
-        <input type="hidden" value="" name="passengerid" id="passengerid" {% if book_ride_form_data is not Non %} value="{{ book_ride_form_data.passengerid }}" {% endif %}>      
+        <div class="form_second_content" {% if book_ride_form_data is not None %} style="display:none" {% endif %}>  
+        <input type="hidden" value="" name="passengerid" id="passengerid" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.passengerid }}" {% endif %}>      
         <div class="menu-types">
           <a href="1" data-value="1" onclick="mynewevent(this)" class="type-1 active"></a>
           <a href="3" data-value="3" onclick="mynewevent(this)" class="type-3"></a>
@@ -247,35 +246,35 @@
           <input type="hidden" name="type-value" id="type_value" class="type-value ajaxField" value="1">
         </div>
         <div class="row form-with-labels">
-          <input type="hidden" name="from_country" id="from_country" value="">
-          <input type="hidden" name="from_state" id="from_state" value="">
-          <input type="hidden" name="from_city" id="from_city" value="">
-          <input type="hidden" name="from_lat" id="from_lat" value="">
-          <input type="hidden" name="from_lon" id="from_lon" value="">
+          <input type="hidden" name="from_country" id="from_country" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.from_country }}" {% endif %}>
+          <input type="hidden" name="from_state" id="from_state" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.from_state }}" {% endif %}>
+          <input type="hidden" name="from_city" id="from_city" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.from_city }}" {% endif %}>
+          <input type="hidden" name="from_lat" id="from_lat" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.from_lat }}" {% endif %}>
+          <input type="hidden" name="from_lon" id="from_lon" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.from_lon }}" {% endif %}>
 
-          <input type="hidden" name="to_country" id="to_country" value="">
-          <input type="hidden" name="to_state" id="to_state" value="">
-          <input type="hidden" name="to_city" id="to_city" value="">
-          <input type="hidden" name="to_lat" id="to_lat" value="">
-          <input type="hidden" name="to_lon" id="to_lon" value="">
-          <input type="hidden" name="country_id" id="country_id" value="">
-          <input type="hidden" name="state_id" id="state_id" value="">
-          <input type="hidden" name="city_id" id="city_id" value="">
-          <input type="hidden" name="distance" id="distance" value="">
-          <input type="hidden" name="cost" id="cost" value="">
-          <input type="hidden" name="duration" id="duration" value="">
+          <input type="hidden" name="to_country" id="to_country" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.to_country }}" {% endif %}>
+          <input type="hidden" name="to_state" id="to_state" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.to_state }}" {% endif %}>
+          <input type="hidden" name="to_city" id="to_city" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.to_city }}" {% endif %}>
+          <input type="hidden" name="to_lat" id="to_lat" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.to_lat }}" {% endif %}>
+          <input type="hidden" name="to_lon" id="to_lon" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.to_lon }}" {% endif %}>
+          <input type="hidden" name="country_id" id="country_id" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.country_id }}" {% endif %}>
+          <input type="hidden" name="state_id" id="state_id" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.state_id }}" {% endif %}>
+          <input type="hidden" name="city_id" id="city_id" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.city_id }}" {% endif %}>
+          <input type="hidden" name="distance" id="distance" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.distance }}" {% endif %}>
+          <input type="hidden" name="cost" id="cost" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.cost }}" {% endif %}>
+          <input type="hidden" name="duration" id="duration" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.duration }}" {% endif %}>
 
 
 
 
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" id="origin-input" name="from" value="" placeholder="From Address..." class="ajaxField required" aria-required="true"><span class="fa fa-map-marker"></span>
+              <input type="text" id="origin-input" name="from" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.from }}" {% endif %} placeholder="From Address..." class="ajaxField required" aria-required="true"><span class="fa fa-map-marker"></span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" id="destination-input" name="to" value="" placeholder="To..." class="ajaxField"><span class="fa fa-map-marker"></span>
+              <input type="text" id="destination-input" name="to" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.to }}" {% endif %} placeholder="To..." class="ajaxField"><span class="fa fa-map-marker"></span>
             </div>
           </div>
         </div>
@@ -286,7 +285,7 @@
             <div class="form-group">
               <!--<input type="text" name="Ridedate" value="" placeholder="Date" class="ajaxField" id="datepicker"><span class="fa fa-calendar"></span>-->
              <div class="input-append date form_datetime">
-               <input id="mydate" size="16" type="text" name="Ridedate" value="" readonly value="" placeholder="Date" class="ajaxField">
+               <input id="mydate" size="16" type="text" name="Ridedate" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.Ridedate }}" {% endif %} readonly value="" placeholder="Date" class="ajaxField">
               <span class="add-on"><i class="icon-th"></i></span>
             </div>
             </div>
@@ -295,17 +294,17 @@
            <div class="col-md-6">
             <div class="form-group">
       <select id="passengers-select" name="passengers" placeholder="No. of passengers" class="ajaxField">
-	<option  value="1">1</option>
-	<option  value="1">2</option>
-	<option  value="1">3</option>
-	<option  value="1">4</option>
+	<option  value="1" {% if book_ride_form_data is not None %}{% book_ride_form_data.passengers == "1" %} selected {% endif %}{% endif %} >1</option>
+	<option  value="1" {% if book_ride_form_data is not None %}{% book_ride_form_data.passengers == "2" %} selected {% endif %}{% endif %}>2</option>
+	<option  value="1" {% if book_ride_form_data is not None %}{% book_ride_form_data.passengers == "3" %} selected {% endif %}{% endif %}>3</option>
+	<option  value="1" {% if book_ride_form_data is not None %}{% book_ride_form_data.passengers == "4" %} selected {% endif %}{% endif %}>4</option>
       </select>
 </div>
   </div>
 
   <div class="col-md-6">
     <div class="form-group">
-      <input type="text" id="Remarks-input" name="Remarks" value="" placeholder="Remarks" class="ajaxField">
+      <input type="text" id="Remarks-input" {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.Remarks }}" {% endif %} name="Remarks" placeholder="Remarks" class="ajaxField">
     </div>
   </div>
   

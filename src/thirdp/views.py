@@ -74,7 +74,6 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         if '__book_ride_form_data' in request.session:
             kwargs['book_ride_form_data'] = request.session['__book_ride_form_data']
             print "Line 75", kwargs['book_ride_form_data']
-            kwargs['book_ride_form_data_email'] = kwargs['book_ride_form_data']['email']
             messages.success(request, "Payment Method has been saved!")
             #del request.session['__add_payment_revert']                
             
