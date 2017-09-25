@@ -199,7 +199,7 @@
 
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
-              <input type="text" name="email" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()" value=" {% if book_ride_form_data %} {{ book_ride_form_data.email }} {% endif %}"><span class="fa fa-person"></span>
+              <input type="text" name="email" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()" value=" {% if book_ride_form_data is not None %} {{ book_ride_form_data }} {% endif %}"><span class="fa fa-person"></span>
             </div>
           </div>
           <div class="clearfix"></div>
