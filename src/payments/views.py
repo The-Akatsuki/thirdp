@@ -94,7 +94,7 @@ class editPayment(LoginRequiredMixin, generic.TemplateView):
                 kwargs["paymentForm"] = forms.paymentForm(instance=paymentData)
             else:
                 kwargs["paymentForm"] = forms.paymentForm()
-        return super(addPayment, self).get(request, *args, **kwargs)
+        return super(editPayment, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         try:
