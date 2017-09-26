@@ -103,7 +103,7 @@ class editPayment(LoginRequiredMixin, generic.TemplateView):
             print "Line 103, id:",id
             print paymentData
             paymentForm = forms.paymentForm(request.POST, instance=paymentData)
-            payment = paymentForm.save(commit=False)
+            payment = paymentForm.save()
             messages.success(request, "Payments has been saved!")
             data = companyDetails.objects.filter(user=request.user.id).first()
             #hiting the api for save
