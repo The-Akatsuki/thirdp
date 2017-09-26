@@ -231,6 +231,9 @@ class paymentMethods(LoginRequiredMixin, generic.TemplateView):
         user = self.request.user
         b = models.paymentsDetails.objects.filter(userid=user)
         print b
+        if b is not None:
+            for item in b:
+                item['cardNumber'] = b[:2] + '*******' + b[3:]
         kwargs["payments"] = b
         return super(paymentMethods, self).get(request, *args, **kwargs)
 
