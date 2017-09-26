@@ -233,7 +233,7 @@ class paymentMethods(LoginRequiredMixin, generic.TemplateView):
         print b
         if b is not None:
             for item in b:
-                item['cardNumber'] = b[:2] + '*******' + b[3:]
+                item['cardNumber'] = item['cardNumber'][:2] + '*******' + item['cardNumber'][3:]
         kwargs["payments"] = b
         return super(paymentMethods, self).get(request, *args, **kwargs)
 
