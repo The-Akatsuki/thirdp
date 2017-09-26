@@ -28,7 +28,10 @@
                           <article class="ride-box clearfix">
 
                           <div class="ride-content">
-                          <h3><a href="#">{{ payment.cardNumber }}</a></h3> <a href="#">{{ payment.nameOnCard }}</a>
+                          <h3>
+                          <a href="#">{{ payment.cardNumber[:2] }}</a>
+
+                          </h3> <a href="#">{{ payment.nameOnCard }}</a>
                                     </div>
 
                                     <ul class="ride-meta">
