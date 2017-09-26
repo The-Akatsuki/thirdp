@@ -348,7 +348,7 @@
  <div class="form_third_content" {% if book_ride_form_data is not None %} style="display:block;" {% endif %}> 
    <h3>Select Payment Methods</h3>
   {% if paymentsDetailsData is not None %}
-      {% for paymentsDetails in paymentsDetailsData.all %}
+      {% for paymentsDetails in paymentsDetailsData %}
       <div class="col-md-12">
 	<label style="cursor: pointer">
 	  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}"  onclick="changePayment('{{ paymentsDetails.cardNumber }}', '{{ paymentsDetails.nameOnCard }}', '{{ paymentsDetails.expirationDateMM }}', '{{ paymentsDetails.expirationDateYY }}', '{{ paymentsDetails.zipCode }}')" />

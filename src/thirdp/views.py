@@ -82,8 +82,15 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
         print bookedRidesData.__dict__
         if bookedRidesData is not None:
             kwargs['bookedRidesData'] = bookedRidesData
-            kwargs['paymentsDetailsData'] = paymentsDetailsData 
-            kwargs['companyDetailsData'] = companyDetailsDatastring           
+            kwargs['companyDetailsData'] = companyDetailsDatastring  
+
+        if paymentsDetailsData is not None:
+            c = paymentsDetailsData.all()
+            for item in c:
+                item.cardNumber = item.cardNumber[:2] + '*************' + item.cardNumber[-3:]
+            kwargs['paymentsDetailsData'] = c 
+            
+                      
         return super(dashboard, self).get(request, *args, **kwargs)
 
 
