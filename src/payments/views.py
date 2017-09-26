@@ -100,6 +100,7 @@ class editPayment(LoginRequiredMixin, generic.TemplateView):
         try:
             user = self.request.user
             paymentData = models.paymentsDetails.objects.filter(id=id).first()
+            print "Line 103, id:",id
             print paymentData
             paymentForm = forms.paymentForm(request.POST, instance=paymentData)
             payment = paymentForm.save(commit=False)
