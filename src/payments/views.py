@@ -230,6 +230,10 @@ class paymentMethods(LoginRequiredMixin, generic.TemplateView):
     def get(self, request, *args, **kwargs):
         user = self.request.user
         b = models.paymentsDetails.objects.filter(userid=user)
-        kwargs["payments"] = b
+        print b
+        if b is not None:
+            for item in b:
+                item['cardNumber'] = item['cardNumber'][:2] + '*******' + item['cardNumber'][3:]
+        kwargs["payments"] = b.all()
         return super(paymentMethods, self).get(request, *args, **kwargs)
 

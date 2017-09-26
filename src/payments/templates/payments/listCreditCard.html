@@ -23,13 +23,13 @@
                         <div class="listcontent">
 
                          <div class="rides-list">
-                          {% for payment in payments.all %}
+                          {% for payment in payments %}
                                   
                           <article class="ride-box clearfix">
 
                           <div class="ride-content">
                           <h3>
-                          <a href="#">{{ payment.cardNumber[:2] }}</a>
+                          <a href="#">{{ payment.cardNumber }}</a>
 
                           </h3> <a href="#">{{ payment.nameOnCard }}</a>
                                     </div>
@@ -45,7 +45,7 @@
                                        
                                         <li>
                                             <a href="{% url 'payments:deletepayment' id=payment.id %}">
-                                                <i class="fa fa-trash"></i>
+                                                <ass="fa fa-trash"></i>
                                                 Delete
                                             </a>
                                         </li>
