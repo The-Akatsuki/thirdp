@@ -100,8 +100,8 @@ class editPayment(LoginRequiredMixin, generic.TemplateView):
         try:
             user = self.request.user
             paymentData = models.paymentsDetails.objects.filter(id=id).first()
-            print "Line 103, id:",id
-            print paymentData
+            #print "Line 103, id:",id
+            #print paymentData
             paymentForm = forms.paymentForm(request.POST, instance=paymentData)
             payment = paymentForm.save()
             messages.success(request, "Payments has been saved!")
@@ -123,8 +123,8 @@ class editPayment(LoginRequiredMixin, generic.TemplateView):
                 "created_by":str(data.lymo_profile_id),
                 "updated_by":str(data.lymo_profile_id)
                 }
-            print payload
-            print url
+            #print payload
+            #print url
             response = requests.post(url, json = payload)
             data_to_store =json.loads(response.text)
             print data_to_store
