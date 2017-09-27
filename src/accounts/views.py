@@ -68,6 +68,10 @@ class PasswordResetView(authviews.PasswordResetView):
     subject_template_name = 'accounts/emails/password-reset-subject.txt'
     email_template_name = 'accounts/emails/password-reset-email.html'
 
+    def post(self, request, *args, **kwargs):
+        print "Line 72", request.POST
+        #return super(EditProfile, self).get(request, *args, **kwargs)
+
 
 class PasswordResetDoneView(authviews.PasswordResetDoneView):
     template_name = 'accounts/password-reset-done.html'
