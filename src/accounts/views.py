@@ -8,12 +8,6 @@ from authtools import views as authviews
 from braces import views as bracesviews
 from django.conf import settings
 from . import forms
-import requests
-import json
-
-import environ
-env = environ.Env()
-LYMOSRV_URL = env('LYMOSRV_URL')
 
 User = get_user_model()
 
@@ -30,7 +24,6 @@ class LoginView(bracesviews.AnonymousRequiredMixin,
             expiry = getattr(settings, "KEEP_LOGGED_DURATION", ONE_MONTH)
             self.request.session.set_expiry(expiry)
         return redirect
-
 
 class LogoutView(authviews.LogoutView):
     url = reverse_lazy('home')
@@ -73,20 +66,6 @@ class PasswordResetView(authviews.PasswordResetView):
     success_url = reverse_lazy('accounts:password-reset-done')
     subject_template_name = 'accounts/emails/password-reset-subject.txt'
     email_template_name = 'accounts/emails/password-reset-email.html'
-
-    def post(self, request, *args, **kwargs):
-        print "Line 72", request.POST
-        email_template_name = 'accounts/emails/password-reset-email.html'
-        print email_template_name
-        url = LYMOSRV_URL+"lymousine/api/v1/trdforgotpasswordemail"
-        payload = {
-            "email_to": request.POST['email'],
-             "body": email_template_name
-        }
-        print url
-        print payload
-        response = requests.post(url, json = payload)
-        return super(EditProfile, self).get(request, *args, **kwargs)
 
 
 class PasswordResetDoneView(authviews.PasswordResetDoneView):
