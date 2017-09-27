@@ -36,7 +36,7 @@
                       <div class="groupOne"> 
                       <div class="row">
                         <div class="col-xs-6 text-left">
-                          <div class="compnayLogo "><img src="{{MEDIA_URL}}{{companyDetailsData.company_logo}}" class="img-responsive img">
+                          <div class="compnayLogo "><img src="{% static 'assets/images/logo.png' %}" class="img-responsive img">
                           </div>
                         </div>
                         <div class="col-xs-6 text-right">
@@ -177,37 +177,34 @@
          <div class="row form-with-labels text-center form_first_content" {% if book_ride_form_data is not None %} style="display:none" {% endif %}>
          
  
-         <h2 class="text-center rideBookTitle" style="font-size: 25px;">A simple way to book rides</h2>
+         <h2 class="text-center rideBookTitle" style="font-size: 25px;">Book Ride</h2>
 
 
 
 
 
           <div class="text-center rideBookText"> 
-      
-        
+        <p class="bolder"> A simple way to book rides </p>  
         <div class="boxone">
         <i class="fa fa-car" aria-hidden="true"></i> As an employer for your employees, <div class="text-center"> or </div><i class="fa fa-car" aria-hidden="true"></i> As an agent for someone else. 
          </div>
          <div class="boxtwo"> Use one or more corporate cards to pay for rides enabling you to control business travel habits, expensing and billing.
          </div>
-         </div><br>
-<h2  class="text-center rideBookTitle" style="font-size: 25px;"> Book Ride </h2> 
+         </div>
+
 <div class="clearfix">&nbsp;</div> 
- 
+
          <h2 class="text-center rideBookTitle futura">Enter Email or Mobile Number of your Rider</h2>          
           <div class="clearfix">&nbsp;</div>
 
           <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
-            {% if book_ride_form_data is not None %}
             {{ book_ride_form_data }}
-            {% endif %}
             <input type="text" name="email" placeholder="email address" class="ajaxField required" aria-required="true" id="user_email" onclick="emailInit()"  {% if book_ride_form_data is not None %} value="{{ book_ride_form_data.email }}" {% endif %}><span class="fa fa-person"></span>
             </div>
           </div>
           <div class="clearfix"></div>
-          <h3 style="font-weight: bold;font-size: 18px;font-family: 'Fira Sans Condensed', sans-serif;">OR</h3>
+          <h3 style="font-weight: bold;font-size: 13px;font-family: 'Fira Sans Condensed', sans-serif;">OR</h3>
           <div class="clearfix">&nbsp</div>
           
           <div class="col-md-8 col-md-offset-2">
@@ -354,7 +351,7 @@
       {% for paymentsDetails in paymentsDetailsData %}
       <div class="col-md-12">
 	<label style="cursor: pointer">
-	  <input type="radio" id="cardradio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}"  onclick="changePayment('{{ paymentsDetails.cardNumber }}', '{{ paymentsDetails.nameOnCard }}', '{{ paymentsDetails.expirationDateMM }}', '{{ paymentsDetails.expirationDateYY }}', '{{ paymentsDetails.zipCode }}','{{ paymentsDetails.cardNumber1 }}')" />
+	  <input type="radio" name="paymentsDetails" value="{{ paymentsDetails.cardNumber }}"  onclick="changePayment('{{ paymentsDetails.cardNumber }}', '{{ paymentsDetails.nameOnCard }}', '{{ paymentsDetails.expirationDateMM }}', '{{ paymentsDetails.expirationDateYY }}', '{{ paymentsDetails.zipCode }}')" />
 	  {{ paymentsDetails.nameOnCard }} / {{ paymentsDetails.cardNumber }}
 	</label>
 	</div>
@@ -397,9 +394,8 @@
 	    </div>
 	    <div class="form-group">
 		<label for="cardNumber">
-		    Card1 Number</label> 
-		    <input type="text" data-braintree-name="number" autocomplete="off" class="form-control" id="cardNumber" placeholder="Valid Card Number" required autofocus />
-        <input type="hidden" id="cardNumber1"> </input>
+		    Card Number</label> 
+		    <input type="text" data-braintree-name="number" class="form-control" id="cardNumber" placeholder="Valid Card Number" required autofocus />
 	    </div>
 	    <div class="row">
 		<div class="col-xs-7 col-md-7">
@@ -563,10 +559,9 @@
     });
   }
 
-  function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code, cardNumber1 ){
+  function changePayment(cardNumber , nameOnCard , expirationDateMM , expirationDateYY, zip_code ){
       $("#cardHolderName").val(nameOnCard);
       $("#cardNumber").val(cardNumber);
-      $("#cardNumber1").val(cardNumber1);
       $("#expityMonth").val(expirationDateMM);
       $("#expityYear").val(expirationDateYY);
       $("#zip_code").val(zip_code);
@@ -657,7 +652,7 @@ $.ajax({
 
                  var client = new braintree.api.Client({clientToken: client_token});
 
-                 var cardNumber = $("#cardNumber1").val();
+                 var cardNumber = $("#cardNumber").val();
                  var exprityData = $("#expityMonth").val() + "/"+ $("#expityYear").val();
 		 var Cvv = $("#cvCode").val();
 
@@ -745,7 +740,7 @@ $.ajax({
         };
       }else{
         var formData = {
-          'mobile': $('#mobile').val() //for get email
+          'mobile_number': $('#mobile').val() //for get email
         };
       }
       
@@ -1021,7 +1016,7 @@ $.ajax({
  <script type="text/javascript" src="https://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?t=20130302"></script>
         <script type="text/javascript">
             $(".form_datetime").datetimepicker({
-                format: "dd MM yyyy - hh:ii A",
+                format: "dd MM yyyy - hh:mm",
                 autoclose: true,
                 todayBtn: true,
                 pickerPosition: "bottom-left",
@@ -1053,13 +1048,6 @@ $.ajax({
         
        
 }); 
-   $("#cardradio").click(function() {
-    $("#cardNumber").on("keyup", function(e){
-      var stt = $(this).val();
-   $("#cardNumber1").val(stt);
-  
-});
-    });
 
    $("#estimateRidebtn").click( function (){
         $("#rideEstimatedCost").css("cssText","display: block !important;")
@@ -1069,8 +1057,5 @@ $.ajax({
 
        
 }); 
-
-  
-
 </script>
   {% endblock scripts %}

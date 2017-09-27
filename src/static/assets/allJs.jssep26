@@ -56,14 +56,14 @@
         required: true,
         minlength:10,
         maxlength:12,
-        number: true
+        number:true
         },
 
     phone: {
         required: true,
         minlength:10,
         maxlength:12,
-        number: true
+        number:true
         },
 
     addressLine1: {
@@ -99,7 +99,7 @@
         required: true,
         minlength:15,
         maxlength:16,
-        number: true
+        number:true
         },
     expirationDateMM: {
         required: true,
@@ -147,7 +147,7 @@
         minlength: "Please enter at least 10 numbers",
         },
         zipCode:  {
-        maxlength: "Please enter no more than 4 numbers",
+        maxlength: "Please enter no more than 12 numbers",
         minlength: "Please enter at least 6 numbers",
         },
 

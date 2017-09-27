@@ -143,12 +143,14 @@ LOGIN_URL = reverse_lazy("accounts:login")
 
 THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
 
-EMAIL_CONFIG = env.email_url()
+EMAIL_CONFIG = env.email_url(
+            'EMAIL_URL', default='smtp+tls://dineshkaushik829269@gmaillcom@:dksdedemo0n@smtp.gmail.com:587')
+vars().update(EMAIL_CONFIG)
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# #EMAIL_HOST_USER = 'dineshkaushik829269@gmail.com'
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'dineshkaushik829269@gmail.com'
 # EMAIL_HOST_USER = 'lymousinecar@gmail.com'
-# EMAIL_HOST_PASSWORD = 'lymo@123'
-# EMAIL_FROM = 'info@lymousine.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+#EMAIL_HOST_PASSWORD = 'dksdedemo0n'#'lymo@123'
+#EMAIL_FROM = 'info@lymousine.com'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True

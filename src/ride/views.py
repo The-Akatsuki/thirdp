@@ -116,7 +116,7 @@ class BookRide(LoginRequiredMixin, generic.TemplateView):
         #     mimetype='application/json'
         # )
         print response.text
-        print "12121212"
+        print "12121212o --------------------- booked"
         return  JsonResponse(rideData)
 
         #return redirect("dashboard")            

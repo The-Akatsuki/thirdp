@@ -86,12 +86,8 @@ class dashboard(LoginRequiredMixin, generic.TemplateView):
 
         if paymentsDetailsData is not None:
             c = paymentsDetailsData.all()
-            for item in c:
-            	item.cardNumber1 = item.cardNumber
-                item.cardNumber = item.cardNumber[:2] + '*************' + item.cardNumber[-3:]
-                
-                print "tttttttttttttttttttttttttttttttttttttttttttttttt"
-                print item.cardNumber1 
+        #    for item in c:
+        #        item.cardNumber = item.cardNumber[:2] + '*************' + item.cardNumber[-3:]
             kwargs['paymentsDetailsData'] = c 
             
                       
