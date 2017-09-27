@@ -70,7 +70,15 @@ class PasswordResetView(authviews.PasswordResetView):
 
     def post(self, request, *args, **kwargs):
         print "Line 72", request.POST
-        #return super(EditProfile, self).get(request, *args, **kwargs)
+        url = LYMOSRV_URL+"lymousine/api/v1/trdforgotpasswordemail"
+        payload = {
+            "email_to": request.POST['email'],
+             "body": email_template_name
+        }
+        print url
+        print payload
+        response = requests.post(url, json = payload)
+        return super(EditProfile, self).get(request, *args, **kwargs)
 
 
 class PasswordResetDoneView(authviews.PasswordResetDoneView):
