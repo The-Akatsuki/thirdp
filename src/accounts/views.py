@@ -8,6 +8,12 @@ from authtools import views as authviews
 from braces import views as bracesviews
 from django.conf import settings
 from . import forms
+import requests
+import json
+
+import environ
+env = environ.Env()
+LYMOSRV_URL = env('LYMOSRV_URL')
 
 User = get_user_model()
 
